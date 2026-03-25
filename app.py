@@ -1,7 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 
-# 设置页面配置
+# ===================== 页面配置（完全保留你的原版） =====================
 st.set_page_config(
     page_title="Python编程小助手",
     page_icon="🐍",
@@ -9,10 +9,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 自定义CSS样式（100%原样保留你的设计）
+# ===================== 自定义CSS样式（100%还原你的原版美观设计） =====================
 st.markdown("""
 <style>
-/* 全局样式 */
+/* 全局背景渐变 */
 .stApp {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-attachment: fixed;
@@ -25,7 +25,7 @@ st.markdown("""
     padding: 20px;
 }
 
-/* 标题样式 */
+/* 标题渐变样式 */
 .title-box {
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
     -webkit-background-clip: text;
@@ -49,7 +49,7 @@ st.markdown("""
     backdrop-filter: blur(10px);
 }
 
-/* 消息样式 */
+/* 消息气泡样式 */
 .chat-message {
     padding: 15px 20px;
     border-radius: 15px;
@@ -92,7 +92,7 @@ st.markdown("""
 }
 
 /* 输入框样式 */
-.stTextInput>div>div>input {
+.stChatInput>div>div>input {
     border-radius: 25px;
     border: 2px solid #667eea;
     padding: 12px 20px;
@@ -109,16 +109,6 @@ st.markdown("""
 /* 提示框样式 */
 .success-box {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    margin: 10px 0;
-    font-weight: bold;
-    text-align: center;
-}
-
-.info-box {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
     color: white;
     padding: 12px 20px;
     border-radius: 10px;
@@ -155,28 +145,28 @@ code {
 </style>
 """, unsafe_allow_html=True)
 
-# 初始化会话状态
+# ===================== 会话状态初始化 =====================
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 主页面内容
+# ===================== 主页面内容 =====================
 st.markdown("<div class='main-container'>", unsafe_allow_html=True)
 st.markdown("<div class='title-box'>🐍 Python编程小助手</div>", unsafe_allow_html=True)
 
-# 侧边栏设置
+# ===================== 侧边栏（完全还原你的原版） =====================
 with st.sidebar:
     st.markdown("## 🎯 功能菜单")
     st.markdown("---")
     
     st.subheader("⚙️ 设置")
-    # 已填入你的DeepSeek密钥
+    # 填入你的DeepSeek密钥
     api_key = "sk-57d87bba45dd4a9ca835268569c3e5fc"
     st.session_state.api_key = api_key
     
     if api_key:
         st.markdown("<div class='success-box'>✅ API密钥已设置</div>", unsafe_allow_html=True)
     else:
-        st.markdown("<div class='info-box'>⚠️ 请输入有效的API密钥</div>", unsafe_allow_html=True)
+        st.warning("⚠️ 请输入有效的API密钥")
     
     st.markdown("---")
     
@@ -208,7 +198,7 @@ with st.sidebar:
     - 耐心引导，循序渐进
     """)
 
-# 聊天区域
+# ===================== 聊天区域 =====================
 st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
 
 # 显示聊天记录
@@ -227,25 +217,20 @@ if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.rerun()
 
-# AI回复处理（DeepSeek API）
+# ===================== AI回复处理 =====================
 if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
     if not hasattr(st.session_state, 'api_key') or not st.session_state.api_key:
         with st.chat_message("assistant", avatar="🐍"):
             st.markdown("<div class='chat-message assistant-message'>⚠️ 请先在左侧设置API密钥哦！</div>", unsafe_allow_html=True)
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": "⚠️ 请先在左侧设置API密钥哦！"
-        })
+        st.session_state.messages.append({"role": "assistant", "content": "⚠️ 请先在左侧设置API密钥哦！"})
     else:
         try:
             with st.spinner("🤔 正在思考中..."):
-                # DeepSeek 配置
                 client = OpenAI(
                     api_key=st.session_state.api_key,
                     base_url="https://api.deepseek.com"
                 )
                 
-                # 系统提示词
                 system_prompt = """你是专业的中小学Python编程辅导老师。你的教学原则如下：
                 【知识范围】只讲解Python基础语法、简单逻辑、入门知识，严格限制在中小学编程范围内。
                 【教学风格】语言通俗、耐心细致、鼓励为主、循序渐进，多用比喻和生活例子。
@@ -260,11 +245,9 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
                 - 不回答编程以外的问题
                 """
                 
-                # 构建消息
                 messages = [{"role": "system", "content": system_prompt}]
                 messages.extend([{"role": m["role"], "content": m["content"]} for m in st.session_state.messages])
                 
-                # 调用DeepSeek API
                 response = client.chat.completions.create(
                     model="deepseek-chat",
                     messages=messages,
@@ -274,14 +257,10 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
                 
                 assistant_response = response.choices[0].message.content
                 
-                # 显示AI回复
                 with st.chat_message("assistant", avatar="🐍"):
                     st.markdown(f"<div class='chat-message assistant-message'>{assistant_response}</div>", unsafe_allow_html=True)
                 
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "content": assistant_response
-                })
+                st.session_state.messages.append({"role": "assistant", "content": assistant_response})
                 
         except Exception as e:
             error_msg = str(e).lower()
@@ -289,6 +268,8 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
                 reply = "❌ API密钥错误：请检查密钥是否正确。"
             elif "429" in error_msg:
                 reply = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
+            elif "insufficient balance" in error_msg:
+                reply = "💰 余额不足啦！请前往DeepSeek控制台充值或查看免费额度：https://platform.deepseek.com/"
             else:
                 reply = f"😅 出错了：{str(e)}"
             
