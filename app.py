@@ -263,12 +263,8 @@ with st.sidebar:
 
     # API Key 输入
     st.subheader("⚙️ 设置")
-    api_key = st.text_input(
-        "请输入Claude API密钥",
-        type="password",
-        placeholder="sk-ant-xxxxx",
-        help="在 https://console.anthropic.com/ 获取你的API密钥"
-    )
+    # 从云端环境变量读取API Key，更安全
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
 
     if api_key:
         st.session_state.api_key = api_key
