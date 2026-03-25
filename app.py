@@ -8,6 +8,30 @@ import streamlit as st
 import os
 from anthropic import Anthropic
 
+# 获取 API 密钥的函数
+def get_api_key():
+    """优先级：输入框 > 环境变量"""
+    if st.session_state.api_key:
+        return st.session_state.api_key
+    return os.environ.get("ANTHROPIC_API_KEY", "")
+
+# 调用 AI 的函数
+def get_ai_response():
+    """调用 Claude API 获取回复"""
+    client = Anthropic(api_key=st.session_state.api_key)
+
+    response = client.messages.create(
+        model="claude-3-5-sonnet-20241022",
+        max_tokens=2000,
+        system=SYSTEM_PROMPT,
+        messages=[
+            {"role": m["role"], "content": m["content"]}
+            for m in st.session_state.messages
+        ]
+    )
+
+    return response.content[0].text
+
 # ==================== 页面配置 ====================
 st.set_page_config(
     page_title="Python小助手 - 中小学编程辅导",
@@ -249,6 +273,9 @@ with st.sidebar:
     if api_key:
         st.session_state.api_key = api_key
         st.markdown("<div class='success-box'>✅ API密钥已设置</div>", unsafe_allow_html=True)
+    elif os.environ.get("ANTHROPIC_API_KEY"):
+        st.session_state.api_key = os.environ.get("ANTHROPIC_API_KEY")
+        st.markdown("<div class='success-box'>✅ 已使用云端配置的API密钥</div>", unsafe_allow_html=True)
     else:
         st.markdown("<div class='info-box'>ℹ️ 请设置API密钥后使用</div>", unsafe_allow_html=True)
 
@@ -270,6 +297,25 @@ with st.sidebar:
         if st.button(icon, key=prompt, use_container_width=True):
             st.session_state.messages.append({"role": "user", "content": prompt})
             st.session_state.last_example = prompt
+
+            # 检查 API 密钥
+            if get_api_key():
+                try:
+                    assistant_response = get_ai_response()
+                except Exception as e:
+                    error_str = str(e)
+                    if "401" in error_str or "unauthorized" in error_str.lower():
+                        assistant_response = "❌ API密钥错误：请检查你的密钥是否正确"
+                    elif "429" in error_str or "rate limit" in error_str.lower():
+                        assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
+                    else:
+                        assistant_response = f"😅 出错了：{error_str}"
+                st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+            else:
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": "⚠️ 请先在左侧设置你的Claude API密钥哦！"
+                })
             st.rerun()
 
     # 显示最近使用的示例提示
@@ -308,7 +354,7 @@ if prompt := st.chat_input("✍️ 输入你的问题..."):
         st.markdown(f"<div class='chat-message user-message'>{prompt}</div>", unsafe_allow_html=True)
 
     # 检查API密钥
-    if not st.session_state.api_key:
+    if not get_api_key():
         # 检查最后一条消息是否已经是API密钥提示，避免重复
         last_msg = st.session_state.messages[-1] if st.session_state.messages else None
         is_duplicate = (last_msg and last_msg.get("role") == "assistant" and
