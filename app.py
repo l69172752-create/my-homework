@@ -1,8 +1,7 @@
 import streamlit as st
-# 替换为DeepSeek依赖（兼容openai格式）
 from openai import OpenAI
 
-# ===================== 页面配置（完全保留你的原版） =====================
+# 设置页面配置
 st.set_page_config(
     page_title="Python编程小助手",
     page_icon="🐍",
@@ -10,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ===================== 自定义CSS样式（100%原样保留） =====================
+# 自定义CSS样式（100%原样保留你的设计）
 st.markdown("""
 <style>
 /* 全局样式 */
@@ -156,21 +155,21 @@ code {
 </style>
 """, unsafe_allow_html=True)
 
-# ===================== 会话状态（完全保留） =====================
+# 初始化会话状态
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# ===================== 主页面内容（完全保留） =====================
+# 主页面内容
 st.markdown("<div class='main-container'>", unsafe_allow_html=True)
 st.markdown("<div class='title-box'>🐍 Python编程小助手</div>", unsafe_allow_html=True)
 
-# ===================== 侧边栏（100%保留设计，固定DeepSeek密钥） =====================
+# 侧边栏设置
 with st.sidebar:
     st.markdown("## 🎯 功能菜单")
     st.markdown("---")
     
     st.subheader("⚙️ 设置")
-    # ✅ 固定DeepSeek密钥（替换为你自己的免费KEY）
+    # 已填入你的DeepSeek密钥
     api_key = "sk-57d87bba45dd4a9ca835268569c3e5fc"
     st.session_state.api_key = api_key
     
@@ -181,7 +180,6 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # 快速示例按钮（完全保留）
     st.subheader("📋 快速示例")
     examples = [
         "Python怎么打印Hello World?",
@@ -197,7 +195,6 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # 清除按钮（完全保留）
     if st.button("🗑️ 清除聊天记录", use_container_width=True):
         st.session_state.messages = []
         st.rerun()
@@ -211,7 +208,7 @@ with st.sidebar:
     - 耐心引导，循序渐进
     """)
 
-# ===================== 聊天区域（完全保留） =====================
+# 聊天区域
 st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
 
 # 显示聊天记录
@@ -223,29 +220,32 @@ for message in st.session_state.messages:
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-# 用户输入（完全保留）
+# 用户输入
 prompt = st.chat_input("💬 请输入你的Python问题...")
 
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.rerun()
 
-# ===================== AI回复核心（替换为DeepSeek，功能/逻辑完全一致） =====================
+# AI回复处理（DeepSeek API）
 if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
     if not hasattr(st.session_state, 'api_key') or not st.session_state.api_key:
         with st.chat_message("assistant", avatar="🐍"):
-            st.markdown("<div class='chat-message assistant-message'>⚠️ 请先配置API密钥！</div>", unsafe_allow_html=True)
-        st.session_state.messages.append({"role": "assistant","content": "⚠️ 请先配置API密钥！"})
+            st.markdown("<div class='chat-message assistant-message'>⚠️ 请先在左侧设置API密钥哦！</div>", unsafe_allow_html=True)
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": "⚠️ 请先在左侧设置API密钥哦！"
+        })
     else:
         try:
             with st.spinner("🤔 正在思考中..."):
-                # DeepSeek 客户端配置（兼容OpenAI）
+                # DeepSeek 配置
                 client = OpenAI(
                     api_key=st.session_state.api_key,
                     base_url="https://api.deepseek.com"
                 )
                 
-                # 教学提示词（完全保留你的原版要求）
+                # 系统提示词
                 system_prompt = """你是专业的中小学Python编程辅导老师。你的教学原则如下：
                 【知识范围】只讲解Python基础语法、简单逻辑、入门知识，严格限制在中小学编程范围内。
                 【教学风格】语言通俗、耐心细致、鼓励为主、循序渐进，多用比喻和生活例子。
@@ -274,17 +274,19 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
                 
                 assistant_response = response.choices[0].message.content
                 
-                # 显示回复（完全保留你的样式）
+                # 显示AI回复
                 with st.chat_message("assistant", avatar="🐍"):
                     st.markdown(f"<div class='chat-message assistant-message'>{assistant_response}</div>", unsafe_allow_html=True)
                 
-                st.session_state.messages.append({"role": "assistant","content": assistant_response})
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": assistant_response
+                })
                 
         except Exception as e:
-            # 错误提示（完全保留你的原版）
             error_msg = str(e).lower()
             if "401" in error_msg:
-                reply = "❌ API密钥错误：请检查你的DeepSeek密钥是否正确。"
+                reply = "❌ API密钥错误：请检查密钥是否正确。"
             elif "429" in error_msg:
                 reply = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
             else:
