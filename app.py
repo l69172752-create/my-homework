@@ -76,7 +76,7 @@ def get_ai_response():
     client = Anthropic(api_key=st.session_state.api_key)
 
     response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
+        model="claude-3-5-sonnet-20240620",
         max_tokens=2000,
         system=SYSTEM_PROMPT,
         messages=[
@@ -446,8 +446,9 @@ if prompt := st.chat_input("✍️ 输入你的问题..."):
                     try:
                         client = Anthropic(api_key=st.session_state.api_key)
 
+                        # 使用免费可用的模型
                         response = client.messages.create(
-                            model="claude-3-5-sonnet-20241022",  # 使用稳定版本
+                            model="claude-3-5-sonnet-20240620",
                             max_tokens=2000,
                             system=SYSTEM_PROMPT,
                             messages=[
