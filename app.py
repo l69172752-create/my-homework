@@ -1,6 +1,6 @@
 """
-中小学Python编程辅导助手
-技术栈：Python + Streamlit + Claude API
+中小学Python编程助手
+技术栈：Python + Streamlit + Groq API
 面向中小学生的Python入门学习应用
 """
 
@@ -8,7 +8,11 @@ import streamlit as st
 import os
 import sqlite3
 from pathlib import Path
-from anthropic import Anthropic
+from openai import OpenAI
+
+# Groq API 配置
+GROQ_API_BASE = "https://api.groq.com/openai/v1"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
 # ==================== 数据库配置 ====================
 DB_PATH = Path(__file__).parent / "python_learning.db"
@@ -61,31 +65,30 @@ def get_db_response(question: str) -> tuple[bool, str | None]:
 
 # 获取 API 密钥的函数
 def get_api_key():
-    """优先级：输入框 > Streamlit Secrets > 环境变量"""
-    if st.session_state.api_key:
-        return st.session_state.api_key
+    """从 Streamlit Secrets 或环境变量读取 Groq API Key"""
     # 优先从 Streamlit Secrets 读取（云端部署）
-    if hasattr(st, 'secrets') and "ANTHROPIC_API_KEY" in st.secrets:
-        return st.secrets["ANTHROPIC_API_KEY"]
+    if hasattr(st, 'secrets') and "GROQ_API_KEY" in st.secrets:
+        return st.secrets["GROQ_API_KEY"]
     # 备用：从环境变量读取（本地开发）
-    return os.environ.get("ANTHROPIC_API_KEY", "")
+    return os.environ.get("GROQ_API_KEY", "")
 
 # 调用 AI 的函数
 def get_ai_response():
-    """调用 Claude API 获取回复"""
-    client = Anthropic(api_key=st.session_state.api_key)
+    """调用 Groq API 获取回复"""
+    api_key = get_api_key()
+    client = OpenAI(api_key=api_key, base_url=GROQ_API_BASE)
 
-    response = client.messages.create(
-        model="claude-3-haiku-20240307",
+    response = client.chat.completions.create(
+        model=GROQ_MODEL,
         max_tokens=2000,
-        system=SYSTEM_PROMPT,
         messages=[
-            {"role": m["role"], "content": m["content"]}
-            for m in st.session_state.messages
+            {"role": "system", "content": SYSTEM_PROMPT},
+            *[{"role": m["role"], "content": m["content"]}
+              for m in st.session_state.messages]
         ]
     )
 
-    return response.content[0].text
+    return response.choices[0].message.content
 
 # ==================== 页面配置 ====================
 st.set_page_config(
@@ -306,40 +309,11 @@ if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "assistant", "content": "🐍 你好呀！我是Python小助手，专门帮中小学生学习Python编程的！\n\n你可以问我：\n• \"Python怎么输出文字？\"\n• \"什么是变量呀？\"\n• \"帮我看看这段代码哪里错了\"\n• \"给我出个有趣的编程练习\"\n\n我们一起来快乐学编程吧！💪"}
     ]
-
-if "api_key" not in st.session_state:
-    st.session_state.api_key = ""
-
 # ==================== 侧边栏 ====================
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; margin-bottom: 20px;'>🎓 Python学习助手</h2>", unsafe_allow_html=True)
 
     st.markdown("<div class='icon-decoration'>🐍</div>", unsafe_allow_html=True)
-
-    # API Key 自动读取
-    if hasattr(st, 'secrets') and "ANTHROPIC_API_KEY" in st.secrets:
-        st.session_state.api_key = st.secrets["ANTHROPIC_API_KEY"]
-    elif os.environ.get("ANTHROPIC_API_KEY"):
-        st.session_state.api_key = os.environ.get("ANTHROPIC_API_KEY")
-
-    # API Key 输入框（网页端可直接输入）
-    st.subheader("🔑 API 密钥")
-    api_key_input = st.text_input(
-        "Claude API Key",
-        type="password",
-        value=st.session_state.api_key,
-        placeholder="sk-ant-...",
-        help="获取地址: https://console.anthropic.com/"
-    )
-    if api_key_input != st.session_state.api_key:
-        st.session_state.api_key = api_key_input
-        st.rerun()
-
-    # 显示密钥状态
-    if st.session_state.api_key and st.session_state.api_key.startswith("sk-ant-"):
-        st.success("✓ API 密钥已设置")
-    elif st.session_state.api_key:
-        st.warning("⚠️ API 密钥格式可能不正确")
 
     st.markdown("---")
 
@@ -367,20 +341,17 @@ with st.sidebar:
                 # 数据库找到答案
                 assistant_response = f"📚 来自知识库：\n\n{db_answer}"
             else:
-                # 数据库无结果，需要 API
-                if get_api_key():
-                    try:
-                        assistant_response = f"🤖 AI回答：\n\n{get_ai_response()}"
-                    except Exception as e:
-                        error_str = str(e)
-                        if "401" in error_str or "unauthorized" in error_str.lower():
-                            assistant_response = "❌ API密钥错误：请检查你的密钥是否正确"
-                        elif "429" in error_str or "rate limit" in error_str.lower():
-                            assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
-                        else:
-                            assistant_response = f"😅 出错了：{error_str}"
-                else:
-                    assistant_response = "⚠️ 请先在左侧设置你的Claude API密钥哦！"
+                # 调用 Groq API
+                try:
+                    assistant_response = f"🤖 AI回答：\n\n{get_ai_response()}"
+                except Exception as e:
+                    error_str = str(e)
+                    if "401" in error_str or "unauthorized" in error_str.lower():
+                        assistant_response = "❌ API密钥错误：请检查你的密钥是否正确"
+                    elif "429" in error_str or "rate limit" in error_str.lower():
+                        assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
+                    else:
+                        assistant_response = f"😅 出错了：{error_str}"
 
             st.session_state.messages.append({"role": "assistant", "content": assistant_response})
             st.rerun()
@@ -429,48 +400,36 @@ if prompt := st.chat_input("✍️ 输入你的问题..."):
             assistant_response = f"📚 来自知识库：\n\n{db_answer}"
             st.markdown(f"<div class='chat-message assistant-message'>{assistant_response}</div>", unsafe_allow_html=True)
         else:
-            # 数据库无结果，需要 API
-            if not get_api_key():
-                # 检查最后一条消息是否已经是API密钥提示，避免重复
-                last_msg = st.session_state.messages[-1] if st.session_state.messages else None
-                is_duplicate = (last_msg and last_msg.get("role") == "assistant" and
-                                "API密钥" in last_msg.get("content", ""))
+            # 调用 Groq API
+            with st.spinner("🐍 正在思考中..."):
+                try:
+                    api_key = get_api_key()
+                    client = OpenAI(api_key=api_key, base_url=GROQ_API_BASE)
 
-                st.markdown(f"<div class='chat-message assistant-message'>⚠️ 请先在左侧设置你的Claude API密钥哦！获取地址：https://console.anthropic.com/</div>", unsafe_allow_html=True)
+                    response = client.chat.completions.create(
+                        model=GROQ_MODEL,
+                        max_tokens=2000,
+                        messages=[
+                            {"role": "system", "content": SYSTEM_PROMPT},
+                            *[{"role": m["role"], "content": m["content"]}
+                              for m in st.session_state.messages]
+                        ]
+                    )
 
-                if not is_duplicate:
-                    assistant_response = "⚠️ 请先在左侧设置你的Claude API密钥哦！获取地址：https://console.anthropic.com/"
-            else:
-                # 调用Claude API
-                with st.spinner("🐍 正在思考中..."):
-                    try:
-                        client = Anthropic(api_key=st.session_state.api_key)
+                    assistant_response = f"🤖 AI回答：\n\n{response.choices[0].message.content}"
 
-                        # 使用免费可用的模型
-                        response = client.messages.create(
-                            model="claude-3-haiku-20240307",
-                            max_tokens=2000,
-                            system=SYSTEM_PROMPT,
-                            messages=[
-                                {"role": m["role"], "content": m["content"]}
-                                for m in st.session_state.messages
-                            ]
-                        )
-
-                        assistant_response = f"🤖 AI回答：\n\n{response.content[0].text}"
-
-                    except Exception as e:
-                        error_str = str(e)
-                        if "401" in error_str or "unauthorized" in error_str.lower():
-                            assistant_response = "❌ API密钥错误：请检查你的密钥是否正确，或者密钥是否已过期。"
-                        elif "429" in error_str or "rate limit" in error_str.lower():
-                            assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
-                        elif "500" in error_str or "502" in error_str or "503" in error_str:
-                            assistant_response = "🔧 服务器暂时出问题啦，请稍后再试~"
-                        elif "invalid_request" in error_str.lower() or "context_length" in error_str.lower():
-                            assistant_response = "📄 对话内容太长啦，点击「清除聊天记录」重新开始吧！"
-                        else:
-                            assistant_response = f"😅 出错了：{error_str}\n\n请检查：\n1. API密钥是否正确\n2. 网络连接是否正常\n3. API余额是否充足"
+                except Exception as e:
+                    error_str = str(e)
+                    if "401" in error_str or "unauthorized" in error_str.lower():
+                        assistant_response = "❌ API密钥错误：请检查你的密钥是否正确，或者密钥是否已过期。"
+                    elif "429" in error_str or "rate limit" in error_str.lower():
+                        assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
+                    elif "500" in error_str or "502" in error_str or "503" in error_str:
+                        assistant_response = "🔧 服务器暂时出问题啦，请稍后再试~"
+                    elif "invalid_request" in error_str.lower() or "context_length" in error_str.lower():
+                        assistant_response = "📄 对话内容太长啦，点击「清除聊天记录」重新开始吧！"
+                    else:
+                        assistant_response = f"😅 出错了：{error_str}\n\n请检查：\n1. API密钥是否正确\n2. 网络连接是否正常\n3. API余额是否充足"
 
                 st.markdown(f"<div class='chat-message assistant-message'>{assistant_response}</div>", unsafe_allow_html=True)
 
