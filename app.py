@@ -61,9 +61,13 @@ def get_db_response(question: str) -> tuple[bool, str | None]:
 
 # 获取 API 密钥的函数
 def get_api_key():
-    """优先级：输入框 > 环境变量"""
+    """优先级：输入框 > Streamlit Secrets > 环境变量"""
     if st.session_state.api_key:
         return st.session_state.api_key
+    # 优先从 Streamlit Secrets 读取（云端部署）
+    if hasattr(st, 'secrets') and "ANTHROPIC_API_KEY" in st.secrets:
+        return st.secrets["ANTHROPIC_API_KEY"]
+    # 备用：从环境变量读取（本地开发）
     return os.environ.get("ANTHROPIC_API_KEY", "")
 
 # 调用 AI 的函数
@@ -313,7 +317,9 @@ with st.sidebar:
     st.markdown("<div class='icon-decoration'>🐍</div>", unsafe_allow_html=True)
 
     # API Key 自动读取
-    if os.environ.get("ANTHROPIC_API_KEY"):
+    if hasattr(st, 'secrets') and "ANTHROPIC_API_KEY" in st.secrets:
+        st.session_state.api_key = st.secrets["ANTHROPIC_API_KEY"]
+    elif os.environ.get("ANTHROPIC_API_KEY"):
         st.session_state.api_key = os.environ.get("ANTHROPIC_API_KEY")
 
     st.markdown("---")
