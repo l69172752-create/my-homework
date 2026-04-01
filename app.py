@@ -6,7 +6,58 @@
 
 import streamlit as st
 import os
+import sqlite3
+from pathlib import Path
 from anthropic import Anthropic
+
+# ==================== 数据库配置 ====================
+DB_PATH = Path(__file__).parent / "python_learning.db"
+
+# ==================== 数据库查询函数 ====================
+def get_db_response(question: str) -> tuple[bool, str | None]:
+    """从数据库精准查询答案
+
+    Returns:
+        (found, answer): 是否找到答案和答案内容
+    """
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # 只进行精准匹配（问题完全一致）
+        cursor.execute(
+            "SELECT answer FROM qa_pairs WHERE question = ? LIMIT 1",
+            (question,)
+        )
+        result = cursor.fetchone()
+        if result:
+            conn.close()
+            print(f"[DB] 精准匹配: {question}")
+            return True, result[0]
+
+        # 练习题关键词（特殊处理）
+        if any(word in question for word in ["练习", "题目", "做题", "作业"]):
+            cursor.execute(
+                "SELECT title, question, hint, difficulty FROM practice_exercises ORDER BY RANDOM() LIMIT 1"
+            )
+            result = cursor.fetchone()
+            if result:
+                conn.close()
+                print(f"[DB] 练习题匹配: {question}")
+                exercise_answer = f"## 【练习题】{result[0]}\n\n{result[1]}"
+                if result[2]:
+                    exercise_answer += f"\n\n**提示:** {result[2]}"
+                return True, exercise_answer
+
+        conn.close()
+        print(f"[DB] 未匹配: {question}，将调用AI")
+        return False, None
+
+    except Exception as e:
+        # 数据库出错时返回未找到，继续调用AI
+        print(f"[DB Error] {e}")
+        return False, None
+
 
 # 获取 API 密钥的函数
 def get_api_key():
@@ -261,23 +312,9 @@ with st.sidebar:
 
     st.markdown("<div class='icon-decoration'>🐍</div>", unsafe_allow_html=True)
 
-    # API Key 输入
-    st.subheader("⚙️ 设置")
-    api_key = st.text_input(
-        "请输入Claude API密钥",
-        type="password",
-        placeholder="sk-ant-xxxxx",
-        help="在 https://console.anthropic.com/ 获取你的API密钥"
-    )
-
-    if api_key:
-        st.session_state.api_key = api_key
-        st.markdown("<div class='success-box'>✅ API密钥已设置</div>", unsafe_allow_html=True)
-    elif os.environ.get("ANTHROPIC_API_KEY"):
+    # API Key 自动读取
+    if os.environ.get("ANTHROPIC_API_KEY"):
         st.session_state.api_key = os.environ.get("ANTHROPIC_API_KEY")
-        st.markdown("<div class='success-box'>✅ 已使用云端配置的API密钥</div>", unsafe_allow_html=True)
-    else:
-        st.markdown("<div class='info-box'>ℹ️ 请设置API密钥后使用</div>", unsafe_allow_html=True)
 
     st.markdown("---")
 
@@ -298,24 +335,29 @@ with st.sidebar:
             st.session_state.messages.append({"role": "user", "content": prompt})
             st.session_state.last_example = prompt
 
-            # 检查 API 密钥
-            if get_api_key():
-                try:
-                    assistant_response = get_ai_response()
-                except Exception as e:
-                    error_str = str(e)
-                    if "401" in error_str or "unauthorized" in error_str.lower():
-                        assistant_response = "❌ API密钥错误：请检查你的密钥是否正确"
-                    elif "429" in error_str or "rate limit" in error_str.lower():
-                        assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
-                    else:
-                        assistant_response = f"😅 出错了：{error_str}"
-                st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+            # 优先查询数据库
+            found, db_answer = get_db_response(prompt)
+
+            if found:
+                # 数据库找到答案
+                assistant_response = f"📚 来自知识库：\n\n{db_answer}"
             else:
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "content": "⚠️ 请先在左侧设置你的Claude API密钥哦！"
-                })
+                # 数据库无结果，需要 API
+                if get_api_key():
+                    try:
+                        assistant_response = f"🤖 AI回答：\n\n{get_ai_response()}"
+                    except Exception as e:
+                        error_str = str(e)
+                        if "401" in error_str or "unauthorized" in error_str.lower():
+                            assistant_response = "❌ API密钥错误：请检查你的密钥是否正确"
+                        elif "429" in error_str or "rate limit" in error_str.lower():
+                            assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
+                        else:
+                            assistant_response = f"😅 出错了：{error_str}"
+                else:
+                    assistant_response = "⚠️ 请先在左侧设置你的Claude API密钥哦！"
+
+            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
             st.rerun()
 
     # 显示最近使用的示例提示
@@ -353,58 +395,61 @@ if prompt := st.chat_input("✍️ 输入你的问题..."):
     with st.chat_message("user", avatar="👦"):
         st.markdown(f"<div class='chat-message user-message'>{prompt}</div>", unsafe_allow_html=True)
 
-    # 检查API密钥
-    if not get_api_key():
-        # 检查最后一条消息是否已经是API密钥提示，避免重复
-        last_msg = st.session_state.messages[-1] if st.session_state.messages else None
-        is_duplicate = (last_msg and last_msg.get("role") == "assistant" and
-                        "API密钥" in last_msg.get("content", ""))
+    # 优先查询数据库
+    found, db_answer = get_db_response(prompt)
 
-        with st.chat_message("assistant", avatar="🐍"):
-            st.markdown(f"<div class='chat-message assistant-message'>⚠️ 请先在左侧设置你的Claude API密钥哦！获取地址：https://console.anthropic.com/</div>", unsafe_allow_html=True)
-
-        if not is_duplicate:
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": "⚠️ 请先在左侧设置你的Claude API密钥哦！获取地址：https://console.anthropic.com/"
-            })
-    else:
-        # 调用Claude API
-        with st.chat_message("assistant", avatar="🐍"):
-            with st.spinner("🐍 正在思考中..."):
-                try:
-                    client = Anthropic(api_key=st.session_state.api_key)
-
-                    response = client.messages.create(
-                        model="claude-3-5-sonnet-20241022",  # 使用稳定版本
-                        max_tokens=2000,
-                        system=SYSTEM_PROMPT,
-                        messages=[
-                            {"role": m["role"], "content": m["content"]}
-                            for m in st.session_state.messages
-                        ]
-                    )
-
-                    assistant_response = response.content[0].text
-
-                except Exception as e:
-                    error_str = str(e)
-                    if "401" in error_str or "unauthorized" in error_str.lower():
-                        assistant_response = "❌ API密钥错误：请检查你的密钥是否正确，或者密钥是否已过期。"
-                    elif "429" in error_str or "rate limit" in error_str.lower():
-                        assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
-                    elif "500" in error_str or "502" in error_str or "503" in error_str:
-                        assistant_response = "🔧 服务器暂时出问题啦，请稍后再试~"
-                    elif "invalid_request" in error_str.lower() or "context_length" in error_str.lower():
-                        assistant_response = "📄 对话内容太长啦，点击「清除聊天记录」重新开始吧！"
-                    else:
-                        assistant_response = f"😅 出错了：{error_str}\n\n请检查：\n1. API密钥是否正确\n2. 网络连接是否正常\n3. API余额是否充足"
-
-            # 显示助手回复
+    with st.chat_message("assistant", avatar="🐍"):
+        if found:
+            # 数据库找到答案
+            assistant_response = f"📚 来自知识库：\n\n{db_answer}"
             st.markdown(f"<div class='chat-message assistant-message'>{assistant_response}</div>", unsafe_allow_html=True)
+        else:
+            # 数据库无结果，需要 API
+            if not get_api_key():
+                # 检查最后一条消息是否已经是API密钥提示，避免重复
+                last_msg = st.session_state.messages[-1] if st.session_state.messages else None
+                is_duplicate = (last_msg and last_msg.get("role") == "assistant" and
+                                "API密钥" in last_msg.get("content", ""))
 
-            # 添加到历史
-            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+                st.markdown(f"<div class='chat-message assistant-message'>⚠️ 请先在左侧设置你的Claude API密钥哦！获取地址：https://console.anthropic.com/</div>", unsafe_allow_html=True)
+
+                if not is_duplicate:
+                    assistant_response = "⚠️ 请先在左侧设置你的Claude API密钥哦！获取地址：https://console.anthropic.com/"
+            else:
+                # 调用Claude API
+                with st.spinner("🐍 正在思考中..."):
+                    try:
+                        client = Anthropic(api_key=st.session_state.api_key)
+
+                        response = client.messages.create(
+                            model="claude-3-5-sonnet-20241022",  # 使用稳定版本
+                            max_tokens=2000,
+                            system=SYSTEM_PROMPT,
+                            messages=[
+                                {"role": m["role"], "content": m["content"]}
+                                for m in st.session_state.messages
+                            ]
+                        )
+
+                        assistant_response = f"🤖 AI回答：\n\n{response.content[0].text}"
+
+                    except Exception as e:
+                        error_str = str(e)
+                        if "401" in error_str or "unauthorized" in error_str.lower():
+                            assistant_response = "❌ API密钥错误：请检查你的密钥是否正确，或者密钥是否已过期。"
+                        elif "429" in error_str or "rate limit" in error_str.lower():
+                            assistant_response = "⏱️ 请求太频繁啦！请稍等一会儿再试哦~"
+                        elif "500" in error_str or "502" in error_str or "503" in error_str:
+                            assistant_response = "🔧 服务器暂时出问题啦，请稍后再试~"
+                        elif "invalid_request" in error_str.lower() or "context_length" in error_str.lower():
+                            assistant_response = "📄 对话内容太长啦，点击「清除聊天记录」重新开始吧！"
+                        else:
+                            assistant_response = f"😅 出错了：{error_str}\n\n请检查：\n1. API密钥是否正确\n2. 网络连接是否正常\n3. API余额是否充足"
+
+                st.markdown(f"<div class='chat-message assistant-message'>{assistant_response}</div>", unsafe_allow_html=True)
+
+    # 添加到历史
+    st.session_state.messages.append({"role": "assistant", "content": assistant_response})
 
 # ==================== 底部信息 ====================
 st.markdown("---")
