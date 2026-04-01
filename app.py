@@ -322,6 +322,25 @@ with st.sidebar:
     elif os.environ.get("ANTHROPIC_API_KEY"):
         st.session_state.api_key = os.environ.get("ANTHROPIC_API_KEY")
 
+    # API Key 输入框（网页端可直接输入）
+    st.subheader("🔑 API 密钥")
+    api_key_input = st.text_input(
+        "Claude API Key",
+        type="password",
+        value=st.session_state.api_key,
+        placeholder="sk-ant-...",
+        help="获取地址: https://console.anthropic.com/"
+    )
+    if api_key_input != st.session_state.api_key:
+        st.session_state.api_key = api_key_input
+        st.rerun()
+
+    # 显示密钥状态
+    if st.session_state.api_key and st.session_state.api_key.startswith("sk-ant-"):
+        st.success("✓ API 密钥已设置")
+    elif st.session_state.api_key:
+        st.warning("⚠️ API 密钥格式可能不正确")
+
     st.markdown("---")
 
     # 快速入门示例
