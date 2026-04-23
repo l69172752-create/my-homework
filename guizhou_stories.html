@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贵州 - 多彩贵州 山水画廊</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1E90FF;
+            --primary-green: #2E8B57;
+            --primary-purple: #9370DB;
+            --primary-gold: #FFD700;
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-end: #16213e;
+            --text-light: #E8F4F8;
+            --text-gray: #A8B5C0;
+            --glow-blue: #00D4FF;
+            --glow-green: #00FF88;
+            --glow-purple: #B19CD9;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a365d, #2c5282, #1a365d);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-green), var(--glow-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(30, 144, 255, 0.3);
+            color: var(--primary-gold);
+            text-shadow: 0 0 10px var(--glow-blue);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #1a365d 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(177, 156, 217, 0.1) 0%, transparent 50%);
+            animation: gradientShift 10s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(46, 139, 87, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, var(--glow-blue), var(--primary-gold), var(--glow-purple)) 1;
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #0f1419, #16213e);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold), var(--glow-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--glow-blue), var(--primary-gold), var(--glow-purple));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(26, 32, 44, 0.6));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid;
+            border-image: linear-gradient(to bottom, var(--glow-blue), var(--glow-green)) 1;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:nth-child(2) {
+            border-image: linear-gradient(to bottom, var(--glow-green), var(--glow-purple)) 1;
+        }
+
+        .city-card-item:nth-child(3) {
+            border-image: linear-gradient(to bottom, var(--glow-purple), var(--primary-gold)) 1;
+        }
+
+        .city-card-item:nth-child(4) {
+            border-image: linear-gradient(to bottom, var(--primary-gold), var(--glow-blue)) 1;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .city-card-item h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--glow-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--glow-blue);
+        }
+
+        .city-card-item:nth-child(2) h3::before {
+            background: var(--glow-green);
+            box-shadow: 0 0 10px var(--glow-green);
+        }
+
+        .city-card-item:nth-child(3) h3::before {
+            background: var(--glow-purple);
+            box-shadow: 0 0 10px var(--glow-purple);
+        }
+
+        .city-card-item:nth-child(4) h3::before {
+            background: var(--primary-gold);
+            box-shadow: 0 0 10px var(--primary-gold);
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .tag:nth-child(even) {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-purple));
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--glow-blue), var(--glow-green), var(--glow-purple));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 0 10px var(--glow-blue);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 10px var(--glow-green);
+        }
+
+        .timeline-item:nth-child(3n)::before {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 10px var(--glow-purple);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 世界遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(26, 32, 44, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header:nth-child(2) .heritage-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-purple));
+        }
+
+        .heritage-header:nth-child(3) .heritage-header {
+            background: linear-gradient(135deg, var(--primary-purple), #1a365d);
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-green));
+            color: #1a365d;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 非遗文化 */
+        .heritage-culture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .culture-item {
+            background: rgba(26, 32, 44, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--glow-blue);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .culture-item:nth-child(even) {
+            border-color: var(--glow-green);
+        }
+
+        .culture-item:nth-child(3n) {
+            border-color: var(--glow-purple);
+        }
+
+        .culture-item:hover {
+            background: rgba(30, 58, 138, 0.4);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .culture-item h4 {
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .culture-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--glow-blue), var(--primary-gold), var(--glow-purple)) 1;
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(26, 32, 44, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(26, 32, 44, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-header:nth-child(even) .food-header {
+            background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, #1a365d, #16213e);
+            color: var(--primary-gold);
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold), var(--glow-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--glow-blue), var(--primary-gold), var(--glow-purple), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d3748 50%, #1a1a2e 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(46, 139, 87, 0.3);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🐘';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #f0fdf4;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🌈 贵州</a>
+        <div class="nav-links">
+            <a href="#overview">多彩概览</a>
+            <a href="#history">黔贵文化</a>
+            <a href="#landmarks">山水画廊</a>
+            <a href="#food">酸汤美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🐘</span>
+                    <h2 class="animal-main-title">贵州 —— 大象</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 黔灵巨兽 · 多彩山林使者
+                </div>
+
+                <p class="animal-description">
+                    贵州森林野生动物园有大型象群展区，"黔灵山大象"也是当地知名打卡点。大象的沉稳厚重与贵州喀斯特地貌的雄奇相得益彰，它们是多彩山林中的智慧使者。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🏔️</span>
+                        <span class="animal-feature-title">山林使者</span>
+                        <p class="animal-feature-desc">漫游喀斯特峰林</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎯</span>
+                        <span class="animal-feature-title">黔灵网红</span>
+                        <p class="animal-feature-desc">森林动物园明星</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🧠</span>
+                        <span class="animal-feature-title">智慧巨兽</span>
+                        <p class="animal-feature-desc">沉稳厚重的气质</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>贵州</h1>
+        <p class="subtitle">多彩贵州 · 山水画廊</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                贵州，位于中国西南腹地，素有"多彩贵州"之美誉。
+                从喀斯特地貌的神奇山水，到千户苗寨的浓郁风情；
+                从黄果树瀑布的壮观景象，到天眼FAST的科学奇迹；
+                从遵义会议的红色记忆，到侗族大歌的天籁之音。
+                这里有世界最大的苗族村寨，有中国最美的喀斯特景观，
+                有56个民族和谐共居的多彩文化。
+                贵州是山水画廊，是民族聚宝盆，是心灵的归处。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">多彩概览</h2>
+        <p class="section-subtitle">走进贵州，感受山水画廊的独特魅力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>省情定位</h3>
+                <p>中国西南内陆省份，是长江经济带重要组成部分和西部陆海新通道的关键节点。贵州素有"山地公园省"之称，是全国唯一没有平原的省份，92.5%的面积为山地和丘陵。贵州是西南地区重要的交通枢纽，是国家生态文明试验区、大数据综合试验区、内陆开放型经济试验区，"中国天眼"FAST就坐落在贵州。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国西南，与四川、云南、广西、湖南、重庆接壤，面积17.61万平方公里，常住人口3,856万。省会贵阳，下辖贵阳、六盘水、遵义、安顺、毕节、铜仁6个地级市，黔西南、黔东南、黔南3个自治州。贵州是少数民族聚居区，有苗族、布依族、侗族、土家族等17世居少数民族。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">多彩贵州</span>
+                    <span class="tag">山地公园</span>
+                    <span class="tag">民族风情</span>
+                    <span class="tag">天眼之乡</span>
+                    <span class="tag">酸汤美食</span>
+                    <span class="tag">喀斯特王国</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    贵州是"喀斯特王国"，拥有众多世界级的喀斯特景观，黄果树瀑布、织金洞、荔波小七孔等闻名世界。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以高原、山地、丘陵为主，平均海拔1100米，有"八山一水一分田"之说。气候属亚热带湿润季风气候，年平均气温14-16℃，冬无严寒，夏无酷暑，气候宜人，被誉为"天然空调"。贵州雨水充沛，年降水量1100-1300毫米，夜雨多，有"天无三日晴"的说法。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">黔贵文化 · 底蕴</h2>
+        <p class="section-subtitle">多彩贵州两千载，民族风情代代传</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>先秦 · 夜郎时期（约公元前3世纪-前27年）</h4>
+                <p>贵州古属夜郎国，是西南地区古国之一。夜郎国历史悠久，文化灿烂，夜郎遗址出土了大量精美文物。夜郎文化是贵州重要的历史文化资源，"夜郎自大"的典故虽有些许贬义，但也反映了夜郎国在西南地区的重要地位。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦汉 · 郡县时期（前221年-220年）</h4>
+                <p>秦统一后，在今贵州设黔中郡。汉代设牂牁郡、牂牁郡等，贵州地区纳入中央王朝管辖。汉代是贵州早期开发的重要时期，出现了早期的城市和农业。汉代贵州与中原地区交流增多，文化逐渐发展。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 羁縻时期（618年-1279年）</h4>
+                <p>唐宋时期，贵州地区实行羁縻制度，由当地首领自治，同时接受中央王朝册封。唐代设黔州道，宋代设夔州路。唐宋时期，贵州与四川、湖南、云南等地交流增多，经济文化有所发展。宋代出现了"播州"等重要地方政权。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元明 · 土司时期（1271年-1727年）</h4>
+                <p>元代设湖广行省，贵州地区分属湖广、四川、云南三省。明代设贵州布政使司，贵州正式成为省级行政区。明代是贵州发展的重要时期，建城筑路，移民实边，经济发展。土司制度是明清时期贵州重要的政治制度，由当地少数民族首领世袭统治。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>清代 · 改土归流（1727年-1911年）</h4>
+                <p>清代在贵州推行改土归流，废除土司制度，改设流官治理，促进了贵州与中原地区的融合。清代贵州经济文化进一步发展，出现了遵义府等繁荣地区。清代贵州矿产资源开发，铜、汞、煤等矿产资源丰富。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 发展腾飞（1949年至今）</h4>
+                <p>1949年贵州解放，开始了新的历史篇章。改革开放后，贵州经济快速发展，交通基础设施不断完善，实现了县县通高速。2016年，中国天眼FAST建成启用，成为贵州科技发展的重要标志。大数据产业蓬勃发展，贵阳成为国家大数据综合试验区核心区。贵州正加快建设内陆开放型经济新高地。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🌊</span>
+                    <span class="heritage-header-text">荔波喀斯特</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>荔波喀斯特</h4>
+                    <p>位于黔南州荔波县，是世界自然遗产，被誉为"地球腰带上的绿宝石"。荔波喀斯特包括大七孔、小七孔、茂兰三个景区，以喀斯特森林、水上森林、樟江风光为主要特色。小七孔古桥是景区标志性建筑，大七孔天生桥气势磅礴，茂兰原始森林保存完好。2007年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2007年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🦕</span>
+                    <span class="heritage-header-text">中国南方喀斯特</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>贵州喀斯特</h4>
+                    <p>贵州是"中国南方喀斯特"世界遗产的重要组成部分，包括荔波喀斯特、施秉喀斯特、荔波喀斯特遗产地、赤水丹霞等。贵州喀斯特地貌发育完全，类型齐全，包括石林、峰林、峡谷、溶洞、地下河等，是研究喀斯特地貌的天然博物馆。2007年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2007年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">梵净山</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>梵净山</h4>
+                    <p>位于铜仁市，是世界自然遗产，武陵山脉主峰，海拔2572米。梵净山生物多样性丰富，有梵净山冷杉、珙桐等珍稀植物，还有黔金丝猴、云豹等珍稀动物。梵净山是佛教名山，有弥勒道场之称，山上有金顶、老金顶、蘑菇石等著名景点。2018年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2018年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🔴</span>
+                    <span class="heritage-header-text">赤水丹霞</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>赤水丹霞</h4>
+                    <p>位于遵义市赤水市，是世界自然遗产"中国丹霞"的重要组成部分。赤水丹霞以红色砂岩形成的丹霞地貌为特色，包括赤水大瀑布、四洞沟、燕子岩等景区。赤水大瀑布高76米，宽80米，气势磅礴；四洞沟由四个瀑布串联而成，景色优美。2010年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2010年列入</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--glow-blue), var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">民族非遗文化</h3>
+        <div class="heritage-culture">
+            <div class="culture-item">
+                <h4>苗族银饰</h4>
+                <p>苗族银饰工艺精湛，款式多样，包括银帽、银项圈、银手镯等，是苗族文化的重要载体。</p>
+            </div>
+            <div class="culture-item">
+                <h4>蜡染</h4>
+                <p>苗族传统印染工艺，以蜂蜡为防染剂，在布上绘制图案，染后去蜡形成精美花纹。</p>
+            </div>
+            <div class="culture-item">
+                <h4>侗族大歌</h4>
+                <p>侗族多声部民歌，无伴奏、无指挥，是侗族文化的精髓，被誉为"天籁之音"。</p>
+            </div>
+            <div class="culture-item">
+                <h4>芦笙舞</h4>
+                <p>苗族传统舞蹈，以芦笙伴奏，舞蹈动作热烈奔放，是苗族节庆活动的重要内容。</p>
+            </div>
+            <div class="culture-item">
+                <h4>苗族刺绣</h4>
+                <p>苗族刺绣色彩艳丽，图案精美，是苗族女性的重要技艺，蕴含丰富的文化内涵。</p>
+            </div>
+            <div class="culture-item">
+                <h4>布依族蜡染</h4>
+                <p>布依族传统工艺，与苗族蜡染相似，但图案和用色有其独特风格，古朴典雅。</p>
+            </div>
+            <div class="culture-item">
+                <h4>水书</h4>
+                <p>水族古老文字，是水族文化的瑰宝，被誉为"象形文字的活化石"。</p>
+            </div>
+            <div class="culture-item">
+                <h4>苗族鼓藏节</h4>
+                <p>苗族传统祭祀节日，每13年举行一次，祭祀祖先，祈求丰收，是苗族最重要的节日。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">山水画廊</h2>
+        <p class="section-subtitle">从喀斯特奇观到民族村寨，贵州处处是风景</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">自然奇观地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌊</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>黄果树瀑布</h4>
+                        <span class="highlight">核心亮点：亚洲第一大瀑布，水帘洞，壮观景象</span>
+                        <p>黄果树瀑布位于安顺市镇宁县，是亚洲第一大瀑布，高77.8米，宽101米。瀑布周围有18个瀑布，形成壮观的瀑布群。水帘洞位于瀑布后面，可以穿过水帘，近距离感受瀑布的震撼。夏季水量充沛，瀑布气势磅礴；冬季水量减少，瀑布更加秀美。周边有天星桥、陡坡塘等景区，是贵州必游景点。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">💎</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>织金洞</h4>
+                        <span class="highlight">核心亮点：最美溶洞，石笋石幔，地下奇观</span>
+                        <p>织金洞位于毕节市织金县，是中国最美溶洞之一，被誉为"溶洞之王"。洞内有钟乳石、石笋、石幔、石柱等各种沉积形态，形态各异，色彩斑斓。银雨宫、塔林宫、灵霄殿等景点各具特色。织金洞长12.1公里，宽175米，平均高度80-100米，规模宏大，景观奇特。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌈</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>小七孔景区</h4>
+                        <span class="highlight">核心亮点：世界遗产，水上森林，喀斯特奇观</span>
+                        <p>小七孔景区位于荔波县，是荔波喀斯特世界遗产的核心景区。小七孔古桥是景区标志性建筑，建于清代，是古时荔波通往广西的必经之路。水上森林是景区精华，树木生长在水中，清澈的溪水从林间流过，美轮美奂。六十八级跌水瀑布、卧龙潭、拉雅瀑布等景点也各具特色。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>梵净山</h4>
+                        <span class="highlight">核心亮点：世界遗产，佛教名山，蘑菇石</span>
+                        <p>梵净山位于铜仁市，是世界自然遗产，武陵山脉主峰，海拔2572米。梵净山生物多样性丰富，有梵净山冷杉、珙桐等珍稀植物，还有黔金丝猴、云豹等珍稀动物。金顶是梵净山最高峰，上有红云金顶，可俯瞰群山。蘑菇石是梵净山标志性景观，形如蘑菇，屹立在悬崖之上。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🔴</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>赤水大瀑布</h4>
+                        <span class="highlight">核心亮点：丹霞瀑布，气势磅礴，赤水丹霞</span>
+                        <p>赤水大瀑布位于遵义市赤水市，是世界自然遗产"中国丹霞"的重要组成部分。大瀑布高76米，宽80米，气势磅礴，是赤水丹霞的标志性景观。瀑布周围是丹霞地貌，红色砂岩与绿色植被相映成趣。四洞沟由四个瀑布串联而成，景色优美；燕子岩因燕子栖息而得名。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>万峰林</h4>
+                        <span class="highlight">核心亮点：喀斯特峰林，万峰成林，田园风光</span>
+                        <p>万峰林位于黔西南州兴义市，是中国最美喀斯特峰林之一。万峰林由两万多座山峰组成，峰峦叠嶂，气势磅礴。山峰形态各异，有的如剑，有的如塔，有的如柱，美轮美奂。万峰林下的田园风光也十分迷人，春季油菜花盛开，金黄一片，与灰色的山峰形成鲜明对比。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">民族村寨地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏘️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>西江千户苗寨</h4>
+                        <span class="highlight">核心亮点：世界最大苗寨，吊脚楼，苗族文化</span>
+                        <p>西江千户苗寨位于黔东南州雷山县，是世界最大的苗族聚居村寨，有1400多户人家，6000多人。苗寨依山而建，吊脚楼层层叠叠，是苗族建筑艺术的典型代表。苗族文化保存完好，可以体验苗族的银饰、刺绣、芦笙舞等传统文化。夜晚的苗寨灯火辉煌，如梦如幻，是贵州最受欢迎的旅游景点之一。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌉</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>肇兴侗寨</h4>
+                        <span class="highlight">核心亮点：最大侗寨，鼓楼群，侗族大歌</span>
+                        <p>肇兴侗寨位于黔东南州黎平县，是中国最大的侗族村寨，有"侗乡第一寨"之称。寨内有五座鼓楼，分别代表仁、义、礼、智、信，是侗族文化的象征。侗族大歌是肇兴侗寨的传统文化瑰宝，无伴奏、无指挥的多声部民歌被誉为"天籁之音"。可以体验侗族建筑、服饰、饮食等传统文化。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🌊</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>镇远古镇</h4>
+                        <span class="highlight">核心亮点：千年古镇，舞阳河，古建筑</span>
+                        <p>镇远古镇位于黔东南州镇远县，是贵州省历史文化名城，有"东方威尼斯"之称。古镇依山而建，舞阳河从镇中穿流而过，古色古香的建筑沿河而立。青龙洞古建筑群是古镇的精华，融佛教、道教、儒教于一体，是西南地区最大的古建筑群之一。夜晚的镇远古镇灯火辉煌，古桥流水，如诗如画。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>青岩古镇</h4>
+                        <span class="highlight">核心亮点：明清古镇，石板路，状元府</span>
+                        <p>青岩古镇位于贵阳市花溪区，是贵州省历史文化名镇，建于明洪武十年（1377年）。古镇以青石板铺路，古色古香，有明清时期的建筑200多处。状元府是古镇的重要景点，是清代状元赵以炯的故居。青岩古镇还是著名美食地，青岩猪脚、玫瑰糖等特产闻名遐迩。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代科学地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🔭</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>中国天眼FAST</h4>
+                        <span class="highlight">核心亮点：世界最大射电望远镜，科学奇迹，平塘县</span>
+                        <p>中国天眼FAST位于黔南州平塘县，是世界最大的单口径射电望远镜，口径500米。FAST于2016年9月建成启用，被誉为"中国天眼"，是国家重大科技基础设施。FAST可以观测宇宙中的脉冲星、暗物质、暗能量等，是人类探索宇宙的重要工具。游客可以参观FAST观景台，近距离感受这一科学奇迹。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🌌</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>平塘国际天文体验馆</h4>
+                        <span class="highlight">核心亮点：天文科普，FAST配套，互动体验</span>
+                        <p>平塘国际天文体验馆位于黔南州平塘县，是FAST的配套科普设施。体验馆内有天文科普展览、球幕影院、天象厅等，可以了解射电望远镜的工作原理和宇宙的奥秘。体验馆还有互动体验区，可以体验太空漫步、行星探索等项目，是天文爱好者的必游之地。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🚄</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>北盘江大桥</h4>
+                        <span class="highlight">核心亮点：世界第一高桥，云雾缭绕，工程奇迹</span>
+                        <p>北盘江大桥位于六盘水市水城区和黔西南州普安县交界处，是世界第一高桥，桥面至谷底垂直高度565米。大桥全长1341.4米，是杭瑞高速的重要组成部分。北盘江大桥横跨北盘江大峡谷，云雾缭绕时宛如天桥，是贵州喀斯特地貌上的工程奇迹。大桥于2016年建成通车，展示了中国桥梁建设的最高水平。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">酸汤美食</h2>
+        <p class="section-subtitle">酸辣鲜香，一菜一格，百菜百味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐟</span>
+                    <span class="food-name">酸汤鱼</span>
+                    <span class="food-taste">酸甜程度：★★★★★</span>
+                </div>
+                <div class="food-content">
+                    <p>贵州招牌菜，以番茄酸汤或米酸汤为主料，搭配鲜鱼烹制而成。酸汤开胃，鱼肉鲜嫩，是贵州人餐桌上的常见菜品。酸汤有红酸汤和白酸汤两种，红酸汤用番茄发酵而成，白酸汤用米汤发酵而成，各有特色。</p>
+                    <span class="food-tag">贵州招牌</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">肠旺面</span>
+                    <span class="food-taste">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>贵阳传统小吃，由面条、猪血旺、肥肠、脆哨等组成。面条筋道，猪血旺嫩滑，肥肠软糯，脆哨香酥，麻辣味浓郁，是贵阳人早餐的首选。肠旺面的汤头由猪骨、鸡架等熬制而成，营养丰富。</p>
+                    <span class="food-tag">贵阳特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">丝娃娃</span>
+                    <span class="food-taste">酸辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>贵阳特色小吃，因形状像襁褓中的婴儿而得名。用薄面皮包裹各种蔬菜丝、豆芽、海带丝等，蘸着酸辣汁食用。丝娃娃清爽可口，是夏季消暑的绝佳选择。贵阳街头随处可见卖丝娃娃的小摊，是贵阳最接地气的小吃。</p>
+                    <span class="food-tag">贵阳特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥩</span>
+                    <span class="food-name">辣子鸡</span>
+                    <span class="food-taste">麻辣程度：★★★★★</span>
+                </div>
+                <div class="food-content">
+                    <p>贵州名菜，以鸡肉、干辣椒为主料。鸡肉外酥里嫩，麻辣味浓郁，与重庆辣子鸡不同，贵州辣子鸡更注重麻辣的层次感。辣子鸡是贵州人喜爱的家常菜，也是餐厅的招牌菜。</p>
+                    <span class="food-tag">贵州名菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍶</span>
+                    <span class="food-name">茅台酒</span>
+                    <span class="food-taste">酒精度：53°</span>
+                </div>
+                <div class="food-content">
+                    <p>茅台酒产于遵义市仁怀市茅台镇，是中国最著名的白酒之一，被誉为"国酒"。茅台酒以高粱、小麦、水为原料，采用传统工艺酿造，酱香突出，优雅细腻，酒体醇厚。茅台酒历史悠久，1915年巴拿马万国博览会上荣获金奖，从此名扬世界。</p>
+                    <span class="food-tag">中国国酒</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">花溪牛肉粉</span>
+                    <span class="food-taste">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>贵阳传统小吃，以牛肉、米粉为主料。牛肉软糯，米粉爽滑，汤头浓郁，是贵阳人早餐的首选。花溪牛肉粉的汤头由牛骨、香料等熬制而成，加入酸菜、香菜等调料，风味独特。花溪区是贵阳牛肉粉的发源地，有众多牛肉粉店。</p>
+                    <span class="food-tag">贵阳特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">青岩猪脚</span>
+                    <span class="food-taste">麻辣程度：★★☆☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>青岩古镇特色小吃，以猪脚为主料，卤制而成。猪脚软糯，肥而不腻，是青岩古镇的招牌美食。青岩猪脚的制作工艺独特，用秘制卤料卤制，香味浓郁。来青岩古镇必尝青岩猪脚，是游客的最爱。</p>
+                    <span class="food-tag">古镇特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍯</span>
+                    <span class="food-name">玫瑰糖</span>
+                    <span class="food-taste">香甜程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>青岩古镇特色甜食，以玫瑰花瓣、芝麻、花生等为主料。玫瑰糖香甜可口，口感细腻，是青岩古镇的招牌甜食。玫瑰糖的制作工艺独特，用新鲜玫瑰花瓣制作，香味浓郁。来青岩古镇必买玫瑰糖，是最好的伴手礼。</p>
+                    <span class="food-tag">古镇特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🧊</span>
+                    <span class="food-name">冰粉</span>
+                    <span class="food-taste">清爽程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>贵州特色小吃，以冰粉为主料，加入红糖、芝麻、花生、葡萄干等配料。冰粉晶莹剔透，口感爽滑，是夏季消暑的绝佳选择。贵州的冰粉与四川的冰粉略有不同，配料更丰富，口感更丰富。</p>
+                    <span class="food-tag">消暑佳品</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>贵州 · 欢迎您</h3>
+        <p>多彩贵州，山水画廊 | 民族风情，自然奇观</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 贵州省城市展示页面</p>
+    </footer>
+</body>
+</html>

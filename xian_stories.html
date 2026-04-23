@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西安 - 古都西安 永恒之城</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-terracotta: #8B4513;
+            --primary-red: #C41E3A;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            --text-light: #EAEAEA;
+            --text-gray: #A0A0A0;
+            --glow-gold: #FFD700;
+            --ancient-warm: #CD853F;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a2e, #2c1810);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2c1810 50%, #1a1a2e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%);
+            animation: ancientGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes ancientGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-terracotta);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(139, 69, 19, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-terracotta);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #16213e, #0f3460);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--ancient-warm));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: rgba(30, 30, 50, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-gold), var(--ancient-warm));
+            color: #1a1a2e;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-gold), var(--ancient-warm));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-terracotta);
+            box-shadow: 0 0 10px var(--primary-gold);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--ancient-warm));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: #1a1a2e;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, #16213e, #1a1a2e);
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--ancient-warm));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-terracotta);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #C41E3A, #8B4513);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--ancient-warm));
+            color: #1a1a2e;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #2c1810);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), var(--ancient-warm), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2c1810 50%, #1a1a2e 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(139, 69, 19, 0.3);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🦁';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-terracotta);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-terracotta), var(--primary-red));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #FFF8E7;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-terracotta);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #78716c;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🏛️ 西安</a>
+        <div class="nav-links">
+            <a href="#overview">古都概览</a>
+            <a href="#history">秦风唐韵</a>
+            <a href="#landmarks">古迹名胜</a>
+            <a href="#food">三秦美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🦁</span>
+                    <h2 class="animal-main-title">西安 —— 狮子</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 古都守护神 · 威猛镇守
+                </div>
+
+                <p class="animal-description">
+                    西安遍地古建筑、皇陵、城门都有石狮子镇守，秦岭野生动物园也以非洲狮为猛兽区核心。狮子威严的形象与千年古都厚重的历史底蕴完美呼应，是帝王气象的象征。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🏛️</span>
+                        <span class="animal-feature-title">石狮镇守</span>
+                        <p class="animal-feature-desc">古建筑门前守护者</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🌄</span>
+                        <span class="animal-feature-title">秦岭猛兽</span>
+                        <p class="animal-feature-desc">野生动物园核心</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">👑</span>
+                        <span class="animal-feature-title">威严象征</span>
+                        <p class="animal-feature-desc">帝王气象的化身</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>西安</h1>
+        <p class="subtitle">古都西安 · 永恒之城</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                西安，位于中国西北腹地，古称长安，是中国四大古都之一。
+                从秦朝的阿房宫，到汉武帝的未央宫；
+                从唐朝的大明宫，到明清的城墙；
+                从兵马俑的震撼，到大雁塔的庄严；
+                从回民街的美食，到大唐不夜城的繁华。
+                这里是十三朝古都，是丝绸之路的起点，
+                是中华文明的重要发祥地，是历史的见证者。
+                西安是永恒之城，是历史的教科书，是中国的骄傲。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">古都概览</h2>
+        <p class="section-subtitle">走进西安，感受十三朝古都的厚重历史</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>城市定位</h3>
+                <p>陕西省省会，是中国西北地区的中心城市，是十三朝古都。西安是世界历史名城，是丝绸之路的起点，是国家中心城市。西安是历史文化名城，是旅游胜地，是科教重镇。西安正在建设国际化大都市，是"一带一路"倡议的重要节点城市。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于关中平原中部，东接渭南，西接咸阳，南接安康、商洛，北接延安。面积10,096平方公里，常住人口1,295万。西安下辖11个市辖区，包括新城区、碑林区、莲湖区、雁塔区、灞桥区、未央区、阎良区、临潼区、长安区、高陵区、鄠邑区。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">十三朝古都</span>
+                    <span class="tag">丝绸之路起点</span>
+                    <span class="tag">兵马俑</span>
+                    <span class="tag">大雁塔</span>
+                    <span class="tag">历史文化名城</span>
+                    <span class="tag">永恒之城</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    西安有"长安"、"镐京"等古称，是中华文明的重要发祥地。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以平原为主，南依秦岭，北临渭河，地势平坦。气候属温带季风气候，四季分明，年平均气温13℃左右。西安雨量适中，年平均降水量500-700毫米，多集中在夏季。春季温暖多风，夏季炎热，秋季凉爽，冬季寒冷少雪。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">秦风唐韵 · 底蕴</h2>
+        <p class="section-subtitle">十三朝古都三千年，秦风唐韵代代传</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">建都沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>西周 · 镐京时期（前1046年-前771年）</h4>
+                <p>周武王灭商后，定都镐京（今西安西南），西周开始。镐京是西周的政治、经济、文化中心，周礼在这里形成。公元前771年，犬戎攻破镐京，西周灭亡。镐京是西安作为都城的开始，开启了西安长达3000多年的建都史。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦朝 · 咸阳时期（前221年-前206年）</h4>
+                <p>秦始皇统一六国，定都咸阳（今西安北），秦朝开始。咸阳是秦朝的政治中心，阿房宫、秦始皇陵等大型建筑在此兴建。秦朝统一了文字、度量衡、货币，奠定了中国统一的基矗秦朝是西安作为都城的第二个王朝，虽然只有15年，但影响深远。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>西汉 · 长安时期（前202年-8年）</h4>
+                <p>汉高祖刘邦建立汉朝，定都长安（今西安西北），西汉开始。长安是西汉的政治、经济、文化中心，未央宫、长乐宫、建章宫等宫殿宏伟壮丽。汉武帝时期，张骞出使西域，丝绸之路开通，长安成为丝绸之路的起点。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐朝 · 长安时期（618年-907年）</h4>
+                <p>唐高祖李渊建立唐朝，定都长安，唐朝开始。长安是唐朝的政治、经济、文化中心，大明宫、兴庆宫、芙蓉园等建筑富丽堂皇。唐朝的长安是当时世界上最大的城市，人口超过百万，是国际大都市，是丝绸之路的东端起点。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>宋元明清 · 降格时期（960年-1911年）</h4>
+                <p>宋代长安降格为府，不再是都城。元代长安改称奉元路，明代改称西安府，清代继续沿用。虽然不再是都城，但西安仍是西北地区的中心城市。明代修建的西安城墙保存至今，是西安的地标建筑。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 发展复兴（1949年至今）</h4>
+                <p>1949年西安解放，开始了新的发展历程。改革开放后，西安经济快速发展，成为西北地区的重要城市。西安是科教重镇，拥有众多高校和科研机构。近年来，西安大力发展文化旅游业，兵马俑、大雁塔等景点闻名世界。西安正加快建设国际化大都市，建设国家中心城市。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--glow-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏛️</span>
+                    <span class="heritage-header-text">兵马俑</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>秦始皇兵马俑</h4>
+                    <p>位于西安市临潼区，是秦始皇陵的陪葬坑，被誉为"世界第八大奇迹"。兵马俑发现于1974年，包括三个俑坑，共有陶俑、陶马8000余件。兵马俑规模宏大，造型精美，每个陶俑的面部表情、服饰都不相同，展现了秦代高超的制陶技术。1987年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">1987年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">秦始皇帝陵</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>秦始皇陵</h4>
+                    <p>位于西安市临潼区，是中国历史上第一位皇帝秦始皇的陵墓，规模宏大。秦始皇陵封土高76米，陵园面积56.25平方公里，是中国古代最大的帝王陵之一。秦始皇陵未发掘，陵内有大量文物等待发现。秦始皇陵是中国古代陵寝制度的代表。1987年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">1987年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏯</span>
+                    <span class="heritage-header-text">大雁塔</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>大雁塔·小雁塔</h4>
+                    <p>大雁塔位于西安市雁塔区，始建于唐高宗永徽三年（652年），是玄奘法师为保存从印度带回的佛经而建。大雁塔高64.5米，是唐代佛教建筑的代表。小雁塔位于西安市碑林区，始建于唐中宗景龙年间（707-709年），是唐代佛教建筑的精品。2014年"丝绸之路：长安-天山廊道的路网"被列入世界文化遗产。</p>
+                    <span class="heritage-badge">2014年列入</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">古迹名胜</h2>
+        <p class="section-subtitle">从兵马俑到大唐不夜城，西安处处是历史</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">历史古迹</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>秦始皇兵马俑</h4>
+                        <span class="highlight">核心亮点：世界第八大奇迹，秦代军阵，规模宏大</span>
+                        <p>秦始皇兵马俑位于西安市临潼区，是秦始皇陵的陪葬坑，被誉为"世界第八大奇迹"。兵马俑包括三个俑坑，一号坑最大，有陶俑、陶马6000余件。兵马俑展现了秦代的军阵布局，每个陶俑的面部表情、服饰都不相同，展现了秦代高超的制陶技术。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏯</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>西安城墙</h4>
+                        <span class="highlight">核心亮点：明代城墙，保存完好，骑行体验</span>
+                        <p>西安城墙位于西安市市中心，是明代修建的城墙，是西安的地标建筑。西安城墙周长13.7公里，高12米，顶宽12-14米，是中国保存最完整的明代城墙。城墙有东、西、南、北四门，可以骑自行车环城一周，感受古都的风貌。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🗼</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>大雁塔</h4>
+                        <span class="highlight">核心亮点：唐代佛塔，玄奘译经，大唐文化</span>
+                        <p>大雁塔位于西安市雁塔区，始建于唐高宗永徽三年（652年），是玄奘法师为保存从印度带回的佛经而建。大雁塔高64.5米，七层，是唐代佛教建筑的代表。大雁塔是唐代长安城的地标建筑，是大唐文化的象征，也是西安的地标建筑。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🎭</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>大唐不夜城</h4>
+                        <span class="highlight">核心亮点：盛唐文化，夜景璀璨，网红打卡</span>
+                        <p>大唐不夜城位于西安市雁塔区，是以盛唐文化为主题的文化街区。大唐不夜城以大雁塔为中心，有仿唐建筑、雕塑、表演等，展现了盛唐时期的文化风貌。夜晚的大唐不夜城灯光璀璨，表演精彩，是西安最热门的网红打卡地。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>回民街</h4>
+                        <span class="highlight">核心亮点：穆斯林街区，美食天堂，古街风情</span>
+                        <p>回民街位于西安市莲湖区，是穆斯林聚居区，是西安最有名的美食街。回民街有百年历史，保留了明清时期的建筑风格。回民街汇集了西安的各种美食，如羊肉泡馍、凉皮、肉夹馍等，是游客品尝西安美食的好去处。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🎬</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>大唐芙蓉园</h4>
+                        <span class="highlight">核心亮点：皇家园林，盛唐文化，夜景秀美</span>
+                        <p>大唐芙蓉园位于西安市雁塔区，是在唐代芙蓉园遗址上重建的大型皇家园林式文化主题公园。大唐芙蓉园以盛唐文化为主题，有紫云楼、仕女馆、御宴宫等建筑，展现了盛唐时期的文化风貌。夜晚的大唐芙蓉园灯光璀璨，有精彩的表演。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">三秦美食</h2>
+        <p class="section-subtitle">面食为主，汤浓味厚，三秦风味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥟</span>
+                    <span class="food-name">肉夹馍</span>
+                    <span class="food-taste">肉香馍软</span>
+                </div>
+                <div class="food-content">
+                    <p>西安传统小吃，又称"中式汉堡"。肉夹馍用腊汁肉和白吉馍制作，肉香馍软，是西安人最爱的食物之一。腊汁肉是用猪五花肉、八角、桂皮等香料慢火炖制而成，肉质软烂，香气浓郁。白吉馍是特制的白馍，外酥里嫩。</p>
+                    <span class="food-tag">西安特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">羊肉泡馍</span>
+                    <span class="food-taste">汤浓馍香</span>
+                </div>
+                <div class="food-content">
+                    <p>西安传统小吃，以羊肉和馍为主料。羊肉泡馍汤浓馍香，是西安人最爱的食物之一。馍要自己掰，掰成小块，这样更能吸收汤汁。羊肉要选用新鲜羊肉，用羊肉汤慢火炖制而成，肉质软烂，汤味浓郁。</p>
+                    <span class="food-tag">西安特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">臊子面</span>
+                    <span class="food-taste">酸辣爽口</span>
+                </div>
+                <div class="food-content">
+                    <p>西安传统面食，以面条、臊子为主料。臊子面酸辣爽口，面条筋道，是西安人最爱的面食之一。臊子是用猪肉、豆腐、黄花菜、木耳等制成的肉臊，酸辣可口。面条要细而筋道，汤头要酸辣适中，这样才能做出一碗好吃的臊子面。</p>
+                    <span class="food-tag">西安面食</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">凉皮</span>
+                    <span class="food-taste">麻辣爽滑</span>
+                </div>
+                <div class="food-content">
+                    <p>西安传统小吃，以面皮为主料。凉皮麻辣爽滑，是西安人最爱的夏季食品。凉皮是用面粉制成的，有米皮和面皮两种。米皮用大米浆制作，面皮用小麦粉制作。凉皮配上芝麻酱、辣椒油、蒜水等调料，麻辣爽滑，开胃爽口。</p>
+                    <span class="food-tag">西安小吃</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥯</span>
+                    <span class="food-name">葫芦头</span>
+                    <span class="food-taste">汤浓馍软</span>
+                </div>
+                <div class="food-content">
+                    <p>西安传统小吃，以猪大肠和馍为主料。葫芦头汤浓馍软，是西安人最爱的食物之一。猪大肠要清洗干净，用花椒、八角、桂皮等香料慢火炖制而成，汤浓味美。馍要掰成小块，泡在汤里，吸收汤汁，吃起来特别香。</p>
+                    <span class="food-tag">西安特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">Biangbiang面</span>
+                    <span class="food-taste">宽面劲道</span>
+                </div>
+                <div class="food-content">
+                    <p>西安传统面食，以宽面条为主料。Biangbiang面宽面劲道，是西安人最爱的面食之一。面条要宽而厚，这样吃起来才劲道。调料有辣椒面、蒜水、醋等，酸辣爽口。Biangbiang面的"Biang"字是一个生僻字，是陕西独有的。</p>
+                    <span class="food-tag">陕西特色</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>西安 · 欢迎您</h3>
+        <p>古都西安，永恒之城 | 秦风唐韵，丝路起点</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 西安市城市展示页面</p>
+    </footer>
+</body>
+</html>

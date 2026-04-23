@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重庆 - 山城江都 火锅之都</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #D32F2F;
+            --primary-gold: #FFB300;
+            --dark-red: #B71C1C;
+            --light-gold: #FFF8E1;
+            --bg-dark: #1A1A2E;
+            --text-light: #EAEAEA;
+            --text-gray: #A0A0A0;
+            --night-blue: #16213E;
+            --city-glow: #FF6B6B;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background-color: var(--bg-dark);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light-gold);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 179, 0, 0.2);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, var(--night-blue) 0%, var(--bg-dark) 50%, var(--dark-red) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23FFB30015"/><circle cx="50" cy="50" r="2" fill="%23FFB30020"/><circle cx="80" cy="30" r="1.5" fill="%23FFB30015"/><circle cx="30" cy="70" r="1" fill="%23FFB30010"/><circle cx="70" cy="80" r="2" fill="%23FFB30020"/></svg>');
+            background-size: 200px;
+            opacity: 0.6;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(211, 47, 47, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: var(--night-blue);
+        }
+
+        .section-alt {
+            background: var(--bg-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-red), var(--city-glow));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.8), rgba(26, 26, 46, 0.9));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-red);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+        }
+
+        .city-card-item h3 {
+            color: var(--primary-gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .city-card-item h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--city-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--city-glow);
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-red), var(--city-glow));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-red);
+            box-shadow: 0 0 10px var(--city-glow);
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 世界遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--dark-red);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 非遗文化 */
+        .heritage-culture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .culture-item {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--primary-gold);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .culture-item:hover {
+            background: rgba(22, 33, 62, 0.9);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .culture-item h4 {
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .culture-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, var(--night-blue), var(--bg-dark));
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid linear-gradient(to right, var(--primary-red), var(--city-glow));
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            color: var(--city-glow);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #FF5722, #E64A19);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-spicy {
+            color: var(--light-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-red), var(--night-blue));
+            color: var(--light-gold);
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--city-glow), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #2D1B0E 0%, #3D2314 50%, #2D1B0E 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(255, 179, 0, 0.2);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🦛';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #FFF8E1;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🌃 重庆</a>
+        <div class="nav-links">
+            <a href="#overview">山城概览</a>
+            <a href="#history">巴渝文化</a>
+            <a href="#landmarks">地标景点</a>
+            <a href="#food">火锅美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🦛</span>
+                    <h2 class="animal-main-title">重庆 —— 河马</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 山城巨兽 · 莽莽萌翻全网
+                </div>
+
+                <p class="animal-description">
+                    重庆动物园人气超高的河马"莽莽"是网红动物，体型憨厚、性格慵懒，和重庆人豪爽接地气的气质高度契合；且重庆夏季炎热，河马爱泡水也暗合"火炉"特色。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">💤</span>
+                        <span class="animal-feature-title">慵懒可爱</span>
+                        <p class="animal-feature-desc">睡姿萌翻无数游客</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🔥</span>
+                        <span class="animal-feature-title">火炉绝配</span>
+                        <p class="animal-feature-desc">爱泡水的夏天代言人</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">👊</span>
+                        <span class="animal-feature-title">豪爽气质</span>
+                        <p class="animal-feature-desc">憨厚如重庆人性格</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>重庆</h1>
+        <p class="subtitle">山城江都 · 火锅之都</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                重庆，一座建在山上的城市，长江与嘉陵江在此交汇。
+                从巴渝文化的发源地，到抗战时期陪都，再到现代直辖市，
+                重庆以其独特的山地地貌和浓郁的文化底蕴闻名于世。
+                这里有解放碑的繁华，洪崖洞的璀璨夜景，
+                李子坝轻轨穿楼的神奇，还有那令人垂涎的重庆火锅。
+                重庆是8D魔幻城市，是网红打卡地，更是中国西部的魅力之都。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">山城概览</h2>
+        <p class="section-subtitle">走进重庆，感受山城江都的独特魅力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>城市定位</h3>
+                <p>中国四大直辖市之一，位于中国西南部，长江上游，是西部大开发的重要战略支点，也是"一带一路"和长江经济带的联结点。重庆是著名的山城、江城，因"三面临江、一面靠山"的独特地形而闻名，被称为"8D魔幻城市"。重庆是长江上游地区经济中心、金融中心、商贸物流中心，也是国家中心城市。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国西南部，长江上游，东邻湖北、湖南，南接贵州，西连四川，北接陕西。面积8.24万平方公里，常住人口3,212万，是中国人口最多的城市。下辖38个区县，包括渝中区、江北区、南岸区、九龙坡区、大渡口区、沙坪坝区、渝北区、巴南区、北碚区等主城区，以及万州、涪陵等远郊区县。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">山城</span>
+                    <span class="tag">江城</span>
+                    <span class="tag">火锅之都</span>
+                    <span class="tag">8D魔幻城市</span>
+                    <span class="tag">网红重庆</span>
+                    <span class="tag">雾都</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    重庆因多雾被称为"雾都"，因山地地形被称为"山城"，因火锅闻名被称为"火锅之都"。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以山地、丘陵为主，山地面积占76%，有"山城"之称。气候属亚热带季风性湿润气候，年平均气温18℃左右，夏季炎热，被称为"火炉"，冬季温和少霜。重庆是中国日照最少的城市之一，年平均日照仅1000-1400小时，年平均降水量1000-1400毫米，多夜雨，有"巴山夜雨涨秋池"的诗意。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">巴渝文化 · 底蕴</h2>
+        <p class="section-subtitle">巴渝大地三千年，红岩精神代代传</p>
+
+        <h3 style="color: var(--primary-gold); margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>先秦 · 巴国时期（约公元前11世纪-前316年）</h4>
+                <p>重庆是巴国故地，巴人骁勇善战，性格豪爽。巴渝文化由此发源，形成了独特的地方文化。巴人创造了巴渝舞、巴渝歌等艺术形式，巴国的青铜器也有独特风格。公元前316年，秦国灭巴国，设巴郡，重庆地区纳入中央王朝管辖。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦汉 · 巴郡时期（前316年-220年）</h4>
+                <p>秦设巴郡，治所江州（今重庆）。汉代巴郡经济文化发展，出现了"巴有将，蜀有相"的说法。汉代江州是长江上游重要城市，商贸发达，文化繁荣。汉代出现了许多巴渝文人，为巴渝文化的发展奠定了基础。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 渝州时期（618年-1279年）</h4>
+                <p>唐代称渝州，宋代继续沿用。唐宋时期，重庆成为长江上游重要商业城市，是川东地区政治、经济、文化中心。李白、杜甫、白居易等诗人曾在此留下诗篇。宋代重庆陶瓷业发达，重庆窑生产的瓷器远销各地。宋代也是重庆城市发展的重要时期，城市规模扩大，人口增加。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>明清 · 重庆府时期（1368年-1911年）</h4>
+                <p>明代称重庆府，清代延续。明末农民起义军领袖张献忠攻入四川，重庆遭受重创。清代重庆恢复发展，成为川东地区最大城市。重庆开埠通商后，西方列强在此设立领事馆，重庆开始近代化进程。清末重庆成为长江上游商贸中心，有"小上海"之称。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>民国 · 战时陪都（1937年-1945年）</h4>
+                <p>1937年抗日战争全面爆发，国民政府迁都重庆，重庆成为战时陪都。1940年定为永久陪都。抗战期间，重庆是大后方政治、经济、文化中心，也是世界反法西斯战争远东指挥中心。重庆人民在日军轰炸下坚韧不拔，展现了伟大的抗战精神。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 直辖市（1949年至今）</h4>
+                <p>1949年重庆解放，成为西南军政委员会驻地。1997年重庆恢复为直辖市，成为中国第四个直辖市。改革开放后，重庆经济快速发展，成为中国西部最具活力的城市之一。重庆在西部大开发中发挥重要作用，成渝地区双城经济圈建设加速推进，重庆正加快建设内陆开放高地。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-gold); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center">世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏜️</span>
+                    <span class="heritage-header-text">大足石刻</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>大足石刻</h4>
+                    <p>位于重庆市大足区，是中国晚期石窟艺术的代表，始建于唐代，盛于宋代。大足石刻包括宝顶山、北山、南山、石篆山、石门山五处石刻，共有造像5万余尊，铭文10万余字。大足石刻以佛教造像为主，兼有儒、道造像，是中国石窟艺术中晚期阶段的杰出代表。宝顶山石刻最为著名，有千手观音、释迦涅槃圣迹图等精美造像。1999年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">1999年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">武隆喀斯特</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>武隆喀斯特</h4>
+                    <p>位于重庆市武隆区，是典型的喀斯特地貌景观，包括天生三桥、芙蓉洞、芙蓉江三个部分。天生三桥是世界自然遗产，由天龙桥、青龙桥、黑龙桥三座天然石桥组成，气势恢宏。芙蓉洞是中国最美丽的溶洞之一，洞内有石花、石幔、石柱等奇特景观。芙蓉江峡谷风光秀丽，江水清澈。2007年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2007年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">金佛山</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>金佛山喀斯特</h4>
+                    <p>位于重庆市南川区，是典型的台原喀斯特地貌，被誉为"东方的阿尔卑斯"。金佛山主峰风吹岭海拔2251米，山上有茂密的原始森林、奇特的喀斯特地貌和丰富的生物多样性。金佛洞是亚洲最长的洞穴系统之一，洞内有石笋、石柱、石幔等奇特景观。夏季凉爽宜人，是避暑胜地；冬季银装素裹，是冰雪乐园。2014年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2014年列入</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-gold); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">巴渝文化特色</h3>
+        <div class="heritage-culture">
+            <div class="culture-item">
+                <h4>川江号子</h4>
+                <p>长江上游船工劳动时唱的民歌，节奏明快，气势磅礴，反映了船工的生活和情感。</p>
+            </div>
+            <div class="culture-item">
+                <h4>川剧</h4>
+                <p>重庆传统戏曲艺术，以变脸、吐火、水袖等绝活著称，表演生动传神。</p>
+            </div>
+            <div class="culture-item">
+                <h4>摆龙门阵</h4>
+                <p>重庆人闲聊的习惯，三五好友坐在一起，喝茶聊天，谈天说地。</p>
+            </div>
+            <div class="culture-item">
+                <h4>码头文化</h4>
+                <p>重庆是长江码头城市，码头文化孕育了重庆人豪爽耿直、重情重义的性格。</p>
+            </div>
+            <div class="culture-item">
+                <h4>红岩精神</h4>
+                <p>抗战时期和解放战争时期，重庆人民展现出的坚韧不拔、无私奉献的精神。</p>
+            </div>
+            <div class="culture-item">
+                <h4>袍哥文化</h4>
+                <p>清末民初重庆地区的一种帮会文化，讲义气、重情义，对重庆文化有深远影响。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">地标景点</h2>
+        <p class="section-subtitle">从8D魔幻到红色记忆，重庆处处有惊喜</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">历史文化地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>解放碑</h4>
+                        <span class="highlight">核心亮点：抗战胜利纪念碑，重庆地标，商圈中心</span>
+                        <p>解放碑全称"抗战胜利纪功碑暨人民解放纪念碑"，位于渝中区解放碑步行街，是重庆的标志性建筑。纪念碑高27.5米，建于1945年，1950年改建为纪念人民解放。解放碑周边是重庆最繁华的商业区，有众多购物中心、餐饮店和娱乐场所。夜晚的解放碑灯光璀璨，人流如织，是重庆都市生活的缩影。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🎪</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>洪崖洞</h4>
+                        <span class="highlight">核心亮点：网红打卡地，吊脚楼，璀璨夜景</span>
+                        <p>洪崖洞位于渝中区嘉陵江边，是重庆最具人气的网红景点。这里依山而建，是典型的吊脚楼建筑群，共11层，从江边一路延伸到山顶。夜晚的洪崖洞灯火辉煌，层层叠叠，宛如童话世界。洪崖洞内有众多特色小店、餐饮店和酒吧，可以一边品尝美食，一边欣赏嘉陵江夜景。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🚂</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>李子坝轻轨站</h4>
+                        <span class="highlight">核心亮点：轻轨穿楼，网红景点，8D魔幻</span>
+                        <p>李子坝轻轨站是重庆轨道交通2号线的一个站点，因轻轨穿楼而过而闻名全国。列车从居民楼中间穿过，一楼是商铺，六楼是站台，被誉为"8D魔幻城市"的典型代表。这里已成为重庆最热门的网红打卡点之一，无数游客前来拍照留念，见证这一独特的城市景观。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>磁器口古镇</h4>
+                        <span class="highlight">核心亮点：千年古镇，磁器文化，古街小巷</span>
+                        <p>磁器口古镇位于沙坪坝区，始建于宋代，有"小重庆"之称。古镇以磁器生产闻名，故名磁器口。古镇内有众多古建筑、传统店铺和茶馆，可以感受到浓郁的巴渝文化氛围。古镇的特色小吃陈麻花、毛血旺等值得一试。每逢节假日，古镇人流如织，热闹非凡。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏜️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>大足石刻</h4>
+                        <span class="highlight">核心亮点：世界遗产，千手观音，佛教艺术</span>
+                        <p>大足石刻位于重庆市大足区，是中国晚期石窟艺术的代表，始建于唐代，盛于宋代。大足石刻包括宝顶山、北山、南山、石篆山、石门山五处石刻，共有造像5万余尊。宝顶山石刻最为著名，有千手观音、释迦涅槃圣迹图等精美造像。大足石刻以佛教造像为主，兼有儒、道造像，是世界文化遗产。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">红色</span>
+                        <span class="landmark-icon">🎖️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>渣滓洞·白公馆</h4>
+                        <span class="highlight">核心亮点：红色教育基地，革命历史，红岩精神</span>
+                        <p>渣滓洞和白公馆位于沙坪坝区歌乐山，是抗日战争时期和解放战争时期国民党关押革命者的监狱。渣滓洞原为煤矿，后被改为监狱；白公馆原为军阀白驹的香山别墅，后改为监狱。江竹筠（江姐）等革命先烈曾在这里被关押和牺牲。这里已成为红色教育基地，展现了革命先烈坚韧不拔的精神。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">自然奇观地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌉</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>长江索道</h4>
+                        <span class="highlight">核心亮点：空中巴士，跨江索道，网红打卡</span>
+                        <p>长江索道是重庆的标志性交通工具，横跨长江，连接渝中区和南岸区。索道全长1166米，悬空高度92米，从空中俯瞰长江和两岸风光，是重庆独特的体验。长江索道因电影《疯狂的石头》而闻名全国，成为重庆的网红景点。夜晚乘坐索道，欣赏两岸璀璨夜景，更有一番风味。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏞️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>武隆天生三桥</h4>
+                        <span class="highlight">核心亮点：世界遗产，天然石桥，天生三桥</span>
+                        <p>武隆天生三桥位于武隆区，是世界自然遗产武隆喀斯特的重要组成部分。天生三桥由天龙桥、青龙桥、黑龙桥三座天然石桥组成，是亚洲最大的天生桥群。三座桥气势恢宏，桥下是深邃的峡谷，周围是茂密的森林，景色壮丽。这里是电影《满城尽带黄金甲》和《变形金刚4》的取景地，让武隆天生三桥闻名世界。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>金佛山</h4>
+                        <span class="highlight">核心亮点：世界遗产，喀斯特地貌，避暑胜地</span>
+                        <p>金佛山位于南川区，是世界自然遗产，被誉为"东方的阿尔卑斯"。主峰风吹岭海拔2251米，山上有茂密的原始森林、奇特的喀斯特地貌和丰富的生物多样性。夏季凉爽宜人，是避暑胜地；冬季银装素裹，是冰雪乐园。金佛洞是亚洲最长的洞穴系统之一，洞内有石笋、石柱、石幔等奇特景观。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">💧</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>芙蓉洞</h4>
+                        <span class="highlight">核心亮点：最美溶洞，石花石幔，地下奇观</span>
+                        <p>芙蓉洞位于武隆区，是世界自然遗产武隆喀斯特的重要组成部分，被誉为"中国最美的洞穴"。洞内长达2700米，有石花、石幔、石柱、石笋等众多奇特景观，其中石花面积达1.2万平方米，是世界最大的石花群。洞内温度常年保持16℃左右，四季皆可游览。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代都市地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌆</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>来福士广场</h4>
+                        <span class="highlight">核心亮点：摩天大楼，观景平台，城市地标</span>
+                        <p>重庆来福士广场位于渝中区朝天门，是重庆的地标性建筑，由八座摩天大楼组成，最高楼高350米。来福士广场集购物、餐饮、办公、住宅于一体，是重庆最重要的商业综合体之一。楼顶设有观景平台，可以俯瞰长江和嘉陵江的交汇处，欣赏重庆全景。夜晚的来福士灯光璀璨，是重庆夜景的重要组成部分。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏬</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>观音桥商圈</h4>
+                        <span class="highlight">核心亮点：繁华商圈，时尚购物，美食天堂</span>
+                        <p>观音桥商圈位于江北区，是重庆最繁华的商业区之一。商圈内有大型购物中心、百货公司、品牌专卖店、餐饮店和娱乐场所，是重庆人购物、休闲、娱乐的重要去处。北仓文创园是商圈内的文艺聚集地，有众多咖啡馆、创意店和艺术空间，是年轻人打卡的热门地点。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌊</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>南滨路</h4>
+                        <span class="highlight">核心亮点：滨江观景，酒吧街，夜景绝佳</span>
+                        <p>南滨路位于南岸区长江边，是重庆最美的滨江景观大道。南滨路全长约7公里，沿途有众多餐厅、酒吧、咖啡馆和休闲设施，可以一边品尝美食，一边欣赏长江和对岸的渝中半岛夜景。夜晚的南滨路灯火辉煌，是重庆观赏夜景的最佳地点之一。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🚇</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>皇冠大扶梯</h4>
+                        <span class="highlight">核心亮点：亚洲最长，两路口，网红打卡</span>
+                        <p>皇冠大扶梯位于渝中区两路口，是连接两路口和菜园坝的交通工具，全长112米，提升高度52.7米，是亚洲最长的扶梯之一。皇冠大扶梯因电影《少年的你》而走红网络，成为重庆的网红打卡点。乘坐大扶梯上下，感受重庆山城的独特魅力，是重庆独特的体验。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">火锅美食</h2>
+        <p class="section-subtitle">麻辣鲜香，一锅一世界</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍲</span>
+                    <span class="food-name">重庆火锅</span>
+                    <span class="food-spicy">麻辣程度：★★★★★</span>
+                </div>
+                <div class="food-content">
+                    <p>重庆火锅是重庆的招牌美食，以麻辣鲜香著称。火锅底料由牛油、辣椒、花椒等多种香料熬制而成，汤色红亮，麻辣浓郁。食材丰富，毛肚、黄喉、鸭肠是必点菜品。吃重庆火锅讲究"七上八下"，食材烫熟即食，保持鲜嫩口感。</p>
+                    <span class="food-tag">重庆招牌</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">重庆小面</span>
+                    <span class="food-spicy">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>重庆小面是重庆人早餐的首选，面条筋道，调料丰富。一碗小面需要十多种调料，包括油辣子、芝麻酱、花生碎、葱花等。重庆小面有几十种口味，包括豌杂面、牛肉面、肥肠面等，每种都有独特的风味。</p>
+                    <span class="food-tag">早餐必备</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥘</span>
+                    <span class="food-name">毛血旺</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>毛血旺是重庆传统名菜，以鸭血、毛肚、黄喉、豆芽等为主料，麻辣鲜香，汤汁浓郁。毛血旺的毛肚鲜嫩，鸭血滑嫩，豆芽爽脆，麻辣味浓郁，是重庆人下饭的好菜。</p>
+                    <span class="food-tag">传统名菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐟</span>
+                    <span class="food-name">酸菜鱼</span>
+                    <span class="food-spicy">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>酸菜鱼是重庆名菜，以鱼肉、酸菜为主料。鱼肉鲜嫩，酸菜酸爽，汤汁酸辣可口。酸菜鱼有汤菜一体的特点，既可以喝汤，也可以吃菜，是重庆人喜爱的家常菜之一。</p>
+                    <span class="food-tag">酸辣可口</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥢</span>
+                    <span class="food-name">辣子鸡</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>辣子鸡是重庆名菜，以鸡肉、干辣椒、花椒为主料。鸡肉外酥里嫩，麻辣味浓郁。辣子鸡的特点是辣椒比鸡肉多，要在辣椒中寻找鸡肉，体现了重庆人对麻辣的热爱。</p>
+                    <span class="food-tag">麻辣经典</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐷</span>
+                    <span class="food-name">烤脑花</span>
+                    <span class="food-spicy">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>烤脑花是重庆特色小吃，以猪脑为主料，放在锡纸中烤制而成。烤脑花口感细腻，麻辣味浓郁，是重庆烧烤的招牌菜品之一。对于外地游客来说，烤脑花可能有些挑战，但值得一试。</p>
+                    <span class="food-tag">特色小吃</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍗</span>
+                    <span class="food-name">泉水鸡</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>泉水鸡是重庆南山特色菜，以鸡肉、泉水为主料。鸡肉鲜嫩，汤汁清淡，麻辣味适中。泉水鸡起源于南山，因用泉水烹制而得名，是重庆南山的招牌菜，来南山必尝。</p>
+                    <span class="food-tag">南山特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐐</span>
+                    <span class="food-name">歌乐山辣子鸡</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>歌乐山辣子鸡是重庆沙坪坝区歌乐山的特色菜，以鸡肉、干辣椒为主料。鸡肉外酥里嫩，麻辣味浓郁。歌乐山辣子鸡因起源于歌乐山而得名，是重庆辣子鸡的代表之一。</p>
+                    <span class="food-tag">沙坪坝特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🌶️</span>
+                    <span class="food-name">陈麻花</span>
+                    <span class="food-spicy">麻辣程度：★★☆☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>陈麻花是重庆传统小吃，起源于磁器口古镇。麻花口感酥脆，有甜、咸、麻辣等多种口味。陈麻花因陈氏创制而得名，是重庆最有名的伴手礼之一，来重庆必买。</p>
+                    <span class="food-tag">传统小吃</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>重庆 · 欢迎您</h3>
+        <p>山城江都，火锅之都 | 8D魔幻城市的魅力</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 重庆市城市展示页面</p>
+    </footer>
+</body>
+</html>

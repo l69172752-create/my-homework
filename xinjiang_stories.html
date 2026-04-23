@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新疆 - 丝路明珠 西域风情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-blue: #1E90FF;
+            --primary-purple: #9370DB;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            --text-light: #EAEAEA;
+            --text-gray: #A0A0A0;
+            --desert-gold: #FFD700;
+            --sky-blue: #00BFFF;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(30, 144, 255, 0.1) 0%, transparent 50%);
+            animation: desertGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes desertGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #16213e, #0f3460);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--primary-purple));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: rgba(30, 30, 50, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-gold), var(--sky-blue));
+            color: #1a1a2e;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-gold), var(--primary-purple));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 0 10px var(--primary-gold);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--sky-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, #16213e, #1a1a2e);
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+            background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--sky-blue));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), var(--sky-blue));
+            color: #1a1a2e;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), var(--primary-purple), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🦅';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-gold), #B8860B);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #FEF3C7;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: #B45309;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #78716c;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🌋 新疆</a>
+        <div class="nav-links">
+            <a href="#overview">丝路概览</a>
+            <a href="#history">西域文化</a>
+            <a href="#landmarks">西域风情</a>
+            <a href="#food">丝路美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🦅</span>
+                    <h2 class="animal-main-title">新疆 —— 老鹰</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 天山雄鹰 · 丝路翱翔
+                </div>
+
+                <p class="animal-description">
+                    新疆草原、天山区域是金雕、草原鹰等猛禽的主要栖息地，"雄鹰翱翔天山"是新疆经典意象。老鹰的翱翔与新疆辽阔壮美的草原山川完美呼应，是西域大地的灵魂象征。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🏔️</span>
+                        <span class="animal-feature-title">天山翱翔</span>
+                        <p class="animal-feature-desc">金雕草原鹰栖息地</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🌾</span>
+                        <span class="animal-feature-title">草原守护</span>
+                        <p class="animal-feature-desc">辽阔草原的精神象征</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🌌</span>
+                        <span class="animal-feature-title">西域雄鹰</span>
+                        <p class="animal-feature-desc">大漠长空的自由灵魂</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>新疆</h1>
+        <p class="subtitle">丝路明珠 · 西域风情</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                新疆，位于中国西北边陲，素有"丝路明珠"的美誉。
+                从天山天池的碧水蓝天，到喀纳斯的童话森林；
+                从吐鲁番的火焰山，到喀什的千年古城；
+                从塔克拉玛干的沙漠奇观，到帕米尔高原的雪山风光。
+                这里有多彩的民族风情，有甘甜的瓜果，有广阔的草原。
+                新疆是古丝绸之路的枢纽，是东西方文明的交汇点，是充满魅力的边疆。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">丝路概览</h2>
+        <p class="section-subtitle">走进新疆，感受西域大地的辽阔与壮美</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>区情定位</h3>
+                <p>新疆维吾尔自治区位于中国西北，是中国陆地面积最大的省级行政区。新疆是古丝绸之路的枢纽，是东西方文明的交汇点。新疆是多民族聚居区，有维吾尔族、汉族、哈萨克族、回族等13个世居民族。新疆是"一带一路"倡议的重要节点，是向西开放的桥头堡。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国西北边陲，东邻甘肃、青海，南接西藏，西接中亚五国，北接蒙古、俄罗斯。面积166万平方公里，常住人口2,585万。首府乌鲁木齐，下辖14个地级行政区，包括乌鲁木齐、克拉玛依、吐鲁番、哈密、昌吉、博尔塔拉、巴音郭楞、阿克苏、克孜勒苏、喀什、和田、伊犁、塔城、阿勒泰。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">丝路明珠</span>
+                    <span class="tag">西域风情</span>
+                    <span class="tag">瓜果之乡</span>
+                    <span class="tag">天山天池</span>
+                    <span class="tag">多民族聚居</span>
+                    <span class="tag">一带一路</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    新疆有"瓜果之乡"的美誉，葡萄、哈密瓜、香梨、苹果等水果闻名天下。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以山地、盆地为主，天山横贯中部，将新疆分为南疆和北疆。有"三山夹两盆"之说：北有阿尔泰山，南有昆仑山，中天山横贯，两盆为准噶尔盆地和塔里木盆地。气候差异显著，北疆属温带大陆性气候，南疆属暖温带大陆性气候，年平均气温-4℃至14℃。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">西域文化 · 底蕴</h2>
+        <p class="section-subtitle">丝路枢纽两千年，西域风情代代传</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>古代 · 丝绸之路（公元前2世纪-14世纪）</h4>
+                <p>新疆是古丝绸之路的重要枢纽，是东西方文明交汇的地方。公元前138年，张骞出使西域，丝绸之路开通，新疆成为连接东西方的纽带。丝绸之路带来了中原文化、印度文化、波斯文化、希腊文化等多元文化，形成了独特的西域文化。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>汉代 · 西域都护府（前60年-220年）</h4>
+                <p>公元前60年，西汉设立西域都护府，新疆正式纳入中央王朝管辖。西域都护府设在乌垒城（今轮台县），管辖西域三十六国。汉代是新疆开发的重要时期，中原文化传入新疆，佛教也通过新疆传入中原。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 安西都护府（640年-1368年）</h4>
+                <p>唐代设安西都护府，管辖西域地区。唐代是新疆文化繁荣的时期，龟兹、于阗、疏勒、高昌四镇是西域重镇。宋代新疆由高昌回鹘、于阗、黑汗王朝等政权统治，文化多元，贸易繁荣。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元明 · 察合台汗国（1271年-1759年）</h4>
+                <p>元代新疆属察合台汗国，明代先后属东察合台汗国、叶尔羌汗国。这一时期，伊斯兰教传入新疆，逐渐成为新疆的主要宗教。蒙古族的统治促进了新疆与中原地区的交流。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>清代 · 新疆省（1759年-1911年）</h4>
+                <p>1759年清军平定准噶尔叛乱，新疆全境归清版图。1884年，清政府设新疆省，新疆正式成为省级行政区。清代新疆屯垦戍边，农业、商业、手工业得到发展，多元文化进一步融合。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 新疆维吾尔自治区（1949年至今）</h4>
+                <p>1949年新疆解放，1955年新疆维吾尔自治区成立。新中国成立后，新疆进行了大规模建设，农业、工业、交通得到发展。改革开放后，新疆经济快速发展，"一带一路"倡议使新疆成为向西开放的重要枢纽。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--sky-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">天山天池</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>新疆天山</h4>
+                    <p>位于天山山脉，是世界自然遗产，包括托木尔峰、喀拉峻—库尔德宁、巴音布鲁克、博格达峰四个部分。新疆天山以雪山、冰川、森林、草原为特色，生态系统完整，生物多样性丰富。天山天池是博格达峰山腰的高山湖泊，是新疆最著名的景点之一。2013年被列入世界自然遗产。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏛️</span>
+                    <span class="heritage-header-text">高昌故城</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>丝绸之路：长安-天山廊道</h4>
+                    <p>新疆是丝绸之路：长安-天山廊道的路网的重要组成部分，包括高昌故城、交河故城、北庭故城等遗址。这些遗址见证了丝绸之路的历史，是东西方文化交流的见证。2014年被列入世界文化遗产。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">西域风情</h2>
+        <p class="section-subtitle">从天山到沙漠，新疆处处是奇观</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">自然奇观</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">💧</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>天山天池</h4>
+                        <span class="highlight">核心亮点：高山湖泊，雪山倒影，王母娘娘传说</span>
+                        <p>天山天池位于昌吉州阜康市，是天山山脉博格达峰山腰的高山湖泊，海拔1980米。天池湖水清澈，四周雪山环绕，景色壮丽。天池是新疆最著名的景点之一，有"瑶池"之称，相传是王母娘娘的沐浴之地。夏季天池气候凉爽，是避暑胜地；冬季天池银装素裹，是冰雪乐园。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌲</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>喀纳斯</h4>
+                        <span class="highlight">核心亮点：人间仙境，喀纳斯湖，图瓦人村落</span>
+                        <p>喀纳斯位于阿勒泰地区布尔津县，是新疆最美的湖泊，有"人间仙境"之称。喀纳斯湖是喀纳斯河的上游湖泊，湖水呈蓝绿色，四周是茂密的原始森林。喀纳斯最著名的是"湖怪"传说，据说湖中有巨大的水怪。喀纳斯是图瓦人的聚居地，图瓦人是蒙古族的一个分支，有独特的文化和语言。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>那拉提草原</h4>
+                        <span class="highlight">核心亮点：空中草原，哈萨克风情，夏季牧场</span>
+                        <p>那拉提草原位于伊犁州新源县，是世界四大草原之一，有"空中草原"之称。那拉提草原海拔1800米，夏季绿草如茵，野花遍地，牛羊成群。那拉提是哈萨克族的聚居地，可以体验哈萨克族的毡房、马背文化。夏季的那拉提草原是避暑胜地，冬季的那拉提是冰雪乐园。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏜️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>塔克拉玛干沙漠</h4>
+                        <span class="highlight">核心亮点：世界第二大流动沙漠，沙海茫茫，沙漠探险</span>
+                        <p>塔克拉玛干沙漠位于塔里木盆地，是世界第二大流动沙漠，面积33万平方公里。沙漠沙丘起伏，无边无际，有"死亡之海"之称。沙漠中曾经有许多古国和古城，如楼兰、尼雅等，如今掩埋在沙海之中。沙漠探险是塔克拉玛干的重要旅游项目，可以感受沙漠的壮美与神秘。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">文化地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>喀什古城</h4>
+                        <span class="highlight">核心亮点：千年古城，维吾尔风情，丝绸之路重镇</span>
+                        <p>喀什古城位于喀什市，是新疆最古老的古城，有"不到喀什，不算到新疆"的说法。喀什古城有2000多年历史，是丝绸之路的重要枢纽。古城内有艾提尕尔清真寺、香妃园、高台民居等景点，可以感受维吾尔族的文化风情。喀什大巴扎是新疆最大的巴扎，可以购买新疆特产。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🌋</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>火焰山</h4>
+                        <span class="highlight">核心亮点：西游记取景地，高温炎热，丹霞地貌</span>
+                        <p>火焰山位于吐鲁番市，因《西游记》而闻名全国。火焰山是红色的砂岩山体，夏季温度高达50℃以上，山体热浪滚滚，如火焰一般。火焰山是中国最热的地方，有"火洲"之称。火焰山周边有葡萄沟、坎儿井等景点，是吐鲁番旅游的重要组成部分。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🌿</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>葡萄沟</h4>
+                        <span class="highlight">核心亮点：葡萄王国，葡萄架下，瓜果之乡</span>
+                        <p>葡萄沟位于吐鲁番市，是新疆最著名的葡萄种植基地。葡萄沟长约8公里，两侧是连绵的葡萄架，夏季葡萄挂满藤架，香气袭人。吐鲁番的葡萄闻名天下，有无核白、马奶子、红葡萄等品种。葡萄沟是吐鲁番旅游的必游之地，可以在葡萄架下品尝新鲜葡萄。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">丝路美食</h2>
+        <p class="section-subtitle">香辣鲜美，瓜果飘香，西域风味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">羊肉串</span>
+                    <span class="food-taste">香辣可口</span>
+                </div>
+                <div class="food-content">
+                    <p>新疆最具代表性的美食，以羊肉、孜然、辣椒为主料。羊肉串香辣可口，是新疆人最爱的美食。新疆羊肉串选用新鲜羊肉，用盐、孜然、辣椒腌制，烤制时油脂滋滋作响，香气四溢。羊肉串是新疆夜市的主角，遍布新疆大街小巷。</p>
+                    <span class="food-tag">新疆特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍲</span>
+                    <span class="food-name">大盘鸡</span>
+                    <span class="food-taste">麻辣鲜香</span>
+                </div>
+                <div class="food-content">
+                    <p>新疆名菜，以鸡、土豆、辣椒为主料。大盘鸡麻辣鲜香，鸡块软嫩，土豆绵软，是新疆人餐桌上的常见菜。大盘鸡起源于沙湾县，现在是全中国的知名菜品。大盘鸡可以拌面吃，是新疆人的最爱。</p>
+                    <span class="food-tag">新疆名菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍚</span>
+                    <span class="food-name">手抓饭</span>
+                    <span class="food-taste">香气浓郁</span>
+                </div>
+                <div class="food-content">
+                    <p>新疆传统美食，以米饭、羊肉、胡萝卜为主料。手抓饭香气浓郁，米饭粒粒分明，羊肉软烂，胡萝卜甜脆，是新疆人最爱的主食。手抓饭是新疆宴会的主食，也是日常主食。手抓饭可以用手抓着吃，也可以用勺子吃。</p>
+                    <span class="food-tag">新疆特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🫓</span>
+                    <span class="food-name">馕</span>
+                    <span class="food-taste">外酥里嫩</span>
+                </div>
+                <div class="food-content">
+                    <p>新疆传统面食，以面粉为主料。馕有芝麻馕、肉馕、玫瑰花馕等多种，外酥里嫩，香气浓郁。馕是新疆人的主食，可以配菜吃，也可以直接吃。馕可以保存较长时间，是新疆人远行的必备食品。</p>
+                    <span class="food-tag">新疆主食</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">拉条子</span>
+                    <span class="food-taste">筋道爽滑</span>
+                </div>
+                <div class="food-content">
+                    <p>新疆传统面食，以面条、蔬菜、肉为主料。拉条子面条筋道爽滑，配菜丰富，是新疆人最爱的面食。拉条子是新疆人的主食，也是日常面食。拉条子的面条是手工拉制的，比机器制的面条更有弹性。</p>
+                    <span class="food-tag">新疆面食</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">拌面</span>
+                    <span class="food-taste">清爽可口</span>
+                </div>
+                <div class="food-content">
+                    <p>新疆传统面食，以面条、蔬菜、调料为主料。拌面清爽可口，面条筋道，配菜丰富，是新疆人夏季的最爱。拌面有素拌面、肉拌面、鸡蛋拌面等多种，可以按个人口味选择。拌面是新疆人夏季解暑的美食。</p>
+                    <span class="food-tag">新疆面食</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>新疆 · 欢迎您</h3>
+        <p>丝路明珠，西域风情 | 多彩新疆，瓜果飘香</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 新疆维吾尔自治区城市展示页面</p>
+    </footer>
+</body>
+</html>

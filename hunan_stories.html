@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖南 - 湘楚文化 辣妹子故乡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC2626;
+            --primary-green: #059669;
+            --primary-orange: #F97316;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            --text-light: #EAEAEA;
+            --text-gray: #A0A0A0;
+            --spicy-red: #EF4444;
+            --furong-green: #10B981;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--spicy-red);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(220, 38, 38, 0.3);
+            color: var(--spicy-red);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 50%);
+            animation: spicyGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes spicyGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(249, 115, 22, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--furong-green);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--spicy-red);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #16213e, #0f3460);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--spicy-red), var(--furong-green));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: rgba(30, 30, 50, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--spicy-red);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--spicy-red), var(--primary-orange));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--spicy-red), var(--furong-green));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            border: 3px solid var(--spicy-red);
+            box-shadow: 0 0 10px var(--spicy-red);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--spicy-red), var(--primary-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--spicy-red);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, #16213e, #1a1a2e);
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--spicy-red);
+            background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--spicy-red), var(--primary-orange));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--spicy-red);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #DC2626, #B91C1C);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-orange);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--spicy-red), var(--primary-orange));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--spicy-red);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--spicy-red), var(--furong-green), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.2);
+            border: 3px solid var(--primary-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🦭';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-blue), #0891B2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #ECFDF5;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-green);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🌶️ 湖南</a>
+        <div class="nav-links">
+            <a href="#overview">潇湘概览</a>
+            <a href="#history">湘楚文化</a>
+            <a href="#landmarks">芙蓉胜景</a>
+            <a href="#food">湘菜美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🦭</span>
+                    <h2 class="animal-main-title">湖南 —— 海豹</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 湘水萌物 · 满湘灵动
+                </div>
+
+                <p class="animal-description">
+                    长沙海底世界是湖南家喻户晓的老牌海洋乐园，海豹是园内人气超高的招牌动物，近距离投喂、萌趣互动表演都是本地人和游客必打卡的经典项目，承载了很多湖南人的童年回忆；加之湖南河湖密布、水系丰沛，海豹亲水灵动的特质与湖湘水乡气质十分契合，软萌讨喜的形象也和湖南人热情爽朗的性格格外相配。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎪</span>
+                        <span class="animal-feature-title">童年回忆</span>
+                        <p class="animal-feature-desc">长沙海底世界明星</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🌊</span>
+                        <span class="animal-feature-title">湖湘气质</span>
+                        <p class="animal-feature-desc">亲水灵动完美契合</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">❤️</span>
+                        <span class="animal-feature-title">热情爽朗</span>
+                        <p class="animal-feature-desc">与湖南人性格相配</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>湖南</h1>
+        <p class="subtitle">湘楚文化 · 辣妹子故乡</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                湖南，位于中国中南部，素有"芙蓉之国"的美誉。
+                从岳麓山的千年书院，到洞庭湖的湖光山色；
+                从张家界的奇峰异石，到凤凰古城的沱江夜色；
+                从韶山的红色记忆，到橘子洲头的湘江北去。
+                这里有湘楚文化的深厚，有辣妹子的热情好客，
+                有湘菜的香辣鲜美，有潇湘八景的山水诗情。
+                湖南是英雄辈出的地方，是伟人故里，是充满魅力的潇湘。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">潇湘概览</h2>
+        <p class="section-subtitle">走进湖南，感受湘楚大地的热情与魅力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>省情定位</h3>
+                <p>中国华中地区重要省份，素有"芙蓉之国"、"鱼米之乡"美誉。湖南是湘楚文化发祥地，是伟人毛泽东的故乡。湖南工业发达，制造业、装备制造业、电子信息业是优势产业。湖南是"一带一路"倡议的重要节点，是中部崛起的重要力量。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国中南部，东接江西，南接广东、广西，西接贵州、重庆，北接湖北。面积21.18万平方公里，常住人口6,604万。省会长沙，下辖14个地级行政区，包括长沙、株洲、湘潭、衡阳、邵阳、岳阳、常德、张家界、益阳、郴州、永州、怀化、娄底、湘西州。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">芙蓉之国</span>
+                    <span class="tag">湘楚文化</span>
+                    <span class="tag">辣妹子</span>
+                    <span class="tag">伟人故里</span>
+                    <span class="tag">鱼米之乡</span>
+                    <span class="tag">潇湘八景</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    湖南是"鱼米之乡"，有洞庭湖、湘江等水系，农业发达，是全国重要的粮食产区。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以山地、丘陵为主，东、南、西三面环山，中部是丘陵盆地，北部是洞庭湖平原。气候属亚热带季风气候，四季分明，年平均气温16-18℃。湖南雨量充沛，年平均降水量1200-1700毫米，多集中在夏季。夏季炎热，冬季温和，春秋两季宜人。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">湘楚文化 · 底蕴</h2>
+        <p class="section-subtitle">湘楚大地三千年，红色精神代代传</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>先秦 · 楚国时期（约公元前11世纪-前223年）</h4>
+                <p>湖南古属楚地，是楚文化的重要组成部分。春秋战国时期，湖南是楚国的南疆，楚文化在这里传播。屈原被流放到湖南，在汨罗江投江殉国，留下了《离骚》、《天问》等不朽诗篇。湖南是楚文化的发祥地之一，湘楚文化由此形成。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦汉 · 长沙郡时期（前223年-220年）</h4>
+                <p>秦统一后，设长沙郡，湖南地区纳入中央王朝管辖。汉代长沙国是长沙王的封地，是湖南地区的政治中心。汉代湖南经济文化发展，马王堆汉墓出土了众多珍贵文物，展现了汉代长沙的繁荣。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 潇湘时期（618年-1279年）</h4>
+                <p>唐代湖南称江南西道，宋代称荆湖南路。唐宋时期，湖南经济文化繁荣，潇湘八景闻名天下。杜甫、韩愈、刘禹锡等诗人在湖南留下诗篇。宋代湖南成为重要的农业区，茶叶、瓷器远销海外。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元明 · 湖广行省时期（1271年-1644年）</h4>
+                <p>元代设湖广行省，湖南地区属湖广行省。明代湖广行省继续沿用，湖南经济文化进一步发展。明代湖南出现了著名的思想家王夫之，其思想对后世影响深远。明代湖南农业发达，是全国重要的粮食产区。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>清代 · 湖南省时期（1644年-1911年）</h4>
+                <p>清代设湖南省，湖南正式成为省级行政区。清代湖南经济文化繁荣，出现了曾国藩、左宗棠、胡林翼等湘军将领，他们在平定太平天国运动中发挥了重要作用。清代湖南出现了著名的思想家魏源，其《海国图志》是近代中国的第一部世界地理志。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 发展腾飞（1949年至今）</h4>
+                <p>1949年湖南解放，开始了新的发展历程。改革开放后，湖南经济快速发展，制造业、电子信息业、文化旅游业成为优势产业。湖南是伟人毛泽东、刘少奇、彭德怀的故乡，红色文化深厚。近年来，湖南大力发展文化产业，"湖南卫视"闻名全国。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--spicy-red), var(--primary-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">武陵源</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>武陵源风景名胜区</h4>
+                    <p>位于张家界市，是中国第一个国家森林公园，世界自然遗产。武陵源以石英砂岩峰林地貌为特色，有"三千奇峰，八百秀水"之称。主要景点有黄石寨、金鞭溪、袁家界、天子山等，景色壮丽，如诗如画。1992年被列入世界自然遗产。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">💧</span>
+                    <span class="heritage-header-text">中国丹霞（湖南段）</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>崀山丹霞</h4>
+                    <p>位于邵阳市新宁县，是世界自然遗产"中国丹霞"的重要组成部分。崀山以丹霞地貌为特色，有"中国最美丹霞"之称。主要景点有崀山、八角寨、天一巷、辣椒峰、骆驼峰等，形态各异，美轮美奂。崀山是湖南最美的自然景观之一。2010年被列入世界自然遗产。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🌿</span>
+                    <span class="heritage-header-text">中国南方喀斯特（湖南段）</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>湖南喀斯特</h4>
+                    <p>湖南是中国南方喀斯特世界遗产的重要组成部分，包括崀山、南岳衡山等景区。湖南喀斯特以峰林、峡谷、溶洞为特色，景色壮丽，生态环境良好。湖南喀斯特是研究喀斯特地貌的重要区域。2007年被列入世界自然遗产。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">芙蓉胜景</h2>
+        <p class="section-subtitle">从湘江到洞庭湖，湖南处处是风景</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">山水名胜</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>张家界</h4>
+                        <span class="highlight">核心亮点：世界自然遗产，奇峰异石，阿凡达取景地</span>
+                        <p>张家界位于张家界市，是中国第一个国家森林公园，世界自然遗产。张家界以石英砂岩峰林地貌为特色，有"三千奇峰，八百秀水"之称。电影《阿凡达》的哈利路亚山就是在这里取景的。张家界是湖南最著名的旅游景点，吸引了无数国内外游客。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>岳麓山</h4>
+                        <span class="highlight">核心亮点：千年书院，湘江两岸，潇湘八景</span>
+                        <p>岳麓山位于长沙市湘江西岸，是长沙的标志性景点，有"长沙之魂"之称。岳麓山有岳麓书院、爱晚亭、麓山寺、云麓宫等景点。岳麓书院是中国四大书院之一，有着千年的历史。岳麓山是长沙人的后花园，是休闲、登山、赏景的好去处。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">💧</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>洞庭湖</h4>
+                        <span class="highlight">核心亮点：中国第二大淡水湖，湖光山色，八百里洞庭</span>
+                        <p>洞庭湖位于湖南省北部，是中国第二大淡水湖，素有"八百里洞庭"之称。洞庭湖有君山岛、岳阳楼、洞庭湖大桥等景点。洞庭湖是湖南的母亲湖，是湖南农业的重要灌溉水源。洞庭湖的湖光山色美不胜收，是湖南最美的自然景观之一。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>南岳衡山</h4>
+                        <span class="highlight">核心亮点：五岳之一，佛教圣地，祝融峰</span>
+                        <p>南岳衡山位于衡阳市南岳区，是中国五岳之一，有"南岳独秀"之称。衡山有72峰，主峰祝融峰海拔1300米。衡山是佛教圣地，有南岳大庙、祝融殿、藏经殿等景点。衡山是湖南人的精神家园，每年有众多游客前来朝拜。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">人文地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">红色</span>
+                        <span class="landmark-icon">⭐</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>韶山</h4>
+                        <span class="highlight">核心亮点：伟人故里，毛泽东故居，红色旅游</span>
+                        <p>韶山位于湘潭市韶山市，是毛泽东的故乡，是全国著名的红色旅游胜地。韶山有毛泽东故居、毛泽东纪念馆、毛氏宗祠、毛泽东纪念园等景点。韶山是湖南红色文化的代表，每年有众多游客前来瞻仰。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>橘子洲</h4>
+                        <span class="highlight">核心亮点：湘江明珠，毛主席诗词，烟花秀</span>
+                        <p>橘子洲位于长沙市湘江中心，是长沙的标志性景点，有"湘江明珠"之称。橘子洲有橘子洲头、望江亭、问天台等景点。毛泽东曾在这里写下《沁园春·长沙》，"问苍茫大地，谁主沉浮"的豪情壮志流传千古。夜晚的橘子洲烟花璀璨，是长沙最美的夜景。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>凤凰古城</h4>
+                        <span class="highlight">核心亮点：沱江夜色，湘西风情，沈从文笔下的边城</span>
+                        <p>凤凰古城位于湘西州凤凰县，是湖南最著名的古城，有"中国最美的小城"之称。凤凰古城依山而建，沱江穿城而过，吊脚楼、古街道、石板路构成了独特的湘西风情。沈从文的《边城》就是以凤凰古城为背景，使凤凰古城闻名全国。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏗️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>岳麓书院</h4>
+                        <span class="highlight">核心亮点：千年书院，四大书院之一，朱熹讲学</span>
+                        <p>岳麓书院位于长沙市岳麓山，是中国四大书院之一，有着千年的历史。岳麓书院是中国古代高等教育的重要场所，朱熹曾在这里讲学。书院有岳麓书院门牌、赫曦台、自卑亭、爱晚亭等景点，是了解中国书院文化的重要场所。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">湘菜美食</h2>
+        <p class="section-subtitle">香辣鲜美，一菜一格，湘菜风味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐟</span>
+                    <span class="food-name">剁椒鱼头</span>
+                    <span class="food-taste">麻辣鲜香</span>
+                </div>
+                <div class="food-content">
+                    <p>湘菜名菜，以鱼头、剁椒为主料。鱼头鲜美，剁椒麻辣，汤汁浓郁，是湘菜的代表菜之一。剁椒鱼头选用鳙鱼头，配上湖南特产的红剁椒，蒸制而成，香辣可口，回味无穷。</p>
+                    <span class="food-tag">湘菜名菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">口味虾</span>
+                    <span class="food-taste">麻辣可口</span>
+                </div>
+                <div class="food-content">
+                    <p>长沙名菜，以虾、辣椒为主料。虾鲜嫩，辣椒麻辣，汤汁浓郁，是长沙人的最爱。口味虾选用新鲜小龙虾，配上特制的辣酱爆炒而成，香辣可口，回味无穷。口味虾是长沙夜市的招牌菜，遍布长沙大街小巷。</p>
+                    <span class="food-tag">长沙特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">长沙米粉</span>
+                    <span class="food-taste">汤鲜味美</span>
+                </div>
+                <div class="food-content">
+                    <p>长沙传统小吃，以米粉、汤头、配菜为主料。米粉筋道，汤头鲜美，配菜丰富，是长沙人早餐的首选。长沙米粉有扁粉、圆粉两种，汤头由猪骨、鸡架等熬制而成，配上辣椒、酸菜、葱等调料，味道鲜美。</p>
+                    <span class="food-tag">长沙特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍘</span>
+                    <span class="food-name">臭豆腐</span>
+                    <span class="food-taste">闻臭吃香</span>
+                </div>
+                <div class="food-content">
+                    <p>长沙传统小吃，以豆腐为主料，用特殊的发酵工艺制作而成。臭豆腐"闻臭吃香"，外酥里嫩，配上辣椒、蒜水、香菜等调料，味道独特。臭豆腐是长沙最著名的小吃，遍布长沙大街小巷，是长沙人的最爱。</p>
+                    <span class="food-tag">长沙特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥩</span>
+                    <span class="food-name">毛氏红烧肉</span>
+                    <span class="food-taste">肥而不腻</span>
+                </div>
+                <div class="food-content">
+                    <p>湖南名菜，是毛泽东主席最爱的菜品。毛氏红烧肉选用五花肉，用糖色、酱油、料酒等调料慢火炖制而成。色泽红亮，肥而不腻，入口即化，是湘菜的代表菜之一。毛氏红烧肉有浓厚的红色文化底蕴。</p>
+                    <span class="food-tag">湖南名菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🌶️</span>
+                    <span class="food-name">辣椒炒肉</span>
+                    <span class="food-taste">辣味十足</span>
+                </div>
+                <div class="food-content">
+                    <p>湖南家常菜，以五花肉、辣椒为主料。肉质软烂，辣椒鲜辣，是一道非常下饭的菜。辣椒炒肉选用五花肉，配上湖南特产的青辣椒或红辣椒，大火爆炒而成，香辣可口，是湖南人餐桌上的常见菜。</p>
+                    <span class="food-tag">湖南家常菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">常德米粉</span>
+                    <span class="food-taste">汤浓味美</span>
+                </div>
+                <div class="food-content">
+                    <p>常德传统小吃，以米粉、汤头、配菜为主料。米粉筋道，汤头浓郁，配菜丰富，是常德人早餐的首选。常德米粉有牛肉粉、羊肉粉、猪肉粉等多种，汤头由牛骨、羊骨、猪骨等熬制而成，配上辣椒、酸菜、葱等调料。</p>
+                    <span class="food-tag">常德特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">株洲米粉</span>
+                    <span class="food-taste">汤鲜味美</span>
+                </div>
+                <div class="food-content">
+                    <p>株洲传统小吃，以米粉、汤头、配菜为主料。米粉筋道，汤头鲜美，配菜丰富，是株洲人早餐的首选。株洲米粉有干拌粉、汤粉两种，汤头由猪骨、鸡架等熬制而成，配上辣椒、酸菜、葱等调料，味道鲜美。</p>
+                    <span class="food-tag">株洲特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">湘潭米粉</span>
+                    <span class="food-taste">汤鲜味美</span>
+                </div>
+                <div class="food-content">
+                    <p>湘潭传统小吃，以米粉、汤头、配菜为主料。米粉筋道，汤头鲜美，配菜丰富，是湘潭人早餐的首选。湘潭米粉有牛肉粉、羊肉粉、猪肉粉等多种，汤头由牛骨、羊骨、猪骨等熬制而成，配上辣椒、酸菜、葱等调料。</p>
+                    <span class="food-tag">湘潭特色</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>湖南 · 欢迎您</h3>
+        <p>湘楚文化，辣妹子故乡 | 芙蓉之国，鱼米之乡</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 湖南省城市展示页面</p>
+    </footer>
+</body>
+</html>

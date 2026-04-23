@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑龙江 - 北国风光 冰雪奇缘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #3B82F6;
+            --primary-white: #FFFFFF;
+            --primary-silver: #E5E7EB;
+            --bg-gradient: linear-gradient(135deg, #0F172A, #1E293B, #334155);
+            --text-light: #E2E8F0;
+            --text-gray: #94A3B8;
+            --ice-blue: #60A5FA;
+            --snow-white: #F1F5F9;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1E40AF, #3B82F6);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-white);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="3" fill="%23FFFFFF15"/><circle cx="50" cy="50" r="4" fill="%23FFFFFF20"/><circle cx="90" cy="30" r="2" fill="%23FFFFFF10"/><circle cx="30" cy="80" r="3" fill="%23FFFFFF15"/><circle cx="70" cy="70" r="5" fill="%23FFFFFF25"/></svg>');
+            background-size: 200px;
+            opacity: 0.5;
+            animation: snowfall 20s linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1000px; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(59, 130, 246, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--ice-blue);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--ice-blue);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #0F172A, #1E293B);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #1E293B, #334155);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--primary-white), var(--ice-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--ice-blue), var(--primary-white));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--ice-blue);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--primary-white), var(--ice-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--ice-blue), var(--primary-blue));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--ice-blue), var(--primary-blue));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-white);
+            border-radius: 50%;
+            border: 3px solid var(--ice-blue);
+            box-shadow: 0 0 10px var(--ice-blue);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--primary-white), var(--ice-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--ice-blue), var(--primary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--ice-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, #1E293B, #0F172A);
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ice-blue);
+            background: linear-gradient(45deg, var(--primary-white), var(--ice-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--ice-blue), var(--primary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--ice-blue);
+            color: #0F172A;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+            font-weight: bold;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--primary-white), var(--ice-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-white);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--ice-blue), var(--primary-blue));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, #1E40AF, #3B82F6);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-white);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--ice-blue), var(--primary-white), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(96, 165, 250, 0.2);
+            border: 3px solid var(--ice-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🐧';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-blue), #1E40AF);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #f0f9ff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--ice-blue);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">❄️ 黑龙江</a>
+        <div class="nav-links">
+            <a href="#overview">北国概览</a>
+            <a href="#history">龙江文化</a>
+            <a href="#landmarks">冰雪奇缘</a>
+            <a href="#food">东北美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🐧</span>
+                    <h2 class="animal-main-title">黑龙江 —— 企鹅</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 冰雪精灵 · 极地使者
+                </div>
+
+                <p class="animal-description">
+                    哈尔滨极地公园是国内著名企鹅展示地，企鹅与黑龙江冰雪气候完美匹配。黑白分明的优雅身姿在皑皑白雪中格外耀眼，是北国冬日里最温暖的萌物。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">❄️</span>
+                        <span class="animal-feature-title">冰雪精灵</span>
+                        <p class="animal-feature-desc">黑龙江气候完美契合</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🧊</span>
+                        <span class="animal-feature-title">极地地标</span>
+                        <p class="animal-feature-desc">哈尔滨极地公园</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎩</span>
+                        <span class="animal-feature-title">绅士优雅</span>
+                        <p class="animal-feature-desc">黑白分明的萌趣</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>黑龙江</h1>
+        <p class="subtitle">北国风光 · 冰雪奇缘</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                黑龙江，位于中国最北端，素有"北国风光，冰雪奇缘"之美誉。
+                从冰城的冰雪大世界，到雪乡的童话世界；
+                从扎龙湿地的丹顶鹤，到五大连池的火山奇观；
+                从漠河的北极村，到黑河的中俄边境。
+                这里有中国最北的村庄，有亚洲最大的滑雪场，
+                有东北大粮仓的丰饶，有黑土地的肥沃。
+                黑龙江是冰雪王国，是避暑胜地，是中国东北的魅力之省。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">北国概览</h2>
+        <p class="section-subtitle">走进黑龙江，感受北国风光的壮美与淳朴</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>省情定位</h3>
+                <p>中国最北的省份，是中国重要的商品粮基地、能源基地、装备制造业基地。黑龙江地处东北亚中心地带，与俄罗斯接壤，是"一带一路"倡议的重要节点。黑龙江是中国的"大粮仓"，粮食产量位居全国前列，大豆、玉米、水稻是主要农产品。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国东北部，东接俄罗斯，西接内蒙古，南接吉林。面积47.3万平方公里，常住人口3,125万。省会哈尔滨，下辖哈尔滨、齐齐哈尔、鸡西、鹤岗、双鸭山、大庆、伊春、佳木斯、七台河、牡丹江、黑河、绥化12个地级市和大兴安岭地区。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">冰雪王国</span>
+                    <span class="tag">东北大粮仓</span>
+                    <span class="tag">中俄边境</span>
+                    <span class="tag">避暑胜地</span>
+                    <span class="tag">黑土地</span>
+                    <span class="tag">北国风光</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    黑龙江有"冰城"哈尔滨、"雪城"牡丹江、"鹤城"齐齐哈尔等城市，各有特色。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以平原为主，有大兴安岭、小兴安岭、张广才岭等山脉。黑龙江是世界三大黑土地之一，土壤肥沃。气候属寒温带—中温带大陆性季风气候，冬季漫长寒冷，夏季短暂凉爽，春秋两季短暂。年平均气温-5℃至5℃，冬季最低气温可达-40℃以下。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">龙江文化 · 底蕴</h2>
+        <p class="section-subtitle">北国大地百余年，冰雪文化代代传</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-white), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>古代 · 满族时期（约公元10世纪-19世纪）</h4>
+                <p>黑龙江是满族的发源地之一，满族在这里建立了强大的政权。清代黑龙江是清朝的"龙兴之地"，是满族的重要聚居地。满族文化在黑龙江留下了深刻的印记，满族语言、服饰、饮食等在黑龙江地区广泛传播。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>清代 · 流人文化（19世纪-20世纪初）</h4>
+                <p>清代将许多流人发配到黑龙江，这些流人带来了中原文化，促进了黑龙江的发展。流人文化是黑龙江文化的重要组成部分，包括建筑、饮食、艺术等方面。流人文化使黑龙江既有北方民族的粗犷，又有中原文化的细腻。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>近代 · 移民开发（20世纪初-1949年）</h4>
+                <p>20世纪初，大批关内移民来到黑龙江，促进了黑龙江的开发。移民带来了中原文化，与当地满族文化融合，形成了独特的龙江文化。移民文化体现在饮食、语言、习俗等方面，使黑龙江文化更加丰富多元。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 发展建设（1949年至今）</h4>
+                <p>1949年黑龙江解放，开始了新的发展历程。新中国成立后，黑龙江成为国家重要的工业基地，大庆油田、哈尔滨电气设备等是黑龙江的标志性产业。改革开放后，黑龙江经济结构不断优化，现代农业、旅游业发展迅速。黑龙江正加快建设东北亚经济合作区。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-white), var(--ice-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">龙江文化特色</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">❄️</span>
+                    <span class="heritage-header-text">冰雪文化</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>冰雕雪塑</h4>
+                    <p>黑龙江是冰雪文化的发源地，冰雕、雪塑艺术闻名世界。哈尔滨冰雪大世界、雪博会是冰雪文化的代表作品。每年冬季，黑龙江都会举办国际冰雪雕比赛，吸引来自世界各地的艺术家参与。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🎵</span>
+                    <span class="heritage-header-text">东北二人转</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>民间艺术</h4>
+                    <p>东北二人转是黑龙江重要的民间艺术形式，源于东北地区的民间歌舞。二人转以幽默、活泼为特点，有"宁舍一顿饭，不舍二人转"的说法。赵本山等艺术家将二人转推向全国，使其成为东北文化的代表。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🥘</span>
+                    <span class="heritage-header-text">东北菜</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>饮食文化</h4>
+                    <p>东北菜以量大、味浓、实惠为特点，是黑龙江饮食文化的代表。东北菜融合了满族、汉族、朝鲜族等民族的饮食特色，形成了独特的风味。锅包肉、地三鲜、小鸡炖蘑菇是东北菜的典型代表。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">冰雪奇缘</h2>
+        <p class="section-subtitle">从冰城到雪乡，黑龙江处处是奇观</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">冰雪奇观</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">❄️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>哈尔滨冰雪大世界</h4>
+                        <span class="highlight">核心亮点：冰雪王国，冰雕艺术，夜晚璀璨</span>
+                        <p>哈尔滨冰雪大世界位于哈尔滨市松北区，是世界最大的冰雪主题公园，每年冬季举办。冰雪大世界用冰块和雪块建造了各种建筑、雕塑，有冰宫、雪堡、冰滑梯等。夜晚的冰雪大世界灯光璀璨，如梦如幻，是哈尔滨冬季最热门的旅游景点。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>雪乡</h4>
+                        <span class="highlight">核心亮点：童话世界，雪蘑菇，民宿体验</span>
+                        <p>雪乡位于牡丹江市海林市，原名双峰林场，因雪期长、雪质好而闻名。雪乡的雪厚达1-2米，屋顶上堆积的雪形如蘑菇，被称为"雪蘑菇"。雪乡的冬季雪景如童话世界，吸引了无数游客前来观赏。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌅</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>北极村</h4>
+                        <span class="highlight">核心亮点：中国最北村，极光奇观，白夜现象</span>
+                        <p>北极村位于漠河市北极镇，是中国最北的村庄，被誉为"金鸡之冠"。北极村有"神州北极"石碑，是中国地理的北端。夏季的北极村有"白夜"现象，太阳不落；冬季的北极村可以看到极光，是中国唯一能观赏极光的地方。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">自然生态</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🦢</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>扎龙湿地</h4>
+                        <span class="highlight">核心亮点：丹顶鹤故乡，湿地生态，观鸟胜地</span>
+                        <p>扎龙湿地位于齐齐哈尔市，是中国最大的湿地之一，也是世界著名的丹顶鹤栖息地。扎龙湿地面积2100平方公里，有鹤类6种，其中丹顶鹤400多只。扎龙湿地是国家级自然保护区，是观鸟、摄影的好去处。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🌋</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>五大连池</h4>
+                        <span class="highlight">核心亮点：火山奇观，矿泉康养，地质公园</span>
+                        <p>五大连池位于黑河市五大连池市，是著名的火山地貌景区。五大连池由五个相连的湖泊组成，周围有14座火山，是研究火山的天然博物馆。五大连池的矿泉水质优良，有"神水"之称，是康养度假的好去处。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>亚布力滑雪场</h4>
+                        <span class="highlight">核心亮点：亚洲最大滑雪场，滑雪胜地，亚布力</span>
+                        <p>亚布力滑雪场位于哈尔滨市尚志市，是亚洲最大的滑雪场，也是中国最好的滑雪场之一。亚布力滑雪场有雪道50多条，长度从初级到高级都有，适合不同水平的滑雪爱好者。亚布力还是2009年世界大学生冬季运动会的举办地。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">东北美食</h2>
+        <p class="section-subtitle">量大味浓，实惠实在，东北风味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥩</span>
+                    <span class="food-name">锅包肉</span>
+                    <span class="food-taste">酸甜可口</span>
+                </div>
+                <div class="food-content">
+                    <p>东北名菜，以猪里脊肉为主料，裹上面糊油炸，再浇上糖醋汁。锅包肉色泽金黄，外酥里嫩，酸甜可口，是东北人最爱吃的菜之一。锅包肉是哈尔滨名菜，有"东北第一菜"之称。</p>
+                    <span class="food-tag">东北名菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">哈尔滨红肠</span>
+                    <span class="food-taste">烟熏香味</span>
+                </div>
+                <div class="food-content">
+                    <p>哈尔滨特色食品，以猪肉为主料，用传统工艺制作而成。红肠呈红色，有独特的烟熏香味，是哈尔滨最具代表性的美食。哈尔滨红肠可以生吃，也可以炒菜、做汤，用途广泛。</p>
+                    <span class="food-tag">哈尔滨特产</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍦</span>
+                    <span class="food-name">马迭尔冰棍</span>
+                    <span class="food-taste">奶香浓郁</span>
+                </div>
+                <div class="food-content">
+                    <p>哈尔滨特色冷食，马迭尔宾馆的经典产品。马迭尔冰棍奶香浓郁，口感细腻，是哈尔滨人夏季的最爱。马迭尔冰棍有原味、巧克力味、草莓味等多种口味，价格实惠，深受游客喜爱。</p>
+                    <span class="food-tag">哈尔滨特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍲</span>
+                    <span class="food-name">铁锅炖</span>
+                    <span class="food-taste">味道浓郁</span>
+                </div>
+                <div class="food-content">
+                    <p>东北特色菜，用大铁锅炖制各种食材，有铁锅炖大鹅、铁锅炖鱼、铁锅炖排骨等。铁锅炖味道浓郁，营养丰富，是东北人冬季的最爱。铁锅炖可以加入各种蔬菜，一锅出，方便实惠。</p>
+                    <span class="food-tag">东北特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🌽</span>
+                    <span class="food-name">地三鲜</span>
+                    <span class="food-taste">咸鲜爽口</span>
+                </div>
+                <div class="food-content">
+                    <p>东北名菜，以土豆、茄子、青椒为主料。地三鲜色彩鲜艳，口感丰富，咸鲜爽口，是东北人餐桌上的常见菜。地三鲜制作简单，食材易得，是东北家常菜的典型代表。</p>
+                    <span class="food-tag">东北家常菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍄</span>
+                    <span class="food-name">小鸡炖蘑菇</span>
+                    <span class="food-taste">味道鲜美</span>
+                </div>
+                <div class="food-content">
+                    <p>东北名菜，以鸡和蘑菇为主料。小鸡炖蘑菇味道鲜美，营养丰富，是东北人餐桌上的常见菜。蘑菇选用东北特有的榛蘑，与鸡肉一起炖制，香味浓郁，是东北农家菜的典型代表。</p>
+                    <span class="food-tag">东北名菜</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>黑龙江 · 欢迎您</h3>
+        <p>北国风光，冰雪奇缘 | 东北粮仓，黑土地的魅力</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 黑龙江省城市展示页面</p>
+    </footer>
+</body>
+</html>

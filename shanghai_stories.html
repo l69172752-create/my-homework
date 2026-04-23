@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海 - 魔都风情 东方明珠</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-red: #C41E3A;
+            --primary-blue: #1E3A8A;
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+            --text-light: #E2E8F0;
+            --text-gray: #94A3B8;
+            --glow-gold: #FFD700;
+            --glow-blue: #60A5FA;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary-blue), #1e40af);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: glow 4s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(30, 144, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--glow-blue);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #1e293b, #334155);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--glow-blue));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-gold), #FFD700);
+            color: #0f172a;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-gold), var(--glow-blue));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 0 10px var(--primary-gold);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), #FFD700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: #0f172a;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: #0f172a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), #FFD700);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), #FFD700);
+            color: #0f172a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-blue), #1e40af);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), var(--glow-blue), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(30, 58, 138, 0.2);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🐬';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-blue), #1e40af);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #f0f9ff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🌃 上海</a>
+        <div class="nav-links">
+            <a href="#overview">魔都概览</a>
+            <a href="#history">海派文化</a>
+            <a href="#landmarks">地标景点</a>
+            <a href="#food">海派美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🐬</span>
+                    <h2 class="animal-main-title">上海 —— 海豚</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 海洋天使 · 魔都蓝色名片
+                </div>
+
+                <p class="animal-description">
+                    上海海昌海洋公园、长风海洋世界都以海豚表演为核心项目，是上海海洋主题地标代表。海豚的优雅跃动与上海这座海滨城市的灵动气质完美契合，它们是海洋与城市之间的最美使者。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎭</span>
+                        <span class="animal-feature-title">精湛表演</span>
+                        <p class="animal-feature-desc">跃水、顶球、钻圈</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎪</span>
+                        <span class="animal-feature-title">海洋地标</span>
+                        <p class="animal-feature-desc">海昌、长风双园争艳</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">💙</span>
+                        <span class="animal-feature-title">蓝色天使</span>
+                        <p class="animal-feature-desc">魔都海洋文化象征</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>上海</h1>
+        <p class="subtitle">魔都风情 · 东方明珠</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                上海，位于中国东海之滨，长江入海口，是中国最大的经济中心城市。
+                从外滩的万国建筑，到陆家嘴的摩天大楼；
+                从豫园的江南园林，到田子坊的文艺街区；
+                从南京路的繁华商业，到武康路的梧桐树影。
+                这里有东方明珠的璀璨，有上海中心的雄伟，
+                有海派文化的包容，有国际都市的时尚。
+                上海是魔都，是国际大都市，是中国改革开放的窗口。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">魔都概览</h2>
+        <p class="section-subtitle">走进上海，感受国际都市的繁华与活力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>城市定位</h3>
+                <p>中国四个直辖市之一，是中国的经济、金融、贸易、航运和科技创新中心。上海是国际大都市，是中国改革开放的前沿阵地，是长江三角洲城市群的核心。上海是世界著名的港口城市，也是全球重要的金融中心之一。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国华东地区，东临东海，北接江苏，西邻浙江。面积6,340.5平方公里，常住人口2,487万。上海下辖16个区，包括黄浦、徐汇、长宁、静安、普陀、虹口、杨浦、闵行、宝山、嘉定、浦东、金山、松江、青浦、奉贤、崇明。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">魔都</span>
+                    <span class="tag">国际大都市</span>
+                    <span class="tag">金融中心</span>
+                    <span class="tag">海派文化</span>
+                    <span class="tag">东方明珠</span>
+                    <span class="tag">时尚之都</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    上海有"魔都"之称，既有西化的外滩，又有传统的豫园，是一座充满魅力的城市。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以平原为主，平均海拔4米左右，是长江三角洲平原的一部分。气候属亚热带季风气候，四季分明，年平均气温16℃左右。上海雨量充沛，年平均降水量1200毫米左右，夏季炎热，冬季温和，春秋两季气候宜人。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">海派文化 · 底蕴</h2>
+        <p class="section-subtitle">海纳百川，追求卓越，开明睿智，大气谦和</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>古代 · 沪渎时期（约公元4世纪-751年）</h4>
+                <p>上海古称"沪渎"，因吴淞江（今苏州河）下游称沪渎而得名。古代上海是一个渔村，以捕鱼为业，有"沪"之称。唐代设立华亭县，上海地区开始有行政建置。上海的名字来源于"上海浦"，是吴淞江下游的一条支流。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元明 · 上海县时期（1292年-1842年）</h4>
+                <p>1292年元朝设立上海县，上海正式成为县级行政单位。明代上海逐渐发展为一个商贸港口，棉花种植和纺织业发达。明代后期，上海成为江南地区重要的港口之一，有"衣被天下"之称。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>近代 · 开埠通商（1842年-1949年）</h4>
+                <p>1842年《南京条约》签订，上海成为通商口岸，西方列强在此设立租界。开埠后，上海迅速发展为远东最大的城市，有"东方巴黎"之称。租界的建立带来了西方文化，形成了独特的海派文化。民国时期，上海是中国的经济、文化、金融中心。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 新上海（1949年至今）</h4>
+                <p>1949年上海解放，开始了新的历史篇章。改革开放后，上海快速发展，浦东新区的开发开放使上海焕发出新的活力。如今上海是中国最大的经济中心，是全球重要的金融城市，也是中国国际进口博览会的举办地。上海正加快建设国际经济、金融、贸易、航运、科技创新中心。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--glow-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">海派文化特色</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🎭</span>
+                    <span class="heritage-header-text">海派文化</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>海纳百川</h4>
+                    <p>海派文化的核心是"海纳百川"，融合了中西文化、古今文化。海派文化开放包容，创新进取，追求卓越。海派文化体现在建筑、艺术、饮食、服饰等各个方面，是上海独特的文化标识。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏛️</span>
+                    <span class="heritage-header-text">石库门</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>石库门建筑</h4>
+                    <p>石库门是上海特有的民居建筑，融合了江南传统民居和西方联排别墅的特点。石库门建筑以砖木结构为主，有天井、客堂、厢房等空间，是上海市民的居住记忆。如今石库门建筑已成为上海的文化符号。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🎪</span>
+                    <span class="heritage-header-text">上海弄堂</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>弄堂文化</h4>
+                    <p>弄堂是上海特有的城市空间，是上海市民生活的缩影。弄堂里有石库门住宅、小商店、裁缝铺等，构成了独特的弄堂文化。弄堂里的人际关系亲密，邻里互相照应，体现了上海市民的生活方式。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">地标景点</h2>
+        <p class="section-subtitle">从外滩到陆家嘴，上海处处是风景</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">经典地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>外滩</h4>
+                        <span class="highlight">核心亮点：万国建筑，黄浦江，外滩夜景</span>
+                        <p>外滩位于黄浦江西岸，是上海的标志性景点，有"万国建筑博览群"之称。外滩有52栋风格各异的历史建筑，包括哥特式、巴洛克式、罗马式等风格，是上海开埠后西方列强留下的历史见证。夜晚的外滩灯光璀璨，与对岸的陆家嘴形成鲜明对比，是上海最美丽的夜景。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🗼</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>东方明珠</h4>
+                        <span class="highlight">核心亮点：上海地标，观光塔，俯瞰全城</span>
+                        <p>东方明珠广播电视塔位于浦东新区陆家嘴，高468米，是上海的标志性建筑。东方明珠有11个大小不一的球体，有"大珠小珠落玉盘"的美誉。东方明珠有观光层、旋转餐厅、上海城市历史发展陈列馆等，是上海最受欢迎的观光景点之一。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌃</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>南京路步行街</h4>
+                        <span class="highlight">核心亮点：中华商业第一街，繁华商业，霓虹闪烁</span>
+                        <p>南京路步行街位于黄浦区，是中国最著名的商业街之一，有"中华商业第一街"之称。南京路有百年历史，汇聚了众多商场、百货公司和专卖店，是上海购物的好去处。夜晚的南京路灯火璀璨，人流如织，是上海都市生活的缩影。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏢</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>上海中心大厦</h4>
+                        <span class="highlight">核心亮点：中国第一高楼，632米，陆家嘴</span>
+                        <p>上海中心大厦位于浦东新区陆家嘴，高632米，是中国第一高楼，世界第三高楼。上海中心大厦有127层，集办公、酒店、观光于一体。118层观光厅是上海最高的观光点，可以360度俯瞰上海全景。上海中心大厦是陆家嘴三件套之一，是上海现代都市的象征。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌉</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>外白渡桥</h4>
+                        <span class="highlight">核心亮点：百年铁桥，外白渡桥，苏州河</span>
+                        <p>外白渡桥位于苏州河与黄浦江交汇处，是上海最著名的铁桥，建于1907年。外白渡桥是中国第一座全钢结构铆接桥梁，有"外白渡桥"之名。外白渡桥见证了上海的历史变迁，是上海的文化符号。夜晚的外白渡桥灯光璀璨，是拍照打卡的好地方。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌿</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>武康大楼</h4>
+                        <span class="highlight">核心亮点：法式建筑，网红打卡，武康路</span>
+                        <p>武康大楼位于徐汇区武康路，是上海最著名的法式建筑之一，建于1924年。武康大楼原名诺曼底公寓，是法国建筑师万茨设计的，建筑风格独特。武康大楼因其优美的外形和便利的交通，成为网红打卡点。武康路两侧梧桐树荫蔽日，是上海最有情调的街道之一。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">海派美食</h2>
+        <p class="section-subtitle">中西合璧，精致讲究，本帮特色</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥟</span>
+                    <span class="food-name">小笼包</span>
+                    <span class="food-taste">皮薄汁多</span>
+                </div>
+                <div class="food-content">
+                    <p>上海传统小吃，以皮薄、汁多、味美著称。上海小笼包以蟹粉小笼包最为著名，蟹黄浓郁，汤汁鲜美。吃小笼包要"轻轻提，慢慢移，先开窗，后喝汤"，才能品尝到小笼包的美味。</p>
+                    <span class="food-tag">上海特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">生煎包</span>
+                    <span class="food-taste">底部酥脆</span>
+                </div>
+                <div class="food-content">
+                    <p>上海传统小吃，以底部酥脆、汤汁丰富为特色。生煎包是上海人早餐的首选，遍布上海大街小巷。生煎包有两种：大生煎和小生煎，大生煎皮厚汁多，小生煎皮薄汁少。小杨生煎是上海最著名的生煎包店。</p>
+                    <span class="food-tag">上海特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🦀</span>
+                    <span class="food-name">蟹粉小笼</span>
+                    <span class="food-taste">蟹黄浓郁</span>
+                </div>
+                <div class="food-content">
+                    <p>上海高档小笼包，以蟹黄、蟹肉为馅。蟹粉小笼皮薄汁多，蟹黄浓郁，是上海宴席上的经典菜。蟹粉小笼的制作工艺复杂，需要选用新鲜螃蟹，手工剥取蟹黄蟹肉。</p>
+                    <span class="food-tag">本帮菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥩</span>
+                    <span class="food-name">红烧肉</span>
+                    <span class="food-taste">肥而不腻</span>
+                </div>
+                <div class="food-content">
+                    <p>上海本帮菜，以五花肉为主料，用酱油、糖、料酒等调料烧制而成。红烧肉色泽红亮，肥而不腻，入口即化，是上海人餐桌上的常见菜。上海红烧肉偏甜，是本帮菜"浓油赤酱"的典型代表。</p>
+                    <span class="food-tag">本帮菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐷</span>
+                    <span class="food-name">排骨年糕</span>
+                    <span class="food-taste">咸甜适中</span>
+                </div>
+                <div class="food-content">
+                    <p>上海传统小吃，以排骨和年糕为主料。排骨年糕色泽红亮，排骨软糯，年糕香甜，是上海人喜爱的小吃。排骨年糕是上海本帮菜和小吃的结合，既有菜的鲜美，又有小吃的香甜。</p>
+                    <span class="food-tag">上海小吃</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">葱油拌面</span>
+                    <span class="food-taste">葱香浓郁</span>
+                </div>
+                <div class="food-content">
+                    <p>上海传统面食，以面条、葱油、酱油为主料。葱油拌面制作简单，但葱香浓郁，口感爽滑，是上海人早餐的首选。葱油拌面的关键在于葱油的熬制，葱要炸至金黄，油要葱香四溢。</p>
+                    <span class="food-tag">上海小吃</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>上海 · 欢迎您</h3>
+        <p>魔都风情，东方明珠 | 国际都市，海派文化</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 上海市城市展示页面</p>
+    </footer>
+</body>
+</html>

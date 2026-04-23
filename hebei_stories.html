@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河北 - 燕赵大地 京津门户</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #8B7355;
+            --primary-gold: #D4AF37;
+            --primary-red: #B22222;
+            --bg-gradient: linear-gradient(135deg, #2c3e50, #34495e, #2c3e50);
+            --text-light: #ECF0F1;
+            --text-gray: #95A5A6;
+            --wall-gray: #95A5A6;
+            --ancient-gold: #F4C430;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-light);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 50%, #1a1a1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="8" height="6" fill="%23D4AF3710"/><rect x="50" y="50" width="6" height="8" fill="%238B735510"/><rect x="80" y="20" width="10" height="5" fill="%23B2222210"/></svg>');
+            background-size: 150px;
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-brown);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(139, 115, 85, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-brown);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--wall-gray));
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: rgba(44, 62, 80, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .city-card-item h3 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-brown), var(--primary-gold));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-gold), var(--wall-gray));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-brown);
+            box-shadow: 0 0 10px var(--primary-gold);
+        }
+
+        .timeline-item h4 {
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: rgba(44, 62, 80, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--ancient-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, #34495e, #2c3e50);
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: rgba(44, 62, 80, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--ancient-gold));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-brown);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: rgba(44, 62, 80, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-brown), var(--primary-gold));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), var(--wall-gray), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(139, 69, 19, 0.2);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🐻';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-brown);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-brown), var(--primary-red));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #F5F5DC;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-brown);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🏯 河北</a>
+        <div class="nav-links">
+            <a href="#overview">燕赵概览</a>
+            <a href="#history">燕赵文化</a>
+            <a href="#landmarks">长城名胜</a>
+            <a href="#food">冀菜美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🐻</span>
+                    <h2 class="animal-main-title">河北 —— 熊</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 燕赵猛兽 · 山林之王
+                </div>
+
+                <p class="animal-description">
+                    秦皇岛野生动物园、石家庄动物园都有大型黑熊展区，河北山区也有野生熊类分布。熊的威猛与燕赵大地的厚重历史相得益彰，是这片山林间的霸气象征。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🏔️</span>
+                        <span class="animal-feature-title">野生栖息</span>
+                        <p class="animal-feature-desc">河北山区有野生分布</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎪</span>
+                        <span class="animal-feature-title">双园争艳</span>
+                        <p class="animal-feature-desc">秦皇岛、石家庄均设展区</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">💪</span>
+                        <span class="animal-feature-title">威猛霸气</span>
+                        <p class="animal-feature-desc">燕赵大地山林之王</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>河北</h1>
+        <p class="subtitle">燕赵大地 · 京津门户</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                河北，位于中国华北平原北部，素有"燕赵大地"之称。
+                从万里长城的雄伟壮丽，到承德避暑山庄的皇家园林；
+                从赵州桥的千年古韵，到白洋淀的水乡风情；
+                从西柏坡的红色记忆，到雄安新区的未来之城。
+                这里有燕赵文化的深厚，有京畿重地的地位，
+                有长城的雄浑，有京津门户的便利。
+                河北是历史文化名省，是京津冀协同发展的核心，
+                是充满魅力的燕赵大地。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">燕赵概览</h2>
+        <p class="section-subtitle">走进河北，感受燕赵大地的厚重与活力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>省情定位</h3>
+                <p>中国华北地区重要省份，素有"燕赵大地"、"京畿重地"之称。河北是京津冀协同发展的核心区域，是京津的腹地和大后方。河北是历史文化名省，有长城、承德避暑山庄、赵州桥等众多历史文化遗产。河北是农业大省、工业大省，钢铁、装备制造、电子信息业是优势产业。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国华北平原北部，东临渤海，西接山西，北接内蒙古、辽宁，南接山东、河南。面积18.88万平方公里，常住人口7,420万。省会石家庄，下辖11个地级市，包括石家庄、唐山、秦皇岛、邯郸、邢台、保定、张家口、承德、沧州、廊坊、衡水。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">燕赵大地</span>
+                    <span class="tag">京津门户</span>
+                    <span class="tag">万里长城</span>
+                    <span class="tag">京畿重地</span>
+                    <span class="tag">雄安新区</span>
+                    <span class="tag">红色文化</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    河北是"京津门户"，地理位置优越，交通便利，是京津冀协同发展的重要一环。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以平原、山地为主，西北为太行山，北部为燕山，中南部是华北平原。气候属温带大陆性季风气候，四季分明，年平均气温4-14℃。河北四季分明，冬季寒冷，夏季炎热，春秋短暂。河北雨量适中，年平均降水量400-800毫米，多集中在夏季。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">燕赵文化 · 底蕴</h2>
+        <p class="section-subtitle">燕赵大地三千年，京畿重地代代传</p>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>先秦 · 燕赵时期（约公元前5世纪-前222年）</h4>
+                <p>河北古属燕国、赵国，是燕赵文化的发源地。春秋战国时期，河北是燕国、赵国的政治中心，燕下都、邯郸城是当时的繁华都市。燕赵文化以慷慨悲歌著称，"燕赵多慷慨悲歌之士"是当时的真实写照。荆轲刺秦的故事就发生在燕国，展现了燕人的忠义勇敢。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦汉 · 郡县时期（前222年-220年）</h4>
+                <p>秦统一后，河北地区纳入中央王朝管辖，设郡县。汉代河北是重要的农业区，是京畿重地。汉代河北出现了许多名人，如赵飞燕、刘备等。汉代河北是丝绸之路的起点之一，是与西域交流的重要通道。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 河北道时期（618年-1279年）</h4>
+                <p>唐代河北称河北道，宋代称河北路。唐宋时期，河北是京畿重地，政治经济地位重要。唐代河北出现了许多名将，如郭子仪、李光弼等。宋代河北是抗辽抗金的前线，出现了许多民族英雄。唐宋时期河北经济文化繁荣，农业发达，手工业兴盛。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元明 · 直隶时期（1271年-1644年）</h4>
+                <p>元代河北属中书省，明代设直隶省，直接隶属中央。明代河北是京畿重地，政治经济地位重要。明代修建了山海关、居庸关等关隘，是防御北方的重要屏障。明代河北农业发达，是全国重要的粮食产区。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>清代 · 直隶省时期（1644年-1911年）</h4>
+                <p>清代直隶省继续沿用，是京畿重地。清代河北是京畿重地，政治经济地位重要。清代修建了承德避暑山庄、清东陵、清西陵等皇家园林和陵墓。清代河北经济文化繁荣，是重要的农业区和工业区。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 河北省（1949年至今）</h4>
+                <p>1949年河北解放，河北省成立。新中国成立后，河北经济快速发展，成为重要的工业基地。改革开放后，河北经济结构不断优化，服务业、高新技术产业发展迅速。雄安新区的设立使河北迎来了新的发展机遇，雄安新区是"千年大计、国家大事"。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="background: linear-gradient(45deg, var(--primary-gold), var(--ancient-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏯</span>
+                    <span class="heritage-header-text">承德避暑山庄</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>承德避暑山庄及周围寺庙</h4>
+                    <p>位于承德市，是清代皇家园林，也是中国现存最大的皇家园林。避暑山庄由康熙、乾隆两帝修建，历时89年，占地564万平方米。周围有外八庙等寺庙，建筑精美，是汉藏建筑艺术的结合。1994年被列入世界文化遗产。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">⛩</span>
+                    <span class="heritage-header-text">明清皇家陵寝</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>明清皇家陵寝</h4>
+                    <p>包括清东陵和清西陵，是清代皇家陵寝。清东陵位于唐山市遵化市，是顺治、康熙、乾隆、咸丰、同治五位皇帝的陵寝；清西陵位于保定市易县，是雍正、嘉庆、道光、光绪四位皇帝的陵寝。2000年被列入世界文化遗产。</p>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏯</span>
+                    <span class="heritage-header-text">长城（河北段）</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>长城</h4>
+                    <p>长城是中国古代的军事防御工程，河北是长城保存最好的省份之一。河北长城包括山海关、居庸关、紫荆关、倒马关等重要关隘，还有金山岭长城、慕田峪长城等著名段落。河北长城蜿蜒起伏，雄伟壮观，是河北最著名的景点。1987年被列入世界文化遗产。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">长城名胜</h2>
+        <p class="section-subtitle">从长城到避暑山庄，河北处处是名胜</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">长城景观</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏯</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>山海关</h4>
+                        <span class="highlight">核心亮点：天下第一关，长城起点，渤海之滨</span>
+                        <p>山海关位于秦皇岛市山海关区，是长城的东端起点，有"天下第一关"之称。山海关有天下第一关、老龙头、孟姜女庙等景点。山海关是明代长城的重要关隘，是防御东北的重要屏障。山海关是长城最著名的关口，吸引了无数国内外游客。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">⛩</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>金山岭长城</h4>
+                        <span class="highlight">核心亮点：长城精华，敌楼密集，摄影胜地</span>
+                        <p>金山岭长城位于承德市滦平县，是长城保存最好的段落之一，有"万里长城，金山独秀"之称。金山岭长城敌楼密集，建筑精美，是长城的精华。金山岭长城是摄影爱好者的天堂，春夏秋冬四季皆可拍摄出美丽的照片。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏯</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>老龙头</h4>
+                        <span class="highlight">核心亮点：长城入海，龙头入海，渤海风光</span>
+                        <p>老龙头位于秦皇岛市山海关区，是长城的入海处，有"长城入海处"之称。老龙头是长城的东部起点，是明代长城的重要关隘。老龙头有入海石城、靖卤台、南海口关等景点。老龙头是长城与海洋的交汇点，可以欣赏长城入海的壮丽景象。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">⛩</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>慕田峪长城</h4>
+                        <span class="highlight">核心亮点：秀丽长城，敌楼众多，四季皆宜</span>
+                        <p>慕田峪长城位于北京市怀柔区，是长城保存最好的段落之一。慕田峪长城敌楼密集，建筑精美，是长城的精华。慕田峪长城是距离北京市区最近的长城段落，交通便利。慕田峪长城四季皆宜，春夏秋冬各有美景。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">皇家园林</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏯</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>承德避暑山庄</h4>
+                        <span class="highlight">核心亮点：皇家园林，外八庙，清代皇家避暑地</span>
+                        <p>承德避暑山庄位于承德市，是清代皇家园林，是中国现存最大的皇家园林。避暑山庄由康熙、乾隆两帝修建，占地564万平方米，包括宫殿区、湖区、平原区、山区等部分。避暑山庄是清代皇帝夏季避暑的场所，是了解清代皇室生活的重要场所。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">⛩</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>清东陵</h4>
+                        <span class="highlight">核心亮点：皇家陵寝，顺治康熙乾隆，孝陵神道</span>
+                        <p>清东陵位于唐山市遵化市，是清代皇家陵寝，是顺治、康熙、乾隆、咸丰、同治五位皇帝的陵寝。清东陵占地2500平方公里，有15座陵墓，建筑精美，规模宏大。清东陵是清代皇家陵寝的代表，是了解清代皇室文化的重要场所。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">⛩</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>清西陵</h4>
+                        <span class="highlight">核心亮点：皇家陵寝，雍正嘉庆道光光绪，泰陵神道</span>
+                        <p>清西陵位于保定市易县，是清代皇家陵寝，是雍正、嘉庆、道光、光绪四位皇帝的陵寝。清西陵占地800平方公里，有14座陵墓，建筑精美，规模宏大。清西陵是清代皇家陵寝的代表，是了解清代皇室文化的重要场所。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌆</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>雄安新区</h4>
+                        <span class="highlight">核心亮点：千年大计，国家大事，未来之城</span>
+                        <p>雄安新区位于保定市雄县、安新县、容城县，是"千年大计、国家大事"，是北京非首都功能疏解集中承载地。雄安新区是新时代的创新之城，将建成绿色生态宜居新城区、创新驱动发展引领区、协调发展示范区。雄安新区是河北未来发展的新引擎。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">💧</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>白洋淀</h4>
+                        <span class="highlight">核心亮点：华北明珠，荷花满淀，雁翎队</span>
+                        <p>白洋淀位于保定市安新县，是华北地区最大的淡水湖，有"华北明珠"之称。白洋淀有143个淀泊，3700条沟渠，盛产芦苇、荷花、鱼虾。白洋淀是雁翎队的故乡，抗日战争期间，雁翎队利用白洋淀的地形，与日军进行了艰苦卓绝的斗争。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">红色</span>
+                        <span class="landmark-icon">⭐</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>西柏坡</h4>
+                        <span class="highlight">核心亮点：革命圣地，五大书记，红色旅游</span>
+                        <p>西柏坡位于石家庄市平山县，是解放战争时期中共中央的所在地，有"新中国从这里走来"之称。西柏坡有中共中央旧址、七届二中全会旧址、毛泽东旧居等景点。西柏坡是著名的红色旅游胜地，是了解中国革命历史的重要场所。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">冀菜美食</h2>
+        <p class="section-subtitle">咸鲜味美，家常实惠，冀菜风味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥙</span>
+                    <span class="food-name">驴肉火烧</span>
+                    <span class="food-taste">香酥可口</span>
+                </div>
+                <div class="food-content">
+                    <p>保定特色小吃，以驴肉、火烧为主料。驴肉香酥，火烧外酥里嫩，是保定人最爱的美食。驴肉火烧是保定最著名的小吃，遍布保定大街小巷。驴肉火烧可以配汤吃，也可以直接吃，是保定人的早餐首选。</p>
+                    <span class="food-tag">保定特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐔</span>
+                    <span class="food-name">保定卤鸡</span>
+                    <span class="food-taste">卤香浓郁</span>
+                </div>
+                <div class="food-content">
+                    <p>保定特色食品，以鸡、卤料为主料。卤鸡色泽红亮，肉质香酥，是保定人喜爱的食品。保定卤鸡是用特制卤料卤制而成，有五香卤鸡、麻辣卤鸡等多种口味。保定卤鸡是保定最著名的特色食品之一。</p>
+                    <span class="food-tag">保定特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥚</span>
+                    <span class="food-name">白洋淀咸鸭蛋</span>
+                    <span class="food-taste">蛋黄流油</span>
+                </div>
+                <div class="food-content">
+                    <p>白洋淀特色食品，以鸭蛋为主料。咸鸭蛋蛋黄流油，蛋清咸香，是白洋淀最有名的特产。白洋淀咸鸭蛋选用白洋淀的散养鸭蛋，用传统工艺腌制而成，蛋黄金黄，蛋清咸香。白洋淀咸鸭蛋是河北最著名的特产之一。</p>
+                    <span class="food-tag">白洋淀特产</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">石家庄板面</span>
+                    <span class="food-taste">香辣爽口</span>
+                </div>
+                <div class="food-content">
+                    <p>石家庄特色面食，以宽面条、卤料为主料。板面面条宽而筋道，卤料香辣爽口，是石家庄人最爱的面食。石家庄板面有多种口味，包括鸡肉板面、牛肉板面、羊肉板面等。石家庄板面是石家庄最著名的特色面食之一。</p>
+                    <span class="food-tag">石家庄特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥩</span>
+                    <span class="food-name">唐山蜂蜜麻糖</span>
+                    <span class="food-taste">香甜可口</span>
+                </div>
+                <div class="food-content">
+                    <p>唐山特色甜食，以芝麻、蜂蜜为主料。蜂蜜麻糖香甜可口，口感酥脆，是唐山人喜爱的甜食。唐山蜂蜜麻糖是唐山最著名的特色甜食，历史悠久，工艺精湛。唐山蜂蜜麻糖是河北最著名的特产之一。</p>
+                    <span class="food-tag">唐山特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">邯郸拽面</span>
+                    <span class="food-taste">香辣爽口</span>
+                </div>
+                <div class="food-content">
+                    <p>邯郸特色面食，以宽面条、卤料为主料。拽面面条宽而筋道，卤料香辣爽口，是邯郸人最爱的面食。邯郸拽面有多种口味，包括鸡肉拽面、牛肉拽面、羊肉拽面等。邯郸拽面是邯郸最著名的特色面食之一。</p>
+                    <span class="food-tag">邯郸特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">承德凉粉</span>
+                    <span class="food-taste">酸辣爽口</span>
+                </div>
+                <div class="food-content">
+                    <p>承德特色小吃，以凉粉、调料为主料。凉粉爽滑，调料酸辣，是承德人夏季的最爱。承德凉粉有多种调料，包括芝麻酱、辣椒油、蒜水、醋等，可以根据个人口味选择。承德凉粉是承德最著名的特色小吃之一。</p>
+                    <span class="food-tag">承德特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">秦皇岛海鲜</span>
+                    <span class="food-taste">鲜美可口</span>
+                </div>
+                <div class="food-content">
+                    <p>秦皇岛特色美食，以海鲜为主料。秦皇岛海鲜鲜美可口，品种丰富，是秦皇岛人喜爱的美食。秦皇岛靠近渤海，海鲜资源丰富，有螃蟹、虾、贝类、鱼类等。秦皇岛海鲜可以清蒸、红烧、油炸等多种做法，每一种都有独特的风味。</p>
+                    <span class="food-tag">秦皇岛特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥙</span>
+                    <span class="food-name">沧州火锅鸡</span>
+                    <span class="food-taste">麻辣鲜香</span>
+                </div>
+                <div class="food-content">
+                    <p>沧州特色美食，以鸡、火锅为主料。火锅鸡麻辣鲜香，鸡肉软烂，是沧州人喜爱的美食。沧州火锅鸡选用土鸡，用特制火锅底料炖制而成，麻辣鲜香，回味无穷。沧州火锅鸡是沧州最著名的特色美食之一。</p>
+                    <span class="food-tag">沧州特色</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>河北 · 欢迎您</h3>
+        <p>燕赵大地，京津门户 | 万里长城，京畿重地</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 河北省城市展示页面</p>
+    </footer>
+</body>
+</html>

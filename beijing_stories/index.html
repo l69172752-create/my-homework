@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北京 - 千年帝都 现代华章</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #C8102E;
+            --primary-gold: #D4AF37;
+            --dark-red: #8B0000;
+            --light-gold: #F4E4BC;
+            --bg-cream: #FFF8F0;
+            --text-dark: #2C1810;
+            --text-gray: #5C4A3D;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light-gold);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--primary-gold) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23D4AF3733" stroke-width="0.5"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.1);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--light-gold);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: white;
+        }
+
+        .section-alt {
+            background: var(--bg-cream);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: linear-gradient(135deg, var(--bg-cream), white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-red);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .city-card-item h3 {
+            color: var(--primary-red);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .city-card-item h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-red), var(--primary-gold));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-red);
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 世界遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--dark-red);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 非遗文化 */
+        .heritage-culture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .culture-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--light-gold);
+            text-align: center;
+        }
+
+        .culture-item h4 {
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .culture-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, white, var(--bg-cream));
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            color: var(--light-gold);
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 城市与动物配对板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFE4E1 50%, #FFF8F0 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(200, 16, 46, 0.15);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🐼';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: var(--bg-cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--light-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🏛️ 北京</a>
+        <div class="nav-links">
+            <a href="#overview">城市概览</a>
+            <a href="#history">历史文化</a>
+            <a href="#landmarks">地标景点</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🐼</span>
+                    <h2 class="animal-main-title">北京 —— 熊猫</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 西直门三太子萌兰 · 首都国宝顶流
+                </div>
+
+                <p class="animal-description">
+                    北京动物园的"西直门三太子"萌兰是全网顶流熊猫，坐拥500余种动物的百年老园里，熊猫馆永远是排队王。首都配国宝，官方认证的绝配CP。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🌟</span>
+                        <span class="animal-feature-title">顶流明星</span>
+                        <p class="animal-feature-desc">全网萌兰粉丝千万</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🏛️</span>
+                        <span class="animal-feature-title">百年老园</span>
+                        <p class="animal-feature-desc">500余种动物的动物园</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🎫</span>
+                        <span class="animal-feature-title">排队王</span>
+                        <p class="animal-feature-desc">熊猫馆永远人气爆棚</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>北京</h1>
+        <p class="subtitle">千年帝都 · 现代华章</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                北京，作为中华人民共和国的首都，是一座拥有三千多年建城史、八百多年建都史的千年古都。
+                从春秋战国的蓟城，到元明清的皇城，再到现代化的国际大都市，北京承载着中华文明的重要记忆。
+                这里红墙黄瓦、胡同纵横，既有紫禁城的威严壮观，又有什刹海的市井烟火；
+                既有长城的雄伟壮丽，又有798艺术区的现代气息。
+                北京不仅是中国的政治中心、文化中心，更是世界著名的旅游胜地和历史文化名城。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">城市名片 · 概览</h2>
+        <p class="section-subtitle">走进北京，感受千年古都与现代都市的完美融合</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>城市定位</h3>
+                <p>中华人民共和国首都，全国政治中心、文化中心、国际交往中心、科技创新中心。作为世界著名的历史文化名城和国际化大都市，北京承载着中华文明的重要记忆。这里汇聚了全国最优质的教育、医疗、文化资源，是众多国际机构、跨国公司总部所在地，也是中国文化走向世界的重要窗口。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于华北平原北部，东距天津约150公里，西北依山，东南面向渤海。面积16,410平方公里，常住人口约2,189万人，是拥有最多世界文化遗产（6处）的城市。下辖16个区，包括东城区、西城区、朝阳区、海淀区、丰台区、石景山区、门头沟区、房山区、通州区、顺义区、昌平区、大兴区、怀柔区、平谷区、密云区、延庆区，是中国最大的城市之一。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">千年帝都</span>
+                    <span class="tag">世界城市</span>
+                    <span class="tag">文化中心</span>
+                    <span class="tag">双奥之城</span>
+                    <span class="tag">古都风韵</span>
+                    <span class="tag">现代都市</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    北京是世界上唯一举办过夏季和冬季奥运会的"双奥之城"，2008年夏季奥运会和2022年冬季奥运会让北京成为世界体育史上的传奇城市。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>属温带季风气候，四季分明。夏季炎热多雨，平均气温约26℃，是观赏荷花、避暑纳凉的好时节；冬季寒冷干燥，平均气温约-4℃，瑞雪纷飞时的故宫长城别有一番韵味；春季（3-5月）和秋季（9-11月）短暂宜人，是最佳旅游季节，此时天高气爽，风景如画。年平均气温12.3℃，年平均降水量约600毫米，多集中在夏季。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">历史文化 · 底蕴</h2>
+        <p class="section-subtitle">三千多年建城史，八百多年建都史，沉淀厚重文化底蕴</p>
+
+        <h3 style="color: var(--primary-red); margin: 2rem 0 1.5rem; font-size: 1.5rem;">建都沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>春秋战国 · 蓟城时期（公元前11世纪-前221年）</h4>
+                <p>北京最早的城市雏形，为燕国都城，开启北京建城史。蓟城位于今北京城区西南部，是燕国政治、经济、文化中心，当时已是北方重要城市。《史记》记载"周武王封尧后于蓟"，标志着北京建城之始。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>辽代 · 南京（陪都）（938年-1122年）</h4>
+                <p>938年辽升幽州为南京，又称燕京，作为陪都，城市地位显著提升。辽代南京是辽朝五京之一，规模宏大，城周三十六里，人口约三十万。城市布局以宫城为中心，形成"前朝后市"格局，为后世城市发展奠定基础。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>金代 · 中都（1153年-1215年）</h4>
+                <p>1153年金海陵王完颜亮迁都于此，改名中都，北京正式成为王朝都城。金中都仿照北宋东京开封府规划建设，城周三十七里，设十二座城门。宫城居中，外设皇城、外郭城，城市规模超过辽南京，人口达百万，是当时世界上最大的城市之一。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元代 · 大都（1272年-1368年）</h4>
+                <p>1272年忽必烈定都大都，北京成为统一王朝的政治中心，奠定城市格局。元大都由刘秉忠等人规划设计，城周六十里，设十一座城门，城市布局呈方正棋盘式。中心是积水潭，以此为中心设计街道网络，形成"九经九纬"格局。积水潭是京杭大运河终点，漕运使大都成为繁华商业中心。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>明清 · 北京（1421年-1911年）</h4>
+                <p>1421年明成祖朱棣迁都北京，清朝延续，紫禁城成为皇宫，形成完整帝都体系。明北京在元大都基础上缩减北城，南扩至永定门，形成凸字形格局。紫禁城、天坛、地坛、日坛、月坛、先农坛等重要建筑群陆续建成，体现"天人合一"的规划理念。清代基本沿用明制，扩建圆明园、颐和园等皇家园林。明清北京城周长约四十里，人口逾百万，是世界上最大的城市之一。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 首都（1949年至今）</h4>
+                <p>1949年中华人民共和国成立，北京作为首都，开启新的历史篇章。新中国成立后，北京进行了大规模城市建设，拆除城墙建设二环路，扩建长安街，建设人民大会堂、国家博物馆等标志性建筑。改革开放后，北京进入快速发展期，高楼林立，交通发达，成为现代化国际大都市。2008年成功举办夏季奥运会，2022年成功举办冬季奥运会，北京成为世界上唯一的"双奥之城"，展现出古老而充满活力的城市形象。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-red); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">六处世界文化遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏰</span>
+                    <span class="heritage-header-text">故宫博物院</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>故宫（紫禁城）</h4>
+                    <p>明清两代皇宫，世界现存最大、最完整的古建筑群。占地72万平方米，南北长961米，东西宽753米，四周环以10米高的城墙和52米宽的护城河。宫殿建筑9,000余间，见证了24位皇帝的兴衰。主要建筑有太和殿、中和殿、保和殿（外朝三大殿），乾清宫、交泰殿、坤宁宫（内廷三大殿）。太和殿高35.05米，面积2,377平方米，是中国现存最大的木结构宫殿建筑。故宫珍藏文物180万件（套），包括书画、陶瓷、青铜器、玉器等，是中华文明的瑰宝。</p>
+                    <span class="heritage-badge">1987年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">万里长城</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>长城（北京段）</h4>
+                    <p>世界七大奇迹之一，全长21,196公里，北京境内包括八达岭、慕田峪、司马台、金山岭、箭扣等著名段落，总长629公里。长城始建于春秋战国时期，秦始皇统一后连接各国长城，形成万里长城。现存长城主要是明代修建，采用砖石结构，设烽火台传递军情。八达岭长城是明长城中保存最好、最具代表性的段落，地势险要，建筑雄伟。"不到长城非好汉"成为激励中华儿女的豪言壮语。</p>
+                    <span class="heritage-badge">1987年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🔮</span>
+                    <span class="heritage-header-text">天坛公园</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>天坛</h4>
+                    <p>明清皇帝祭天祈谷的场所，始建于明永乐十八年（1420年），占地273万平方米，是故宫面积的四倍。主要建筑有祈年殿、皇穹宇、圜丘坛、回音壁等。祈年殿高38米，直径32米，三重蓝色琉璃瓦圆顶，象征天。圜丘坛分三层，每层台阶数均为阳数九的倍数，体现古代"天圆地方"理念。回音壁、三音石等声学奇观展现古代建筑智慧。天坛体现了古代"天人合一"的哲学思想，是皇家祭祀建筑的典范。</p>
+                    <span class="heritage-badge">1998年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🌸</span>
+                    <span class="heritage-header-text">颐和园</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>颐和园</h4>
+                    <p>中国现存最大皇家园林，以昆明湖、万寿山为基址，集传统造园艺术之大成。始建于1750年，原名清漪园，1860年被英法联军焚毁，1886年慈禧太后重修，改名颐和园。占地290万平方米，由万寿山、昆明湖组成，水面占四分之三。主要建筑有佛香阁、长廊、十七孔桥、石舫等。佛香阁高41米，是颐和园标志建筑。长廊长728米，彩绘14,000余幅，号称"世界第一长廊"。颐和园是中国古典园林艺术的巅峰之作，1998年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">1998年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏯</span>
+                    <span class="heritage-header-text">明十三陵</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>明十三陵</h4>
+                    <p>明朝十三位皇帝陵墓群，位于昌平天寿山麓，占地120平方公里。始建于1409年，历时200多年建成，陵区面积约40平方公里，是世界上现存规模最大、保存最完整的皇家陵寝群。长陵（明成祖朱棣）是十三陵中规模最大、保存最完整的陵墓，祾恩殿面阔九间，进深五间，重檐庑殿顶，是中国现存最大的木结构殿宇之一。神道长7公里，两侧石像生18对，包括狮子、獬豸、骆驼、象、麒麟、马、武将、文臣等，展现明代石刻艺术精华。定陵（明神宗朱翊钧）已发掘，出土文物3,000余件，其中金冠、凤冠堪称国宝。</p>
+                    <span class="heritage-badge">2003年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🦴</span>
+                    <span class="heritage-header-text">周口店遗址</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>周口店北京人遗址</h4>
+                    <p>发现"北京人"头盖骨化石，距今约70万年至20万年，见证人类起源与演化。位于房山区周口店，1921年开始发掘，1929年发现第一个北京人头盖骨化石，震惊世界。遗址包括猿人洞、新洞、山顶洞等地点，出土化石材料近10万件，包括人类化石、动物化石、石器等。北京人脑容量平均1,088毫升，介于猿与现代人之间，已掌握用火技术。山顶洞人距今约3万年，体质特征接近现代人，已掌握磨光钻孔技术。周口店遗址是研究人类起源和演化的重要场所，1987年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">1987年列入</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-red); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">代表性非遗文化</h3>
+        <div class="heritage-culture">
+            <div class="culture-item">
+                <h4>京剧 🎭</h4>
+                <p>中国国粹，融合唱、念、做、打，形成完整的艺术体系。京剧形成于清乾隆年间，融合徽剧、汉剧、昆曲等剧种精华，被誉为"东方歌剧"。主要行当有生、旦、净、丑，代表剧目有《霸王别姬》《贵妃醉酒》《空城计》等。梅兰芳、程砚秋、尚小云、荀慧生"四大名旦"将其推向世界舞台，1930年梅兰芳访美演出引起轰动。2006年京剧被列入第一批国家级非物质文化遗产名录，2010年被列入人类非物质文化遗产代表作名录。</p>
+            </div>
+            <div class="culture-item">
+                <h4>景泰蓝 🎨</h4>
+                <p>铜胎掐丝珐琅，北京传统工艺，色彩艳丽，图案精美，被誉为"北京三绝"之一。景泰蓝起源于元代，成熟于明代景泰年间，因以蓝色为主色调而得名。制作工艺复杂，需经过制胎、掐丝、点蓝、烧蓝、磨光、镀金等百余道工序，被誉为"青铜时代的绝唱"。代表作品有景泰蓝花瓶、景泰蓝屏风等。2006年被列入第一批国家级非物质文化遗产名录。</p>
+            </div>
+            <div class="culture-item">
+                <h4>京绣 🧵</h4>
+                <p>宫廷刺绣代表作，针法细腻，色彩华贵，曾为皇家专用品。京绣又称宫绣，是北京地区传统刺绣艺术，以宫廷绣品为代表。针法有平针、套针、乱针等，色彩以红、黄、蓝、绿为主，图案多为龙凤、祥云、花鸟等吉祥纹样。京绣技艺精湛，一件精美绣品往往需要数月甚至数年才能完成。2014年被列入第四批国家级非物质文化遗产名录。</p>
+            </div>
+            <div class="culture-item">
+                <h4>皮影戏 🎪</h4>
+                <p>光影艺术，用兽皮或纸板剪制形象，在幕后操纵表演，传承千年。皮影戏起源于西汉，盛行于唐宋，是一种集美术、音乐、文学、表演于一体的综合艺术。北京皮影戏以造型夸张、色彩鲜明、唱腔独特为特色，剧目有《白蛇传》《西游记》《封神演义》等。2011年被列入人类非物质文化遗产代表作名录。</p>
+            </div>
+            <div class="culture-item">
+                <h4>兔儿爷 🐰</h4>
+                <p>北京中秋节传统泥塑玩具，形象可爱，寓意健康平安。兔儿爷始于明代，是北京中秋节供奉的泥塑神像，形象为身穿金甲、背插靠旗、骑着坐骑的兔子。兔儿爷不仅是祭祀用品，也是儿童喜爱的玩具，象征健康长寿。2014年被列入第四批国家级非物质文化遗产名录。</p>
+            </div>
+            <div class="culture-item">
+                <h4>抖空竹 🌀</h4>
+                <p>传统民间体育活动，北京庙会常见表演，现已列入国家级非遗。空竹又称"响葫芦"，是一种用竹木制成的玩具，旋转时发出嗡嗡声。抖空竹是北京地区传统体育活动，历史悠久，技巧高超，表演时令人眼花缭乱。2006年被列入第一批国家级非物质文化遗产名录。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-red); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">北京特色文化</h3>
+        <div class="heritage-culture">
+            <div class="culture-item">
+                <h4>胡同文化 🏮</h4>
+                <p>北京的毛细血管，承载市井生活记忆，南锣鼓巷、什刹海最具代表性。胡同是北京特有的小巷，形成于元代，至今已有700多年历史。北京曾有胡同7,000余条，现存约1,000条。胡同里生活着普通市民，承载着北京的城市记忆和人情味。走在胡同里，能看到老北京的生活方式，听到京味十足的叫卖声，感受到浓厚的历史文化氛围。南锣鼓巷是北京最著名的胡同，全长800米，两侧有16条胡同，被称为"北京第一巷"，现在是网红打卡地。</p>
+            </div>
+            <div class="culture-item">
+                <h4>四合院 🏡</h4>
+                <p>传统民居建筑，封闭式院落，体现"天人合一"的居住哲学。四合院是北京传统民居的代表，由正房、东西厢房、倒座房组成，四面房屋围合成一个庭院。四合院布局方正，体现"四合"之意，寓意家族团圆和睦。正房坐北朝南，采光最好，是主人居所；东西厢房是子女居所；倒座房坐南朝北，用于书房、客房。四合院大门上有门簪、门联、门鼓等装饰，体现主人身份和志趣。北京四合院已有近千年历史，是中华传统建筑文化的瑰宝。</p>
+            </div>
+            <div class="culture-item">
+                <h4>京味小吃 🍜</h4>
+                <p>烤鸭、炸酱面、豆汁、糖葫芦，舌尖上的北京记忆。北京小吃历史悠久，种类丰富，口味独特。烤鸭是北京最著名的美食，以果木炭烤制，皮脆肉嫩，蘸甜面酱配薄饼，香而不腻。炸酱面是北京人最爱的面食，黄酱炸得香味四溢，配上黄瓜丝、豆芽等配菜，酱香浓郁。豆汁是北京传统饮品，颜色灰绿，味道酸臭，是老北京人的最爱。糖葫芦是北京传统小吃，山楂裹糖浆，酸甜可口，深受儿童喜爱。其他还有炒肝、卤煮、褡裢火烧、艾窝窝等，每一种都有独特的历史和故事。</p>
+            </div>
+            <div class="culture-item">
+                <h4>庙会文化 🎊</h4>
+                <p>地坛、龙潭湖庙会，春节传统民俗活动，热闹非凡。庙会是北京春节期间的传统活动，起源于古代宗教祭祀，逐渐演变为集娱乐、购物、饮食于一体的民俗活动。北京最著名的庙会是地坛庙会和龙潭湖庙会，每年农历正月初一至初五举办，吸引数百万人参与。庙会上有传统手工艺展示、地方戏曲表演、民俗游戏、美食摊位等，展现浓郁的京味文化氛围。逛庙会是北京人过年的重要活动，承载着春节的欢乐和喜庆。</p>
+            </div>
+            <div class="culture-item">
+                <h4>茶馆文化 🍵</h4>
+                <p>老舍茶馆，听相声、品茗茶，感受慢生活节奏。茶馆是北京传统文化的重要载体，明清时期就有"东富西贵，南贱北贫，南城茶馆多"的说法。北京茶馆分为清茶馆、书茶馆、茶社等多种类型。清茶馆只提供茶水，供人聊天休息；书茶馆有说书、评书表演；茶社兼有戏曲、曲艺表演。老舍茶馆是北京最著名的茶馆，以纪念老舍先生而得名，可以品茶、听相声、看京剧，体验老北京的慢生活节奏。茶馆文化体现了北京人的生活态度和文化品位。</p>
+            </div>
+            <div class="culture-item">
+                <h4>皇城根儿 🏯</h4>
+                <p>环绕故宫的城墙遗址，见证历史变迁，如今是市民休闲空间。皇城根儿指故宫周围的地区，是明清时期皇城所在地。皇城是明清两代的皇宫禁地，普通百姓不得入内。皇城城墙高6米，周长18里，设有天安门、地安门、东安门、西安门四座城门。辛亥革命后，皇城逐渐开放，城墙大部分被拆除，仅存少量遗迹。现在的皇城根儿公园是在皇城城墙遗址上建设的，是市民休闲娱乐的好去处，可以在这里散步、健身、聊天，感受历史与现代的交融。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">地标景点 · 游览</h2>
+        <p class="section-subtitle">从古都风韵到现代繁华，北京处处是风景</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">必游核心地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>天安门广场</h4>
+                        <span class="highlight">核心亮点：世界最大城市广场，升旗仪式</span>
+                        <p>天安门广场位于北京城市中心，南北长880米，东西宽500米，面积44万平方米，可容纳100万人举行集会，是世界上最大的城市广场。广场北有天安门城楼，南有人民英雄纪念碑和毛主席纪念堂，西有人民大会堂，东有中国国家博物馆。天安门是中华人民共和国的象征，1949年10月1日毛泽东主席在天安门城楼上宣布中华人民共和国成立。清晨观看升旗仪式是游客必做之事，国旗升降时间与日出日落同步，场面庄严壮观。夜晚华灯初上，天安门广场别有一番韵味，是摄影爱好者的天堂。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏰</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>故宫博物院</h4>
+                        <span class="highlight">核心亮点：世界最大古建筑群，180万件文物</span>
+                        <p>故宫又称紫禁城，是明清两代皇宫，从明永乐四年（1406年）开始建设，历时14年建成，历经24位皇帝。故宫占地72万平方米，建筑面积15万平方米，有房屋9,000余间。穿行在红墙黄瓦之间，感受六百年皇家气派。推荐游览路线：午门→太和殿→中和殿→保和殿→乾清宫→交泰殿→坤宁宫→御花园→神武门。珍宝馆和钟表馆值得一游，其中金瓯永固杯、乾隆皇帝的田黄三链章、各种精美钟表等都是稀世珍宝。故宫四季景色各异，春天海棠花盛开，秋天银杏金黄，冬天下雪时紫禁城更是美不胜收。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>八达岭长城</h4>
+                        <span class="highlight">核心亮点：不到长城非好汉，壮观城墙</span>
+                        <p>八达岭长城是明长城的精华段落，位于延庆区，距离市区60多公里，海拔1,015米，地势险要，建筑雄伟。八达岭长城建于明弘治十八年（1505年），是万里长城向游客开放最早的地段，1953年就设立了接待站。这里的城墙高大坚固，平均高7.8米，底宽6.5米，顶宽5.8米，可容五马并骑、十人并行。烽火台相隔500米，用于传递军情。登长城有两条路线，南坡较平缓，北坡较陡峭，但风景更美。登到北八楼，是八达岭长城的最高点，可以俯瞰群山连绵，长城如巨龙般蜿蜒起伏，壮观景象令人震撼。毛主席题词"不到长城非好汉"的石碑就在北四楼处。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🌸</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>颐和园</h4>
+                        <span class="highlight">核心亮点：皇家园林，昆明湖，十七孔桥</span>
+                        <p>颐和园是中国现存规模最大、保存最完整的皇家园林，位于海淀区，距市区约15公里，占地290万平方米。颐和园以昆明湖、万寿山为基址，汲取江南园林的设计手法而建成，是中国古典园林艺术的巅峰之作。漫步728米长的长廊，欣赏梁上绘制的14,000余幅彩画，仿佛穿越时空。泛舟昆明湖上，远望万寿山，佛香阁金碧辉煌，十七孔桥如长虹卧波。春夏秋冬四季皆有不同韵味，春天山桃花开，夏天荷花满池，秋天金黄满园，冬天雪景如画，是休闲游览绝佳去处。园内还有苏州街、乐寿堂、谐趣园等景点，值得细细品味。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🔮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>天坛公园</h4>
+                        <span class="highlight">核心亮点：祈年殿，回音壁，圜丘坛</span>
+                        <p>天坛是明清两代皇帝祭天祈谷的场所，始建于明永乐十八年（1420年），占地273万平方米，是故宫面积的四倍。主要建筑有祈年殿、皇穹宇、圜丘坛、回音壁等。祈年殿高38米，直径32米，三重蓝色琉璃瓦圆顶，象征天，殿内28根金丝楠木柱分别代表28星宿。回音壁是皇穹宇的圆形围墙，直径65米，一人说话，另一人贴墙可听到，是古代声学奇迹。三音石是皇穹宇门前的石板，站在这里拍手可听到三次回音。天坛的建筑布局蕴含"天圆地方"理念，体现了古代哲学思想。如今这里成为市民晨练的场所，打太极拳、跳舞、放风筝的人们让这里充满生活气息。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>什刹海</h4>
+                        <span class="highlight">核心亮点：胡同游，酒吧街，荷花市场</span>
+                        <p>什刹海是北京内城唯一一处开阔水面，由前海、后海、西海三个湖泊组成，位于西城区，面积34公顷。什刹海周边胡同纵横，保留着老北京的市井生活气息。白天可以逛胡同，坐三轮车听导游讲解老北京故事，参观恭王府、宋庆龄故居、郭沫若纪念馆等名人故居。夜晚什刹海灯火璀璨，酒吧街热闹非凡，可以品酒赏月，感受北京的夜生活。荷花市场是什刹海的标志性景观，每到夏天荷花盛开，亭亭玉立，是拍照打卡的好地方。烟袋斜街是什刹海附近的一条古街，保存着明清时期的建筑风格，有很多特色小店和美食。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代网红地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🦅</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>国家体育场（鸟巢）</h4>
+                        <span class="highlight">核心亮点：2008奥运主场馆，独特建筑结构</span>
+                        <p>鸟巢是2008年北京奥运会主体育场，位于奥林匹克公园中心区，建筑面积25.8万平方米，可容纳观众9.1万人。设计灵感来自"鸟巢"，采用钢结构编织成巢状，总用钢量4.2万吨，是世界上最大的钢结构建筑。鸟巢的设计体现了中国传统文化与现代科技的完美融合，其不规则钢结构既美观又实用，被誉为21世纪的建筑奇迹。2008年8月8日，北京奥运会开幕式在鸟巢隆重举行，震惊世界。夜晚的鸟巢灯光变幻，红黄蓝绿各色灯光交替，如梦似幻，是现代北京的标志性建筑。2015年7月31日，北京获得2022年冬奥会举办权的决定也是在鸟巢宣布的。鸟巢不仅是体育场馆，也是举办演唱会、大型活动的重要场所。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">💧</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>国家游泳中心（水立方）</h4>
+                        <span class="highlight">核心亮点：梦幻蓝色，2022冰壶场馆</span>
+                        <p>水立方是2008年北京奥运会游泳馆，位于鸟巢旁边，建筑面积6.5万平方米，可容纳观众1.7万人。外墙由数千个蓝色气垫组成，如水分子般晶莹剔透，在阳光下闪闪发光，如梦似幻。水立方的创意来自肥皂泡的六边形结构，体现了"水"的主题，是现代建筑美学的典范。2008年北京奥运会期间，水立方举办了游泳、跳水、花样游泳比赛，产生42枚金牌。2022年北京冬奥会期间，水立方被改造为"冰立方"，举办冰壶比赛，实现了"冰水转换"，成为世界上首个既举办过夏季奥运会又举办过冬季奥运会的"双奥场馆"。夜晚的水立方蓝色灯光璀璨，如同一颗蓝色的宝石镶嵌在奥林匹克公园。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">✈️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>大兴国际机场</h4>
+                        <span class="highlight">核心亮点：世界最大单体航站楼，凤凰展翅</span>
+                        <p>大兴国际机场位于北京市大兴区，距离天安门46公里，2019年9月25日正式投运，是中国最大的国际机场之一。大兴机场航站楼建筑面积70万平方米，由英国建筑师扎哈·哈迪德设计，造型如同一只展翅欲飞的金凤凰，气势恢宏。航站楼内部设计融合了传统文化元素，如C型柱造型灵感来自中国古代建筑中的柱子，室内采光顶如星空般璀璨。大兴机场是世界首个实现高铁、地铁、城铁等多种交通方式"零换乘"的机场，旅客从航站楼中心步行到最远登机口只需8分钟。大兴机场被誉为"新世界七大奇迹"之一，是现代建筑的杰作，也是中国基础设施建设能力的体现。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🛍️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>三里屯太古里</h4>
+                        <span class="highlight">核心亮点：时尚购物，国际品牌，夜生活</span>
+                        <p>三里屯太古里是北京时尚地标，位于朝阳区三里屯，是一座开放式购物街区，建筑面积17万平方米。太古里汇聚了Armani、Gucci、Louis Vuitton等众多国际顶级品牌，是时尚人士购物打卡的首选之地。建筑风格融合了传统胡同和现代都市元素，低密度、开放式的设计让人逛起来轻松惬意。夜晚的三里屯灯火璀璨，酒吧、餐厅、夜店热闹非凡，是北京夜生活的核心区域。三里屯太古里经常举办时尚活动、明星见面会、艺术展览等，吸引了众多年轻人和时尚达人。这里不仅是购物场所，更是北京潮流文化的发源地和传播地。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🎨</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>798艺术区</h4>
+                        <span class="highlight">核心亮点：工业风，当代艺术，文创市集</span>
+                        <p>798艺术区位于朝阳区大山子，由原798厂等老工厂改造而成，占地面积约60万平方米。这里曾经是电子工业厂区，保留了大量包豪斯风格的厂房建筑，红砖、钢结构、高挑的空间为艺术创作提供了独特环境。2002年开始，艺术家陆续进驻，举办展览、创作作品，逐渐发展成为中国当代艺术的重要聚集地。如今的798艺术区聚集了上百家画廊、艺术机构、设计公司、时尚店铺、咖啡馆等，红砖厂房与现代艺术碰撞，产生独特的艺术氛围。798艺术区经常举办大型艺术展览、艺术市集、创意活动，是艺术爱好者和文艺青年的打卡圣地。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌊</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>SOLANA蓝色港湾</h4>
+                        <span class="highlight">核心亮点：欧式风情，湖畔购物，灯光节</span>
+                        <p>蓝色港湾位于朝阳区朝阳公园旁，是一座开放式购物中心，建筑面积15万平方米。建筑采用欧式风格，色彩明快，线条柔和，营造出异国情调。蓝色港湾紧邻朝阳公园，湖光山色，环境优美，是购物休闲的好去处。商场内有200多家品牌店铺，涵盖服装、餐饮、娱乐等多种业态，可以一站式满足购物需求。蓝色港湾每年举办灯光节，各式各样的灯饰璀璨夺目，如梦如幻，是拍照打卡的热门地点。夜晚的蓝色港湾灯火辉煌，湖面倒影如镜，与朝阳公园的夜景交相辉映，是北京最美的夜景之一。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>北京 · 欢迎您</h3>
+        <p>千年古都，现代华章 | 历史与未来的交汇点</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 北京城市展示页面</p>
+    </footer>
+</body>
+</html>

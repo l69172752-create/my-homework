@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浙江 - 水乡诗画 丝绸之府</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-lake: #4A90E2;
+            --primary-green: #2E8B57;
+            --primary-gold: #D4AF37;
+            --bg-cream: #F8F4E8;
+            --text-dark: #2C3E50;
+            --text-gray: #5C6B7F;
+            --silk-white: #F5F5DC;
+            --jade-green: #50C878;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, #1a237e 0%, #0D47A1 50%, #01579B 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 50 Q25 30 50 50 T100 50" fill="none" stroke="%234A90E220" stroke-width="2"/><path d="M0 60 Q25 40 50 60 T100 60" fill="none" stroke="%232E8B5720" stroke-width="1.5"/></svg>');
+            background-size: 150px;
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.1);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: white;
+        }
+
+        .section-alt {
+            background: var(--bg-cream);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-lake);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: linear-gradient(135deg, var(--silk-white), white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-lake);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .city-card-item h3 {
+            color: var(--primary-lake);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-lake), var(--primary-green));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-lake);
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-lake);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-lake);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--primary-lake);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, white, var(--bg-cream));
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-lake);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-lake);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #FF8A65, #FF5722);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-taste {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), transparent);
+            margin: 4rem 0;
+        }
+
+        /* 网红动物特色板块 */
+        .animal-match {
+            background: linear-gradient(135deg, #E8F4F8 0%, #D1E8E2 50%, #E8F4F8 100%);
+            padding: 3rem 10%;
+        }
+
+        .animal-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(46, 139, 87, 0.15);
+            border: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animal-card::before {
+            content: '🦊';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .animal-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .animal-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-main-emoji {
+            font-size: 4rem;
+        }
+
+        .animal-main-title {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin: 0;
+        }
+
+        .animal-badge {
+            background: linear-gradient(135deg, var(--primary-lake), var(--primary-green));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .animal-description {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+
+        .animal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .animal-feature-item {
+            background: #F0FDF4;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .animal-feature-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-feature-title {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .animal-feature-desc {
+            font-size: 0.9rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-title-row {
+                flex-direction: column;
+            }
+
+            .animal-main-emoji {
+                font-size: 3rem;
+            }
+
+            .animal-main-title {
+                font-size: 2rem;
+            }
+
+            .animal-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🌊 浙江</a>
+        <div class="nav-links">
+            <a href="#overview">水乡概览</a>
+            <a href="#history">吴越文化</a>
+            <a href="#landmarks">山水画廊</a>
+            <a href="#food">浙菜美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="animal-match" style="margin-top: 70px;">
+        <div class="animal-card">
+            <div class="animal-card-content">
+                <div class="animal-title-row">
+                    <span class="animal-main-emoji">🦊</span>
+                    <h2 class="animal-main-title">浙江 —— 狐狸</h2>
+                </div>
+
+                <div class="animal-badge">
+                    🌟 灵山魅影 · 狐仙传世
+                </div>
+
+                <p class="animal-description">
+                    杭州动物园、杭州野生动物世界均有赤狐展区，搭配西湖狐仙传说，文化与现实双契合。狐狸灵动聪慧的形象与江南水乡的灵秀之气相映成趣。
+                </p>
+
+                <div class="animal-features">
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🌊</span>
+                        <span class="animal-feature-title">西湖狐仙</span>
+                        <p class="animal-feature-desc">千年传说浪漫唯美</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">🏞️</span>
+                        <span class="animal-feature-title">赤狐展区</span>
+                        <p class="animal-feature-desc">动物园人气明星</p>
+                    </div>
+
+                    <div class="animal-feature-item">
+                        <span class="animal-feature-emoji">✨</span>
+                        <span class="animal-feature-title">灵秀之气</span>
+                        <p class="animal-feature-desc">灵动聪慧的气质</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>浙江</h1>
+        <p class="subtitle">水乡诗画 · 丝绸之府</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                浙江，位于中国东南沿海，素有"鱼米之乡、丝绸之府"的美誉。
+                从西湖的淡妆浓抹，到乌镇的小桥流水；
+                从普陀山的佛国净土，到雁荡山的奇峰异石；
+                从绍兴的鲁迅故里，到温州的民营经济。
+                这里有江南水乡的温婉，有海洋经济的活力，
+                有文人墨客的诗情，有商贾巨富的智慧。
+                浙江是诗画江南，是经济大省，是中国改革开放的先行地。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">水乡概览</h2>
+        <p class="section-subtitle">走进浙江，感受江南水乡的温婉与活力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>省情定位</h3>
+                <p>中国东南沿海省份，是长江三角洲南翼，被誉为"鱼米之乡、丝绸之府"。浙江是经济大省、文化大省、旅游大省，民营经济发达，数字经济领先。浙江是中国改革开放的先行地区，是共同富裕示范区，是"两山理论"（绿水青山就是金山银山）的诞生地和践行地。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国东南沿海，东临东海，北接上海、江苏，西邻安徽、江西，南接福建。面积10.55万平方公里，常住人口6,540万。省会杭州，下辖杭州、宁波、温州、嘉兴、湖州、绍兴、金华、衢州、舟山、台州、丽水11个地级市。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">鱼米之乡</span>
+                    <span class="tag">丝绸之府</span>
+                    <span class="tag">江南水乡</span>
+                    <span class="tag">民营经济</span>
+                    <span class="tag">数字浙江</span>
+                    <span class="tag">诗画浙江</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    浙江拥有西湖、普陀山、雁荡山等著名景点，是乌镇、西塘、南浔等水乡古镇的所在地。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形以山地、丘陵为主，有"七山一水两分田"之说。气候属亚热带季风气候，四季分明，年平均气温15-18℃。浙江雨量充沛，年平均降水量1000-2000毫米，有"梅雨"和"台风"等气候特点。春季温暖多雨，夏季炎热，秋季凉爽，冬季温和。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">吴越文化 · 底蕴</h2>
+        <p class="section-subtitle">吴越大地三千年，文人墨客传诗篇</p>
+
+        <h3 style="color: var(--primary-lake); margin: 2rem 0 1.5rem; font-size: 1.5rem;">历史沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>先秦 · 吴越时期（约公元前5世纪-前222年）</h4>
+                <p>浙江是吴越文化发源地，春秋时期属越国。越王勾践"卧薪尝胆"的故事就发生在浙江绍兴。吴越文化以刚柔并济为特点，既有吴文化的细腻温婉，又有越文化的坚韧不拔。春秋战国时期，浙江是重要的政治、经济、文化中心。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦汉 · 会稽郡时期（前222年-220年）</h4>
+                <p>秦统一后，设会稽郡，治所设在今绍兴。汉代浙江地区经济文化发展，出现了王羲之、谢安等文人名士。魏晋南北朝时期，浙江成为南方文化中心之一，"兰亭集序"就诞生在绍兴。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 两浙时期（618年-1279年）</h4>
+                <p>唐代设两浙道，宋代设两浙路。唐宋时期，浙江经济文化达到高峰，杭州成为重要城市。白居易、苏轼等诗人都在杭州留下诗篇，"上有天堂，下有苏杭"的美誉从此流传。宋代浙江经济发达，手工业繁荣，丝绸、瓷器等远销海外。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>元明 · 行省时期（1271年-1644年）</h4>
+                <p>元代设江浙行省，明代设浙江承宣布政使司，浙江正式成为省级行政区。明代浙江经济文化进一步发展，杭州、宁波成为重要港口。明代浙江出现了王阳明、黄宗羲等思想家，浙东学派对后世影响深远。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>清代 · 繁荣发展（1644年-1911年）</h4>
+                <p>清代浙江经济文化繁荣，杭州、宁波、绍兴等城市商业发达。清代浙江出现了龚自珍、俞樾等文人，绍兴师爷、宁波商帮、龙游商帮等商帮兴起。清代后期，宁波开埠通商，浙江开始近代化进程。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 改革开放（1949年至今）</h4>
+                <p>1949年浙江解放，开始了新的发展历程。改革开放后，浙江民营经济蓬勃发展，温州模式、义乌市场闻名全国。近年来，浙江大力发展数字经济，阿里巴巴等企业崛起，杭州成为"电商之都"。浙江是共同富裕示范区，经济社会发展走在全国前列。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-lake); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">文化遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏯</span>
+                    <span class="heritage-header-text">西湖文化景观</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>杭州西湖</h4>
+                    <p>位于杭州市区，是中国最著名的湖泊之一，素有"天堂"美誉。西湖由苏堤、白堤、杨公堤分隔，有"西湖十景"：苏堤春晓、曲院风荷、平湖秋月、断桥残雪、柳浪闻莺、花港观鱼、雷峰夕照、双峰插云、南屏晚钟、三潭印月。苏轼有诗云"欲把西湖比西子，淡妆浓抹总相宜"。2011年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">2011年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🎋</span>
+                    <span class="heritage-header-text">大运河（浙江段）</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>京杭大运河</h4>
+                    <p>京杭大运河是世界最长的古代运河，浙江段是重要组成部分。运河在浙江境内流经杭州、嘉兴、湖州等市，是古代漕运的重要通道。运河两岸有许多古镇，如乌镇、西塘、南浔等，保存着完好的明清建筑。大运河浙江段是浙江水乡文化的重要载体。2014年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">2014年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏔️</span>
+                    <span class="heritage-header-text">江郎山</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>江郎山丹霞</h4>
+                    <p>位于衢州市江山市，是中国丹霞世界遗产的重要组成部分。江郎山有三座巨石峰，呈"川"字形排列，最高峰海拔816.8米。江郎山的丹霞地貌发育完全，岩壁陡峭，气势磅礴，被誉为"神州丹霞第一峰"。江郎山是"中国丹霞"世界遗产的六个组成部分之一。2010年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">2010年列入</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">山水画廊</h2>
+        <p class="section-subtitle">从西湖十景到水乡古镇，浙江处处是风景</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">水乡古镇</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌉</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>乌镇</h4>
+                        <span class="highlight">核心亮点：江南水乡，互联网大会，夜景璀璨</span>
+                        <p>乌镇位于嘉兴市桐乡市，是江南六大古镇之一，有"中国最后的枕水人家"之称。乌镇有东栅、西栅两个景区，西栅更完整、更美丽。乌镇的建筑是典型的江南水乡风格，小桥流水，白墙黛瓦，诗情画意。乌镇是世界互联网大会的永久会址，古镇与现代科技完美融合。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏘️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>西塘</h4>
+                        <span class="highlight">核心亮点：烟雨长廊，水乡情怀，文艺胜地</span>
+                        <p>西塘位于嘉兴市嘉善县，是江南六大古镇之一。西塘最著名的是烟雨长廊，全长800多米，是江南水乡独有的建筑形式。西塘有"生活着的千年古镇"之称，原住民仍生活在古镇中，保持着传统的生活方式。西塘是影视作品的热门取景地，许多影视剧都在这里拍摄。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏛️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>南浔</h4>
+                        <span class="highlight">核心亮点：富商大宅，中西合璧，儒雅南浔</span>
+                        <p>南浔位于湖州市南浔区，是江南六大古镇中最富有的古镇。南浔在清代是江南最富庶的市镇之一，有"辑里丝"闻名天下。南浔的富商大宅众多，如小莲庄、嘉业堂藏书楼、张石铭旧宅等，建筑精美，中西合璧。南浔人崇尚儒雅，有"南浔贾而好儒"的说法。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">山水名胜</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌊</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>西湖</h4>
+                        <span class="highlight">核心亮点：世界遗产，西湖十景，苏堤白堤</span>
+                        <p>西湖位于杭州市区，是中国最著名的湖泊之一，有"天堂"美誉。西湖由苏堤、白堤、杨公堤分隔，湖中有三潭印月，湖边有雷峰塔、保俶塔等建筑。西湖四季景色各异，春天苏堤春晓，夏天曲院风荷，秋天平湖秋月，冬天断桥残雪。西湖是中国文化的象征，无数文人墨客在这里留下诗篇。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">⛰️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>普陀山</h4>
+                        <span class="highlight">核心亮点：佛教圣地，海天佛国，观音道场</span>
+                        <p>普陀山位于舟山市普陀区，是中国四大佛教名山之一，是观世音菩萨的道场，有"海天佛国"之称。普陀山有三大寺：普济寺、法雨寺、慧济寺，有33米高的南海观音铜像。普陀山风景秀丽，有"不肯去观音院"、"紫竹林"、"千步沙"等景点。普陀山是中国佛教文化的重要圣地。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>雁荡山</h4>
+                        <span class="highlight">核心亮点：东南第一山，奇峰异石，灵峰夜景</span>
+                        <p>雁荡山位于温州市乐清市，素有"东南第一山"之称，以奇峰、怪石、飞瀑、幽洞闻名。雁荡山分为北雁荡、中雁荡、南雁荡三部分，北雁荡山最著名。灵峰、灵岩、大龙湫是雁荡山三绝。雁荡山的夜景尤其迷人，灵峰夜景有"移步换景"的奇妙效果。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">⛰️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>千岛湖</h4>
+                        <span class="highlight">核心亮点：千岛风光，天下秀水，碧水青山</span>
+                        <p>千岛湖位于杭州市淳安县，是新安江水库建成后的湖泊，因湖中有1078个岛屿而得名。千岛湖湖水清澈，湖水面积573平方公里，有"天下第一秀水"之称。千岛湖有中心湖区、东南湖区、东北湖区等，可以乘船游览，欣赏湖光山色。千岛湖是杭州的重要水源地，水质优良。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代都市地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌃</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>钱江新城</h4>
+                        <span class="highlight">核心亮点：杭州CBD，灯光秀，钱江新城</span>
+                        <p>钱江新城位于杭州市钱塘江畔，是杭州的城市新中心，是杭州的CBD。钱江新城有杭州市民中心、杭州大剧院、杭州国际会议中心等标志性建筑。夜晚的钱江新城灯光璀璨，灯光秀吸引了众多游客。钱江新城代表了杭州现代化的一面，与西湖的古典形成了鲜明对比。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏬</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>阿里巴巴园区</h4>
+                        <span class="highlight">核心亮点：电商之都，阿里巴巴，数字经济</span>
+                        <p>阿里巴巴园区位于杭州市余杭区，是阿里巴巴集团的总部园区。园区内有淘宝城、阿里巴巴西溪园区等建筑。阿里巴巴是浙江数字经济的代表企业，杭州因为阿里巴巴而被称为"电商之都"。阿里巴巴园区展示了浙江民营经济和数字经济的活力。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🎬</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>横店影视城</h4>
+                        <span class="highlight">核心亮点：中国好莱坞，影视基地，横店</span>
+                        <p>横店影视城位于金华市东阳市，是中国最大的影视基地，被誉为"中国好莱坞"。横店影视城有秦王宫、清明上河图、广州街香港街等多个景区，可以体验不同的历史场景。横店影视城每年拍摄众多影视剧，许多明星都在这里工作过。游客可以在这里体验影视拍摄的过程，感受影视文化的魅力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">浙菜美食</h2>
+        <p class="section-subtitle">清淡鲜美，讲究本味，江南风味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">东坡肉</span>
+                    <span class="food-taste">口感：肥而不腻</span>
+                </div>
+                <div class="food-content">
+                    <p>浙菜名菜，相传为苏东坡所创。选用五花肉，用绍酒、酱油、冰糖等调料慢火炖制而成。东坡肉色泽红亮，肥而不腻，入口即化，是浙菜的代表菜之一。</p>
+                    <span class="food-tag">杭帮菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐟</span>
+                    <span class="food-name">西湖醋鱼</span>
+                    <span class="food-taste">口感：酸甜可口</span>
+                </div>
+                <div class="food-content">
+                    <p>杭州名菜，选用草鱼，配以醋、糖、姜等调料烹制而成。西湖醋鱼色泽红亮，鱼肉鲜嫩，酸甜可口，是杭州最著名的菜之一。相传是苏东坡在杭州任官时所创。</p>
+                    <span class="food-tag">杭帮菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🦐</span>
+                    <span class="food-name">龙井虾仁</span>
+                    <span class="food-taste">口感：清香淡雅</span>
+                </div>
+                <div class="food-content">
+                    <p>杭州名菜，选用西湖龙井茶和虾仁烹制而成。龙井虾仁色泽洁白，虾仁鲜嫩，茶香浓郁，体现了浙菜清淡的特点。龙井虾仁是杭州宴席上的经典菜。</p>
+                    <span class="food-tag">杭帮菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍖</span>
+                    <span class="food-name">金华火腿</span>
+                    <span class="food-taste">口感：咸香鲜美</span>
+                </div>
+                <div class="food-content">
+                    <p>金华特产，以精选后腿肉腌制而成，色泽鲜艳，红白分明，咸香鲜美。金华火腿是中国三大名腿之一，有"中华第一腿"之称。金华火腿可以蒸食、炒菜、做汤，用途广泛。</p>
+                    <span class="food-tag">金华特产</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">片儿川</span>
+                    <span class="food-taste">口感：汤汁鲜美</span>
+                </div>
+                <div class="food-content">
+                    <p>杭州传统面食，以雪菜、笋片、肉丝为浇头，面条筋道，汤汁鲜美。片儿川是杭州人早餐的首选，遍布杭州大街小巷。片儿川体现了杭州人对食材的讲究，雪菜要新鲜，笋片要嫩，肉丝要鲜。</p>
+                    <span class="food-tag">杭州小吃</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥟</span>
+                    <span class="food-name">小笼包</span>
+                    <span class="food-taste">口感：皮薄汁多</span>
+                </div>
+                <div class="food-content">
+                    <p>江南传统小吃，以皮薄、汁多、味美著称。浙江的小笼包以杭州小笼包、宁波小笼包最为著名，杭州小笼包汤汁丰富，宁波小笼包皮薄如纸。小笼包是江南人早餐的首选，配上一碗馄饨，是完美的早餐组合。</p>
+                    <span class="food-tag">江南小吃</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>浙江 · 欢迎您</h3>
+        <p>水乡诗画，丝绸之府 | 江南韵味，现代活力</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 浙江省城市展示页面</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四川 - 天府之国 巴蜀大地</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2D5F3F;
+            --primary-gold: #D4AF37;
+            --dark-green: #1B3D2A;
+            --light-gold: #F4E4BC;
+            --bg-cream: #FFF8F0;
+            --text-dark: #2C1810;
+            --text-gray: #5C4A3D;
+            --panda-black: #2C2C2C;
+            --bamboo-green: #5B8A3B;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light-gold);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        /* 首页英雄区域 */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 50%, var(--bamboo-green) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L55 40 L85 40 L60 60 L70 90 L50 70 L30 90 L40 60 L15 40 L45 40 Z" fill="%23D4AF3733"/></svg>');
+            background-size: 150px;
+            opacity: 0.2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-description {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.1);
+            border: 3px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 2rem;
+            color: var(--light-gold);
+            position: relative;
+            z-index: 1;
+            margin-top: 2rem;
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 5rem 10%;
+            background: white;
+        }
+
+        .section-alt {
+            background: var(--bg-cream);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 城市名片板块 */
+        .city-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .city-card-item {
+            background: linear-gradient(135deg, var(--bg-cream), white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-green);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .city-card-item h3 {
+            color: var(--primary-green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .city-card-item h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+        }
+
+        .city-card-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 历史文化板块 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-green), var(--primary-gold));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-green);
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+        }
+
+        /* 世界遗产网格 */
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .heritage-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: scale(1.02);
+        }
+
+        .heritage-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heritage-header-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        .heritage-header-text {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .heritage-content {
+            padding: 1.5rem;
+        }
+
+        .heritage-content h4 {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .heritage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .heritage-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--dark-green);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* 非遗文化 */
+        .heritage-culture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .culture-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--light-gold);
+            text-align: center;
+        }
+
+        .culture-item h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .culture-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* 地标景点板块 */
+        .landmarks-section {
+            background: linear-gradient(to bottom, white, var(--bg-cream));
+        }
+
+        .landmark-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .landmark-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .landmark-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .landmark-header {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .landmark-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .landmark-badge {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .landmark-content {
+            padding: 1.5rem;
+        }
+
+        .landmark-content h4 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landmark-content .highlight {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .landmark-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 美食板块 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .food-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .food-name {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .food-spicy {
+            color: var(--light-gold);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .food-content {
+            padding: 1.5rem;
+        }
+
+        .food-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+            color: var(--light-gold);
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.1rem;
+            }
+
+            .landmark-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .city-card {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 装饰元素 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-gold), transparent);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">🐼 四川</a>
+        <div class="nav-links">
+            <a href="#overview">天府概览</a>
+            <a href="#history">巴蜀文化</a>
+            <a href="#landmarks">地标景点</a>
+            <a href="#food">川味美食</a>
+        </div>
+    </nav>
+
+    <!-- 网红动物特色板块 -->
+    <section class="section" style="background: linear-gradient(135deg, #FFF8F0 0%, #FFE4B5 50%, #FFF8F0 100%); padding: 3rem 10%; margin-top: 70px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(45, 95, 63, 0.15); border: 3px solid var(--primary-gold); position: relative; overflow: hidden;">
+                <!-- 装饰背景 -->
+                <div style="position: absolute; top: -20px; right: -20px; font-size: 150px; opacity: 0.05; z-index: 0;">🐒</div>
+
+                <div style="position: relative; z-index: 1;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <span style="font-size: 4rem;">🐒</span>
+                        <h2 style="font-size: 3rem; color: var(--primary-green); margin: 0;">四川 —— 猴子</h2>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, var(--primary-green), var(--dark-green)); color: white; padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1.5rem; font-weight: bold;">
+                        🌟 峨眉山野生猕猴 · 四川最出圈的"网红动物"
+                    </div>
+
+                    <p style="font-size: 1.15rem; line-height: 2; color: var(--text-dark); margin-bottom: 1.5rem;">
+                        峨眉山野生猕猴是四川最出圈的"网红动物"，抢包、拦路、与人互动的名场面常年霸占热搜，"峨眉山泼猴"已成全国皆知的网络热梗。成都熊猫基地虽火，但猴子更具四川山野特色。
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                        <div style="background: var(--bg-cream); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--light-gold);">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🎒</span>
+                            <span style="color: var(--primary-green); font-weight: bold; font-size: 1.1rem;">抢包达人</span>
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">游客背包常遭"光顾"</p>
+                        </div>
+
+                        <div style="background: var(--bg-cream); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--light-gold);">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🚧</span>
+                            <span style="color: var(--primary-green); font-weight: bold; font-size: 1.1rem;">拦路大王</span>
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">此山是我开，留下买路财</p>
+                        </div>
+
+                        <div style="background: var(--bg-cream); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--light-gold);">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🔥</span>
+                            <span style="color: var(--primary-green); font-weight: bold; font-size: 1.1rem;">热搜常客</span>
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">名场面常年霸榜</p>
+                        </div>
+
+                        <div style="background: var(--bg-cream); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--light-gold);">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🏔️</span>
+                            <span style="color: var(--primary-green); font-weight: bold; font-size: 1.1rem;">峨眉山主人</span>
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">真正的山野原住民</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--primary-gold); border-radius: 5px;">
+                        <p style="margin: 0; color: var(--text-gray); font-style: italic;">
+                            💡 游览提示：峨眉山野生猕猴虽然可爱，但请保持安全距离，不要喂食，保管好随身物品。它们是峨眉山的"主人"，我们只是过客。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 首页英雄区域 -->
+    <section class="hero" id="home">
+        <h1>四川</h1>
+        <p class="subtitle">天府之国 · 巴蜀大地</p>
+        <div class="hero-description">
+            <p style="font-size: 1.3rem; line-height: 1.9;">
+                四川，位于中国西南腹地，素有"天府之国"的美誉。
+                从古蜀文明的神秘三星堆，到国宝大熊猫的憨态可掬；
+                从麻辣鲜香的川菜美食，到九寨沟的童话仙境。
+                这里山川秀丽，人文荟萃，既有青城山的幽静，又有乐山大佛的庄严；
+                既有宽窄巷子的市井烟火，又有春熙路的时尚繁华。
+                四川是中国西部最具魅力的省份之一，等你来探索这片神奇的土地。
+            </p>
+        </div>
+    </section>
+
+    <!-- 城市概览板块 -->
+    <section class="section section-alt" id="overview">
+        <h2 class="section-title">天府概览</h2>
+        <p class="section-subtitle">走进四川，感受天府之国的独特魅力</p>
+
+        <div class="city-card">
+            <div class="city-card-item">
+                <h3>省情定位</h3>
+                <p>中国西部人口大省、经济大省，地处长江上游，素有"天府之国"美誉。省会成都，是中国西部的中心城市，成渝地区双城经济圈的核心。四川拥有丰富的自然资源和深厚的历史文化底蕴，是巴蜀文化的发祥地。这里是中国大熊猫的主要栖息地，被誉为"熊猫故乡"，也是全国重要的旅游目的地。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>基础信息</h3>
+                <p>位于中国西南腹地，东邻重庆，南接云南、贵州，西连西藏，北接陕西、甘肃、青海。面积48.6万平方公里，常住人口8,372万，下辖21个市（州），包括成都市、绵阳市、自贡市、攀枝花市、泸州市、德阳市、广元市、遂宁市、内江市、乐山市、南充市、眉山市、宜宾市、广安市、达州市、雅安市、巴中市、资阳市、阿坝州、甘孜州、凉山州。</p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>核心标签</h3>
+                <div class="tags">
+                    <span class="tag">天府之国</span>
+                    <span class="tag">熊猫故乡</span>
+                    <span class="tag">麻辣美食</span>
+                    <span class="tag">巴蜀文化</span>
+                    <span class="tag">西部枢纽</span>
+                    <span class="tag">旅游胜地</span>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-gray);">
+                    四川拥有5处世界遗产，其中九寨沟、黄龙以"童话世界"闻名天下；大熊猫是四川最具代表性的名片，憨态可掬的熊猫形象深入人心。
+                </p>
+            </div>
+
+            <div class="city-card-item">
+                <h3>地理气候</h3>
+                <p>地形复杂多样，川西高原、四川盆地、川东丘陵构成主要地貌。气候差异显著，东部盆地属亚热带湿润季风气候，四季分明，年平均气温14℃-19℃；西部高原属高山高原气候，垂直变化明显。盆地夏季炎热多雨，冬季温和少雨；川西高原夏季凉爽，冬季严寒。四川年平均降水量600-1200毫米，盆地西部是著名的"华西雨屏"。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史文化板块 -->
+    <section class="section" id="history">
+        <h2 class="section-title">巴蜀文化 · 底蕴</h2>
+        <p class="section-subtitle">古蜀文明三千年，巴蜀文化源远流长</p>
+
+        <h3 style="color: var(--primary-green); margin: 2rem 0 1.5rem; font-size: 1.5rem;">文明沿革</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>古蜀文明 · 三星堆时期（公元前1600年-前1046年）</h4>
+                <p>四川盆地孕育了灿烂的古蜀文明，三星堆遗址出土了大量精美青铜器，包括青铜立人像、青铜神树、金面具等，展现了古蜀人高超的铸造技术和独特的艺术风格。古蜀文字至今尚未破解，为这个神秘文明增添了更多神秘色彩。金沙遗址的发现，进一步印证了古蜀文明的辉煌。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>巴国 · 巴人文化（公元前11世纪-前316年）</h4>
+                <p>巴国主要分布在重庆及川东地区，巴人骁勇善战，性格豪爽。巴人创造了独特的巴文化，巴渝舞、巴人舞蹈是重要的艺术形式。巴蜀文化交融，形成了独具特色的巴蜀文化体系。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>秦汉 · 巴蜀一统（前316年-220年）</h4>
+                <p>秦惠文王灭巴蜀，设巴郡和蜀郡，四川地区纳入中央王朝管辖。李冰父子修建都江堰，造就了"天府之国"的富庶。汉代四川经济繁荣，文化发达，出现了司马相如、扬雄等著名文学家，蜀锦、蜀漆闻名天下。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>三国 · 蜀汉政权（221年-263年）</h4>
+                <p>刘备在成都建立蜀汉政权，诸葛亮辅佐刘禅，形成三国鼎立之势。蜀汉政权以成都为中心，推行"隆中对"战略，虽偏安一隅，但文治武功皆有建树。武侯祠是纪念诸葛亮的祠庙，是成都著名景点。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>唐宋 · 文明高峰（618年-1279年）</h4>
+                <p>唐代四川称剑南道，杜甫、李白等诗人曾在此留下大量诗篇，"锦城丝管日纷纷，半入江风半入云"描写成都繁华景象。宋代四川经济文化达到高峰，交子（世界上最早的纸币）在成都诞生。苏轼、苏洵、苏辙"三苏"是宋代文学的代表。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>现代 · 发展腾飞（1949年至今）</h4>
+                <p>新中国成立后，四川经历了多次区划调整，现辖21个市（州）。改革开放后，四川经济快速发展，成都是中国西部最具活力的城市之一。2008年汶川地震，四川人民坚韧不拔，重建家园，展现了伟大的抗震救灾精神。如今四川正加快建设中国西部经济高地，奋力谱写中国式现代化四川篇章。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-green); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">五处世界遗产</h3>
+        <div class="heritage-grid">
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🌈</span>
+                    <span class="heritage-header-text">九寨沟</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>九寨沟风景名胜区</h4>
+                    <p>位于阿坝州九寨沟县，因九个藏族村寨而得名，有"童话世界"之美誉。以翠海、叠瀑、彩林、雪峰、藏情、蓝冰"六绝"著称于世，水色斑斓，湖水清澈见底。主要景点有长海、五花海、珍珠滩瀑布、诺日朗瀑布等。九寨沟的美景因四季而异，春日山花烂漫，夏日翠绿欲滴，秋日层林尽染，冬日冰清玉洁。1992年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">1992年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">💎</span>
+                    <span class="heritage-header-text">黄龙</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>黄龙风景名胜区</h4>
+                    <p>位于阿坝州松潘县，以彩池、雪山、峡谷、森林"四绝"著称，有"人间瑶池"之称。黄龙沟长约3.6公里，沟内遍布钙华彩池，层次分明，色彩绚丽。主要景点有迎宾池、飞瀑流辉、洗身洞、盆景池等。五彩池海拔最高，是最具代表性的景点，池水随光线变化呈现不同色彩。1992年被列入世界自然遗产。</p>
+                    <span class="heritage-badge">1992年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🐼</span>
+                    <span class="heritage-header-text">大熊猫</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>四川大熊猫栖息地</h4>
+                    <p>涵盖成都、阿坝、雅安、甘孜等地的多个自然保护区，是全球最大的大熊猫栖息地。包括卧龙、四姑娘山、夹金山等区域，总面积超过9000平方公里。这里是野生大熊猫的主要家园，栖息着全球约30%的野生大熊猫。2006年被列入世界自然遗产，是中国生物多样性保护的重要成果。</p>
+                    <span class="heritage-badge">2006年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">⛰️</span>
+                    <span class="heritage-header-text">峨眉山</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>峨眉山风景名胜区</h4>
+                    <p>位于乐山市峨眉山市，是中国四大佛教名山之一，主峰金顶海拔3079米。峨眉山素有"峨眉天下秀"之美誉，山势雄伟，景色秀丽。山上寺庙众多，报国寺、万年寺、清音阁、金殿等都是重要景点。金顶云海、佛光、圣灯是峨眉山三大奇观。山中有2000多种植物，3000多种动物，是天然的自然博物馆。1996年被列入世界文化与自然双重遗产。</p>
+                    <span class="heritage-badge">1996年列入</span>
+                </div>
+            </div>
+
+            <div class="heritage-card">
+                <div class="heritage-header">
+                    <span class="heritage-header-icon">🏛️</span>
+                    <span class="heritage-header-text">青城山-都江堰</span>
+                </div>
+                <div class="heritage-content">
+                    <h4>青城山与都江堰</h4>
+                    <p>青城山位于都江堰市，是中国道教发祥地之一，以"青城天下幽"著称。全山宫观林立，有建福宫、天师洞、上清宫等重要道观。都江堰是秦代李冰父子修建的大型水利工程，已有2200多年历史，至今仍在发挥作用，造就了"天府之国"。鱼嘴分水堤、飞沙堰溢洪道、宝瓶口引水口构成了都江堰的三大主体工程。2000年被列入世界文化遗产。</p>
+                    <span class="heritage-badge">2000年列入</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 style="color: var(--primary-green); margin: 2rem 0 1.5rem; font-size: 1.5rem; text-align: center;">非物质文化遗产</h3>
+        <div class="heritage-culture">
+            <div class="culture-item">
+                <h4>川剧</h4>
+                <p>四川传统戏曲艺术，以变脸、吐火等绝活著称，唱腔高亢激越，表演生动传神。</p>
+            </div>
+            <div class="culture-item">
+                <h4>蜀锦</h4>
+                <p>中国四大名锦之一，历史悠久，色彩艳丽，图案精美，被誉为"东方艺术瑰宝"。</p>
+            </div>
+            <div class="culture-item">
+                <h4>蜀绣</h4>
+                <p>与蜀锦并称"蜀中二宝"，针法细腻，色彩明快，是中国四大名绣之一。</p>
+            </div>
+            <div class="culture-item">
+                <h4>竹编</h4>
+                <p>四川传统手工艺，青神竹编最为著名，产品包括竹篮、竹席、竹扇等。</p>
+            </div>
+            <div class="culture-item">
+                <h4>皮影戏</h4>
+                <p>民间传统艺术，成都皮影戏历史悠久，制作精美，表演生动有趣。</p>
+            </div>
+            <div class="culture-item">
+                <h4>茶馆文化</h4>
+                <p>四川人爱喝茶，茶馆遍布城乡，盖碗茶是标配，是社交休闲的重要场所。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地标景点板块 -->
+    <section class="section landmarks-section" id="landmarks">
+        <h2 class="section-title">地标景点</h2>
+        <p class="section-subtitle">从古老文明到现代都市，四川处处是风景</p>
+
+        <div class="landmark-category">
+            <h3 class="category-title">历史文化地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏺</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>三星堆博物馆</h4>
+                        <span class="highlight">核心亮点：古蜀文明，青铜珍宝，神秘面具</span>
+                        <p>三星堆遗址位于广汉市，是距今3000多年的古蜀文明遗址，被誉为"世界第九大奇迹"。博物馆展出了大量精美文物，包括高达2.62米的青铜立人像、3.96米的青铜神树、金面具、青铜纵目面具等。这些文物展现了古蜀人高超的铸造技术和独特的艺术审美。2021年新发现的6座祭祀坑出土了更多珍贵文物，进一步揭开了古蜀文明的神秘面纱。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🏯</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>武侯祠</h4>
+                        <span class="highlight">核心亮点：三国文化，诸葛亮，红墙夹道</span>
+                        <p>武侯祠位于成都市南门，是中国唯一的君臣合祀祠庙，纪念诸葛亮及蜀汉君臣。祠内有汉昭烈庙、武侯祠、三义庙等建筑，红墙夹道、古柏参天，是成都著名景点。祠内有著名的"攻心联"："能攻心则反侧自消，从古知兵非好战；不审势即宽严皆误，后来治蜀要深思。"武侯祠旁边的锦里古街，是体验成都民俗文化的好去处。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌊</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>都江堰</h4>
+                        <span class="highlight">核心亮点：千年水利工程，天府之源，李冰父子</span>
+                        <p>都江堰位于都江堰市，是秦代李冰父子修建的大型水利工程，距今已有2200多年历史，是世界上年代最久、唯一留存、仍在使用的无坝引水工程。主要工程包括鱼嘴分水堤、飞沙堰溢洪道、宝瓶口引水口，巧妙利用地形实现了"水旱从人"。都江堰造就了成都平原的富庶，使四川成为"天府之国"，被联合国教科文组织列为世界文化遗产。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏔️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>青城山</h4>
+                        <span class="highlight">核心亮点：道教圣地，幽静秀美，建福宫</span>
+                        <p>青城山位于都江堰市西南，是中国道教发祥地之一，素有"青城天下幽"之美誉。全山分为前山和后山，前山宫观林立，有建福宫、天师洞、上清宫等重要道观；后山风景秀丽，有泰安古镇、白云洞等景点。青城山道教文化深厚，是张道陵创立五斗米道的地方，山上有很多道教建筑和石刻。登山徒步，感受道教文化，是游览青城山的主要体验。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🗿</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>乐山大佛</h4>
+                        <span class="highlight">核心亮点：世界最大石刻佛像，弥勒佛，三江汇流</span>
+                        <p>乐山大佛位于乐山市岷江、青衣江、大渡河三江汇流处，是世界上最大的石刻弥勒佛坐像。大佛通高71米，头宽10米，肩宽28米，脚背可围坐百人。海通和尚于唐玄宗开元元年（713年）开始开凿，历时90年完工。大佛依凌云山栖霞峰临江峭壁凿造而成，头与山齐，脚踏大江，气势恢宏。大佛体内设计科学，有排水系统，历经千年风雨仍保存完好。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">🏯</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>杜甫草堂</h4>
+                        <span class="highlight">核心亮点：诗圣故居，茅屋故居，诗意园林</span>
+                        <p>杜甫草堂位于成都市西郊浣花溪畔，是唐代大诗人杜甫流寓成都时的故居。公元759年，杜甫为避"安史之乱"来到成都，在这里居住了近四年，创作了《茅屋为秋风所破歌》《春夜喜雨》等名篇。草堂内有大廨、诗史堂、工部祠等建筑，还有茅屋故居，复原了杜甫当年的居住环境。浣花溪公园环境优美，是感受诗圣情怀的好地方。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">自然奇观地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">🌈</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>九寨沟</h4>
+                        <span class="highlight">核心亮点：童话世界，五花海，诺日朗瀑布</span>
+                        <p>九寨沟位于阿坝州九寨沟县，因九个藏族村寨而得名，有"童话世界"之美誉。沟内湖泊多达100多个，海子水色斑斓，美不胜收。五花海是九寨沟最精彩的海子，湖水呈蓝、绿、黄等多种颜色，清澈见底。诺日朗瀑布是九寨沟最大的瀑布，宽达270米，气势磅礴。长海是九寨沟最大的海子，湖面平静如镜，四周雪峰倒映其中，美如画卷。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">必游</span>
+                        <span class="landmark-icon">💎</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>黄龙</h4>
+                        <span class="highlight">核心亮点：人间瑶池，五彩池，钙华池</span>
+                        <p>黄龙位于阿坝州松潘县，以彩池、雪山、峡谷、森林"四绝"著称，有"人间瑶池"之称。黄龙沟长约3.6公里，从海拔3100米逐级下降到2200米，分布着3400多个色彩斑斓的钙华彩池。五彩池位于黄龙沟尽头，海拔最高，是黄龙最精彩的景点，池水随光线变化呈现蓝、绿、黄、橙等多种颜色，美轮美奂。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">⛰️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>四姑娘山</h4>
+                        <span class="highlight">核心亮点：蜀山之后，四座山峰，户外天堂</span>
+                        <p>四姑娘山位于阿坝州小金县，由四座连绵的山峰组成，主峰幺妹峰海拔6250米，被称为"蜀山之后"。四姑娘山以"雄、奇、险、秀、幽"著称，是户外爱好者的天堂。景区内有双桥沟、长坪沟、海子沟三条沟，分别有不同的景观和玩法。双桥沟景区开发完善，可以观光游览；长坪沟适合徒步穿越；海子沟是露营和摄影的好地方。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">经典</span>
+                        <span class="landmark-icon">⛰️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>峨眉山</h4>
+                        <span class="highlight">核心亮点：佛教名山，金顶云海，万佛顶</span>
+                        <p>峨眉山位于乐山市峨眉山市，是中国四大佛教名山之一，主峰金顶海拔3079米。峨眉山素有"峨眉天下秀"之美誉，山势雄伟，景色秀丽。金顶是峨眉山的最高点，可以观赏云海、佛光、圣灯三大奇观。山上寺庙众多，报国寺、万年寺、清音阁、金殿等都是重要景点。峨眉山四季皆可游览，春夏山花烂漫，秋季层林尽染，冬季银装素裹。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landmark-category">
+            <h3 class="category-title">现代都市地标</h3>
+            <div class="landmark-grid">
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🐼</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>成都大熊猫繁育研究基地</h4>
+                        <span class="highlight">核心亮点：大熊猫，月亮产房，网红花花</span>
+                        <p>成都大熊猫基地位于成华区，距市中心约10公里，是著名的大熊猫科研繁育机构。基地内有100多只大熊猫，包括成年的、幼年的、新生的大熊猫，还有小熊猫、金丝猴等其他珍稀动物。月亮产房是看熊猫宝宝的最佳地点，经常能看到刚出生不久的熊猫幼崽。网红熊猫"花花"因其呆萌可爱而走红网络，是基地的明星熊猫。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🏮</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>宽窄巷子</h4>
+                        <span class="highlight">核心亮点：清代街区，老成都风情，网红打卡</span>
+                        <p>宽窄巷子位于成都市青羊区，由宽巷子、窄巷子、井巷子三条平行排列的清代古街道组成，是成都遗留下来的较成规模的清朝古街道。宽巷子展现"闲生活"，有老茶馆、传统小吃；窄巷子体现"慢生活"，有酒吧、咖啡馆；井巷子呈现"新生活"，有创意店铺、特色餐厅。宽窄巷子既有老成都的市井烟火，又有现代都市的时尚气息，是成都最具代表性的文化名片。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🛍️</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>春熙路</h4>
+                        <span class="highlight">核心亮点：商业街，时尚购物，IFS太古里</span>
+                        <p>春熙路位于成都市锦江区，是成都最著名的商业街，有"百年金街"之称。春熙路聚集了众多国际品牌、百货商场、美食餐厅，是购物休闲的好去处。IFS国际金融中心是春熙路的地标建筑，楼顶的爬墙熊猫雕塑是网红打卡点。太古里是开放式购物街区，融合了传统川西建筑风格和现代商业元素，环境优雅，品牌齐全，是成都年轻人的时尚聚集地。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌃</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>成都太古里</h4>
+                        <span class="highlight">核心亮点：开放式街区，川西建筑，时尚地标</span>
+                        <p>成都远洋太古里位于春熙路商圈，是一座开放式、低密度的街区形态购物中心。建筑风格融合了传统川西民居和现代都市元素，青瓦白墙，飞檐翘角，既有传统韵味又具现代气息。太古里汇聚了众多国际奢侈品牌、设计师品牌、特色餐厅和咖啡馆，是成都最具时尚感的购物场所。漫步其中，既能购物休闲，又能感受成都的现代都市魅力。</p>
+                    </div>
+                </div>
+
+                <div class="landmark-card">
+                    <div class="landmark-header">
+                        <span class="landmark-badge">网红</span>
+                        <span class="landmark-icon">🌉</span>
+                    </div>
+                    <div class="landmark-content">
+                        <h4>锦江绿道</h4>
+                        <span class="highlight">核心亮点：城市绿廊，骑行健走，锦江夜游</span>
+                        <p>锦江绿道是成都"天府绿道"的重要组成部分，沿锦江两岸建设，串联起成都多个历史文化景点。绿道全长约120公里，设有自行车道、步行道、休息驿站，是市民休闲健身的好去处。锦江夜游是成都的热门旅游项目，乘坐游船欣赏锦江两岸的夜景，灯光璀璨，美不胜收，可以看到合江亭、安顺廊桥等著名景点。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食板块 -->
+    <section class="section section-alt" id="food">
+        <h2 class="section-title">川味美食</h2>
+        <p class="section-subtitle">麻辣鲜香，一菜一格，百菜百味</p>
+
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🌶️</span>
+                    <span class="food-name">麻婆豆腐</span>
+                    <span class="food-spicy">麻辣程度：★★★★★</span>
+                </div>
+                <div class="food-content">
+                    <p>川菜代表菜，以"麻、辣、鲜、香、烫、酥、嫩、活"八字著称。豆腐嫩滑，肉末香酥，麻辣味浓郁，是川菜"一菜一格，百菜百味"的典型代表。</p>
+                    <span class="food-tag">经典川菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥘</span>
+                    <span class="food-name">火锅</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>四川最具代表性的美食，以麻辣鲜香著称。火锅底料由牛油、辣椒、花椒等多种香料熬制而成，食材丰富，毛肚、黄喉、鸭肠是必点菜品。</p>
+                    <span class="food-tag">四川特色</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍜</span>
+                    <span class="food-name">担担面</span>
+                    <span class="food-spicy">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>成都传统小吃，因最初是小贩挑着担子沿街叫卖而得名。面条筋道，臊子香酥，麻辣味浓郁，是成都人早餐的常见选择。</p>
+                    <span class="food-tag">传统小吃</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥟</span>
+                    <span class="food-name">钟水饺</span>
+                    <span class="food-spicy">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>成都著名小吃，因由钟燮森创制而得名。水饺皮薄馅大，浇上特制的红油甜酱，甜辣适中，口感丰富，是成都必尝的小吃之一。</p>
+                    <span class="food-tag">传统小吃</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍢</span>
+                    <span class="food-name">串串香</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>火锅的变体，将食材串在竹签上，放入麻辣汤底中煮熟。串串香种类丰富，价格实惠，是成都人夜宵的常见选择，街头巷尾随处可见。</p>
+                    <span class="food-tag">街头美食</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥬</span>
+                    <span class="food-name">夫妻肺片</span>
+                    <span class="food-spicy">麻辣程度：★★★★☆</span>
+                </div>
+                <div class="food-content">
+                    <p>成都传统凉菜，由郭朝华、张田政夫妇创制而得名。用牛头皮、牛心、牛舌等牛杂制成，麻辣鲜香，口感丰富，是川菜中的经典凉菜。</p>
+                    <span class="food-tag">经典凉菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🍗</span>
+                    <span class="food-name">宫保鸡丁</span>
+                    <span class="food-spicy">麻辣程度：★★☆☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>川菜名菜，以鸡肉、花生、辣椒为主料。鸡肉鲜嫩，花生香脆，酸甜微辣，是川菜中较为温和的一道菜，适合不能吃辣的人尝试。</p>
+                    <span class="food-tag">经典川菜</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🐟</span>
+                    <span class="food-name">水煮鱼</span>
+                    <span class="food-spicy">麻辣程度：★★★★★</span>
+                </div>
+                <div class="food-content">
+                    <p>重庆菜系，现已成为四川名菜。鱼肉鲜嫩，麻辣味浓郁，豆芽、白菜等配菜爽脆可口。水煮鱼麻辣鲜香，是川菜"麻辣"特色的完美体现。</p>
+                    <span class="food-tag">麻辣经典</span>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-header">
+                    <span class="food-icon">🥬</span>
+                    <span class="food-name">回锅肉</span>
+                    <span class="food-spicy">麻辣程度：★★★☆☆</span>
+                </div>
+                <div class="food-content">
+                    <p>四川传统名菜，被称为"川菜之首"。五花肉煮熟后再炒，配以豆瓣酱、蒜苗等调料，色泽红亮，肥而不腻，是四川人餐桌上最常见的家常菜。</p>
+                    <span class="food-tag">家常名菜</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <h3>四川 · 欢迎您</h3>
+        <p>天府之国，巴蜀大地 | 历史与自然的交响曲</p>
+        <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.85rem;">© 2024 四川省城市展示页面</p>
+    </footer>
+</body>
+</html>
